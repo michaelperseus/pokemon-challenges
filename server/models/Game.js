@@ -12,6 +12,10 @@ const GameSchema = new mongoose.Schema({
     hack: {
         type: Boolean,
         required: true
+    },
+    gameCode: {
+        type: String,
+        required: true
     }
 })
 
