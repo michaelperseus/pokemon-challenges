@@ -1,10 +1,9 @@
 const express = require('express');
+const router = express.Router();
 
-const app = express();
-
-app.get('/me', (req, res) => {
+router.get('/me', (req, res) => {
     res.send('connection established!')
 })
 
 
-module.exports = app;
+module.exports = router;
