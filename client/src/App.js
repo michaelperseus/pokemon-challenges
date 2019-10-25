@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-import Intro from './components/intro'
-import Home from './components/home'
+import Game from './components/Game'
+import Home from './components/Home'
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
           </p>
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/game/:id" component={Intro} />
+            <Route path="/game/:id" component={Game} />
           </Switch>
         </header>
       </div>
