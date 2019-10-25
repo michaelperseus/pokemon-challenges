@@ -41,11 +41,20 @@ class intro extends Component {
     }
 
     render() {
-        return (
-            <div>
-                <h1>Please enjoy Pokemon {this.state.game}</h1>
-            </div>
-        )
+        if (this.state.game === '') {
+            return (
+                <div>
+                    <h1>Loading...</h1>
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    <h1>Please enjoy Pokemon {this.state.game}</h1>
+                </div>
+            )
+        }
+        
     }
 }
 
