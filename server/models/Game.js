@@ -16,6 +16,10 @@ const GameSchema = new mongoose.Schema({
     gameCode: {
         type: String,
         required: true
+    },
+    logo: {
+        type: String,
+        required: false
     }
 })
 

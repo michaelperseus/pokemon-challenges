@@ -14,19 +14,19 @@ class Game extends Component {
         // this.setState({
         //     test: 'true'
         // })
-        console.log(this.props);
         fetch(`/games/${this.props.match.params.id}`)
         .then(res => res.json())
         .then((json) => {
             this.setState({
                 game: json.name,
-                search: json.gameCode
+                search: json.gameCode,
+                logo: json.logo
             })
         });
     }
 
     componentDidUpdate() {
-        if (this.state.search == this.props.match.params.id) {
+        if (this.state.search === this.props.match.params.id) {
             return
         }
         console.log(this.props);
@@ -35,7 +35,8 @@ class Game extends Component {
         .then((json) => {
             this.setState({
                 game: json.name,
-                search: json.gameCode
+                search: json.gameCode,
+                logo: json.logo
             })
         });
     }
@@ -51,6 +52,7 @@ class Game extends Component {
             return (
                 <div>
                     <h1>Please enjoy Pokemon {this.state.game}</h1>
+                    <img src={this.state.logo} alt={this.state.game}></img>
                 </div>
             )
         }
