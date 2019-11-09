@@ -10,10 +10,6 @@ class Game extends Component {
         }
     }
     componentDidMount() {
-        // console.log('heyo');
-        // this.setState({
-        //     test: 'true'
-        // })
         fetch(`/games/${this.props.match.params.id}`)
         .then(res => res.json())
         .then((json) => {
@@ -30,15 +26,17 @@ class Game extends Component {
             return
         }
         console.log(this.props);
-        fetch(`/games/${this.props.match.params.id}`)
-        .then(res => res.json())
-        .then((json) => {
-            this.setState({
-                game: json.name,
-                search: json.gameCode,
-                logo: json.logo
+        const gameInfo = this.fetchGame();
+        this.setState({
+                game: gameInfo.name,
+                search: gameInfo.gameCode,
+                logo: gameInfo.logo
             })
-        });
+    }
+
+    fetchGame = async () => {
+        return fetch(`/games/${this.props.match.params.id}`)
+        .then(res => res.json())
     }
 
     render() {

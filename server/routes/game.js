@@ -9,6 +9,15 @@ const multipart = multer();
 const upload = require('../services/file-upload');
 const singleUpload = upload.single('image');
 
+//Returns all games
+router.get('/all', async (req, res) => {
+    const game = await Game.find({});
+    if(!game) {
+        res.status(404).send('Could not locate any games');
+    }
+    res.send(game);
+})
+
 //Return the requested game
 router.get('/:title', async (req, res) => {
     const game = await Game.findOne({gameCode: req.params.title});

@@ -2,22 +2,17 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-import Game from './components/Game'
-import Home from './components/Home'
+import Game from './components/Game';
+import Home from './components/Home';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <Router>
       <div className="App">
+        <Navbar />
         <header className="App-header">
           <h1>Welcome to Pokemon Challenges</h1>
-          <ul>
-          <li><Link to={'/'}>Home</Link></li>
-            <li><Link to={'/game/hg'}>Heart Gold</Link></li>
-            <li><Link to={'/game/blk'}>Black</Link></li>
-            <li><Link to={'/game/ss'}>Soul Silver</Link></li>
-            <li><Link to={'/game/ylw'}>Yellow</Link></li>
-          </ul>
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/game/:id" component={Game} />
