@@ -21,21 +21,22 @@ class Game extends Component {
         });
     }
 
-    componentDidUpdate() {
+    async componentDidUpdate() {
         if (this.state.search === this.props.match.params.id) {
             return
         }
-        console.log(this.props);
-        const gameInfo = this.fetchGame();
-        this.setState({
+        const gameInfo = await this.fetchGame();
+        if (this.state.search !== gameInfo.gameCode) {
+            this.setState({
                 game: gameInfo.name,
                 search: gameInfo.gameCode,
                 logo: gameInfo.logo
             })
+        }
     }
 
     fetchGame = async () => {
-        return fetch(`/games/${this.props.match.params.id}`)
+        return await fetch(`/games/${this.props.match.params.id}`)
         .then(res => res.json())
     }
 
