@@ -1,8 +1,9 @@
 import React from 'react';
-import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import './App.scss';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Game from './components/Game';
+import GameList from './components/GameList';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
 
@@ -11,13 +12,13 @@ function App() {
     <Router>
       <div className="App">
         <Navbar />
-        <header className="App-header">
-          <h1>Welcome to Pokemon Challenges</h1>
+        <main className="mainBody">
           <Switch>
             <Route path="/" exact component={Home} />
+            <Route path="/game-list" component={GameList} />
             <Route path="/game/:id" component={Game} />
           </Switch>
-        </header>
+        </main>
       </div>
     </Router>
     

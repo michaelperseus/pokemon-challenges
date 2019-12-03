@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css?family=Chango&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700&display=swap');
+
+/*-----SASS Variables-----*/
+$lightBlue: #88c6ff;
+$yellow: #fff68e;
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+body {
+  background-color: #282c34;
+}
+
+.mainBody {
+  min-height: 100vh;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+/*-----Navbar Design-----*/
+.navbar {
+  background: $yellow;
+  margin: 0;
+  top: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  h1 {
+    font-family: 'Chango', 'sans-serif';
+    margin-left: 5px;
+    color: $lightBlue;
+  }
+  ul {
+    align-self: center;
+    justify-self: end;
+    li {
+      display: inline;
+      padding: 0 5px;
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+/*-----Home Screen Design-----*/
+.homeBox {
+  margin: 10px auto;
+  width: 80%;
+  img {
+    width: 100%;
+  }
+  // p {
+  //   width: 90%;
+  //   margin: 0 auto;
+  // }
+}
+
+/*-----Game List Design-----*/
+.gameBox {
+  width: 90%;
+  margin: 0 auto;
+  img {
+    width: 100%;
+  }
+}
