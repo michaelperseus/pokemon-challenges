@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Game extends Component {
     constructor(props) {
@@ -6,10 +7,11 @@ class Game extends Component {
         this.state = {
             test: 'false',
             game: '',
-            search: ''
+            search: '',
+            runs: []
         }
     }
-    componentDidMount() {
+    async componentDidMount() {
         fetch(`/games/${this.props.match.params.id}`)
         .then(res => res.json())
         .then((json) => {
@@ -19,6 +21,10 @@ class Game extends Component {
                 logo: json.logo
             })
         });
+        const runs = await this.fetchRuns();
+        this.setState({
+            runs: runs
+        })
     }
 
     async componentDidUpdate() {
@@ -35,6 +41,11 @@ class Game extends Component {
         }
     }
 
+    fetchRuns = async () => {
+        return await fetch(`/runs/${this.props.match.params.id}/all`)
+        .then(res => res.json())
+    }
+
     fetchGame = async () => {
         return await fetch(`/games/${this.props.match.params.id}`)
         .then(res => res.json())
@@ -49,9 +60,12 @@ class Game extends Component {
             )
         } else {
             return (
-                <div>
-                    <h1>Please enjoy Pokemon {this.state.game}</h1>
+                <div className="gamePage">
+                    <h1>Pokemon {this.state.game}</h1>
                     <img src={this.state.logo} alt={this.state.game}></img>
+                    <p>There have been {this.state.runs.length} runs(s) of this game!</p>
+                    <p>Would you like to add one?</p>
+                    <button><Link to={`/add-run/${this.state.search}`}>Go Here!</Link></button>
                 </div>
             )
         }

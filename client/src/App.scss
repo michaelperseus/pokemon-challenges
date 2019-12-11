@@ -2,8 +2,10 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700&display=swap');
 
 /*-----SASS Variables-----*/
-$lightBlue: #88c6ff;
-$yellow: #fff68e;
+$red: #ff7575;
+$darkRed: #E16161;
+$white: #ffffff;
+$black: #707070;
 
 * {
   margin: 0;
@@ -12,7 +14,7 @@ $yellow: #fff68e;
 }
 
 body {
-  background-color: #282c34;
+  background-color: $black;
 }
 
 .mainBody {
@@ -22,16 +24,19 @@ body {
 }
 
 /*-----Navbar Design-----*/
-.navbar {
-  background: $yellow;
+.navbarBig {
+  background: $red;
   margin: 0;
   top: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  h1 {
-    font-family: 'Chango', 'sans-serif';
-    margin-left: 5px;
-    color: $lightBlue;
+  a {
+    text-decoration: none;
+    h1 {
+      font-family: 'Chango', 'sans-serif';
+      margin-left: 5px;
+      color: $white;
+    }
   }
   ul {
     align-self: center;
@@ -41,9 +46,72 @@ body {
       padding: 0 5px;
       a {
         text-decoration: none;
+        color: $white;
       }
     }
   }
+}
+
+.webNav {
+  display: none;
+}
+
+@media only screen and (min-width: 750px) {
+  .webNav {
+    display: block;
+  }
+  .mobileNav {
+    display: none;
+  }
+}
+
+.navbarButton {
+  width: 50px;
+  height: 50px;
+  background: $red;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  display: grid;
+  .innerButton {
+    width: 75%;
+    height: 75%;
+    background: $white;
+    border-radius: 50%;
+    align-self: center;
+    justify-self: center;
+  }
+}
+
+.navbarSmall {
+  width: 100%;
+  background: $white;
+  color: $red;
+  display: none;
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  ul {
+    li {
+      padding: 15px;
+      a { 
+        text-decoration: none;
+        font-size: 1.5em;
+        color: $black;
+      }
+    }
+  }
+  span {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 2em;
+  }
+}
+
+.navbarSmall-On {
+  display: block;
 }
 
 /*-----Home Screen Design-----*/
@@ -53,16 +121,36 @@ body {
   img {
     width: 100%;
   }
-  // p {
-  //   width: 90%;
-  //   margin: 0 auto;
-  // }
+  p {
+    margin-bottom: 15px;
+  }
+  a {
+    text-decoration: none;
+    button {
+      border: none;
+      padding: 10px;
+      background: $red;
+      color: $white;
+      margin: 0 auto;
+      display: block;
+      &:hover {
+        background: $darkRed;
+      }
+    }
+  }
 }
 
 /*-----Game List Design-----*/
 .gameBox {
   width: 90%;
   margin: 0 auto;
+  img {
+    width: 100%;
+  }
+}
+
+/*-----Game Page Design-----*/
+.gamePage {
   img {
     width: 100%;
   }

@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class GameList extends Component {
     constructor(props) {
@@ -28,7 +29,6 @@ class GameList extends Component {
             hackList: hackListBuild,
             origList: origListBuild
         })
-        console.log(this.state.hackList);
     }
 
     callGames = async () => {
@@ -39,9 +39,8 @@ class GameList extends Component {
 
     makeGameBox = (game) => {
         console.log(game);
-        const box = <div className="gameBox">
-                        <h1>{game.name}</h1>
-                        <img src={game.logo} alt="Game Logo"></img>
+        const box = <div key={game.gameCode} className="gameBox">
+                        <Link to={`/game/${game.gameCode}`}><img src={game.logo} alt={game.name}></img></Link>
                     </div>
         return box;
     }

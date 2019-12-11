@@ -1,15 +1,44 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-import HomeBanner from '../img/Home_Banner.png'
+import HomeBanner from '../img/Logos2.png'
 
 class Home extends Component {
+
+    testLocal = () => {
+        // const test = localStorage.getItem('user');
+        // console.log(test);
+        const test = document.cookie;
+        console.log(test);
+    }
+
+    removeLocal = () => {
+        localStorage.removeItem('user');
+        const test = localStorage.getItem('user');
+        console.log(test);
+    }
+
     render() {
         return (
             <div>
                 <div className="homeBox">
                     <img src={HomeBanner} alt="Home Screen Banner"></img>
-                    <p>'Pokemon Challenges' is a Lorem ipsum dolor sit amet, case solum sed ea, an atqui nusquam dissentias est, mei inani discere an. Duis quaestio te quo. Mei cu veri saperet alienum. Te vix dolore vivendum sensibus, eos laoreet accusam explicari an. Per ut audiam invenire. Et sed prima indoctum expetenda, ne duo dolorum persecuti. Nonumy laboramus in ius, augue exerci necessitatibus has te.</p>
+                    <p>Pokémon Challenges is a hub for players who love to give their playthroughs a little extra spice!</p>
+                    <p>Here, you can log in and track all the different playthroughs you've done, if you won or failed and what Pokémon you used along the way!</p>
+                    <p>There is also a community feature to see what others players have done, what the most common games are and more!</p>
+                    <p>So what are you waiting for? Let's take a look at the games list!</p>
+                    <Link to={'/game-list'}><button>View All Games!</button></Link>
                 </div>
+                <div className="homeBox">
+                    <img src={HomeBanner} alt="Home Screen Banner"></img>
+                    <p>Pokémon Challenges is a hub for players who love to give their playthroughs a little extra spice!</p>
+                    <p>Here, you can log in and track all the different playthroughs you've done, if you won or failed and what Pokémon you used along the way!</p>
+                    <p>There is also a community feature to see what others players have done, what the most common games are and more!</p>
+                    <p>So what are you waiting for? Let's take a look at the games list!</p>
+                    <Link to={'/game-list'}><button>View All Games!</button></Link>
+                </div>
+                <button onClick={this.testLocal}>Test local</button>
+                <button onClick={this.removeLocal}>Remove local</button>
             </div>
         )
     }
