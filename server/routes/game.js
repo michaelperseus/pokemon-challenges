@@ -18,6 +18,12 @@ router.get('/all', async (req, res) => {
     res.send(game);
 })
 
+//Returns a list of games ordered by Most Runs
+router.get('/mostPlayedGame', async (req, res) => {
+    const runs = await Game.find({}).sort('-runs').limit(1);
+    res.send(runs);
+})
+
 //Return the requested game
 router.get('/:title', async (req, res) => {
     const game = await Game.findOne({gameCode: req.params.title});
@@ -26,6 +32,9 @@ router.get('/:title', async (req, res) => {
     }
     res.send(game);
 })
+
+
+
 
 
 //Adds a new game to the database

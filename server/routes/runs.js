@@ -9,15 +9,18 @@ router.get('/all', async (req, res) => {
     res.send(runs);
 })
 
+
 router.get('/:game/all', async (req, res) => {
     const games = await Run.find({game: req.params.game});
     res.send(games);
 })
 
+
 router.get('/:username', async (req, res) => {
     const runs = await Run.find({user: req.params.username});
     res.send(runs);
 })
+
 
 router.delete('/delete', async (req, res) => {
     console.log(req.body.id);
@@ -28,7 +31,6 @@ router.delete('/delete', async (req, res) => {
             const game = await Game.findOne({gameCode: run.game});
             game.runs--;
             await game.save();
-            console.log(run)
             res.status(200).send(run); 
         } 
 })
@@ -46,6 +48,7 @@ router.post('/newRun', async (req, res) => {
         res.status(500).send(e)
     }
 })
+
 
 
 module.exports = router;
