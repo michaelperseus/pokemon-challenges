@@ -6,7 +6,7 @@ class AddRun extends Component {
         this.state = {
             game: this.props.match.params.id,
             completed: '',
-            name: ''
+            name: localStorage.getItem('user')
         }
     }
 
@@ -25,7 +25,6 @@ class AddRun extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(e.target.value);
         if (this.state.name === '' || this.state.completed === '' || this.state.game === '') {
             alert('You need to complete all the field!');
         } else {
@@ -42,12 +41,7 @@ class AddRun extends Component {
                 body: JSON.stringify(newRunData)
             });
             const returnRun = await sendRun.json();
-            console.log(returnRun);
-
         }
-        // const newRun = {
-        //     game: e.target.
-        // }
     }
 
     render() {
@@ -61,7 +55,7 @@ class AddRun extends Component {
                     <label>In Progress</label><input type="radio" name="completed" value='in progress' onChange={this.handleChange}></input>
                     <label>Failed</label><input type="radio" name="completed" value='failed' onChange={this.handleChange}></input><br></br>
                     <label>Name: </label>
-                    <input type="text" onChange={this.handleChange} value={this.state.name} name="name"></input><br></br>
+                    <input type="text" onChange={this.handleChange} value={this.state.name} name="name" disabled></input><br></br>
                     <button>Submit</button>
                 </form>
             </div>

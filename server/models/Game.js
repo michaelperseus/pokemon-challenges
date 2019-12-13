@@ -20,6 +20,11 @@ const GameSchema = new mongoose.Schema({
     logo: {
         type: String,
         required: false
+    },
+    runs: {
+        type: Number,
+        required: false,
+        default: 0
     }
 })
 

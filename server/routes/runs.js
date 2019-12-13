@@ -1,5 +1,6 @@
 const express = require('express');
 const Run = require('../models/Runs');
+const Game = require('../models/Game');
 
 const router = express.Router();
 
@@ -18,11 +19,27 @@ router.get('/:username', async (req, res) => {
     res.send(runs);
 })
 
+router.delete('/delete', async (req, res) => {
+    console.log(req.body.id);
+    const run = await Run.findByIdAndDelete(req.body.id);
+        if (!run) {
+            res.status(500).send();
+        } else {
+            const game = await Game.findOne({gameCode: run.game});
+            game.runs--;
+            await game.save();
+            console.log(run)
+            res.status(200).send(run); 
+        } 
+})
+
 router.post('/newRun', async (req, res) => {
     const run = new Run(req.body);
     try {
         await run.save();
-        console.log(run);
+        const game = await Game.findOne({gameCode: req.body.game});
+        game.runs++;
+        await game.save();
         res.status(201).send(run)
     } catch (e) {
         console.log(e);

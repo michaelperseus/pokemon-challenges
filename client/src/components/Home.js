@@ -5,13 +5,6 @@ import HomeBanner from '../img/Logos2.png'
 
 class Home extends Component {
 
-    testLocal = () => {
-        // const test = localStorage.getItem('user');
-        // console.log(test);
-        const test = document.cookie;
-        console.log(test);
-    }
-
     removeLocal = () => {
         localStorage.removeItem('user');
         const test = localStorage.getItem('user');
@@ -37,7 +30,6 @@ class Home extends Component {
                     <p>So what are you waiting for? Let's take a look at the games list!</p>
                     <Link to={'/game-list'}><button>View All Games!</button></Link>
                 </div>
-                <button onClick={this.testLocal}>Test local</button>
                 <button onClick={this.removeLocal}>Remove local</button>
             </div>
         )

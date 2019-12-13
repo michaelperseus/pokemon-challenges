@@ -11,7 +11,7 @@ import NotFound from './components/NotFound';
 import Community from './components/Community';
 import Login from './components/Login';
 import withAuth from './components/withAuth';
-import User from './components/User';
+import MyProfile from './components/MyProfile';
 
 import ProtectTest from './components/ProtectTest';
 
@@ -25,11 +25,11 @@ function App() {
             <Route path="/" exact component={Home} />
             <Route path="/game-list" component={GameList} />
             <Route path="/game/:id" component={Game} />
-            <Route path="/add-run/:id" component={AddRun} />
+            <Route path="/add-run/:id" component={withAuth(AddRun)} />
             <Route path='/community' component={Community} />
             <Route path="/protectTest" component={withAuth(ProtectTest)} />
             <Route path="/login" component={Login} />
-            <Route path='/my-profile' component={withAuth(User)} />
+            <Route path='/my-profile' component={withAuth(MyProfile)} />
             <Route component={NotFound} />
           </Switch>
         </main>
