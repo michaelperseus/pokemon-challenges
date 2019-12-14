@@ -12,7 +12,22 @@ export default function withAuth(ComponentToProtect) {
        };
 
        componentDidMount () {
-           fetch('/checkToken')
+
+            if(!localStorage.getItem('token')) {
+                return this.setState({loading: false, redirect: true});
+            }
+
+            const token = localStorage.getItem('token');
+            console.log(token);
+           fetch('/checkToken', {
+                method: 'GET',
+                withCredentials: true,
+                credentials: 'include',
+                headers: {
+                   'Authorization': `Bearer ${token}`,
+                   'Content-Type': 'application/json'
+                }
+           })
            .then(res => {
                if (res.status === 200) {
                    this.setState({loading: false});

@@ -107,6 +107,7 @@ body {
     top: 0;
     right: 10px;
     font-size: 2em;
+    cursor: pointer;
   }
 }
 
@@ -153,5 +154,26 @@ body {
 .gamePage {
   img {
     width: 100%;
+  }
+}
+
+/*-----My Profile Design-----*/
+.myRuns {
+  border: white 1px solid;
+  border-collapse: collapse;
+  width: 80%;
+  tr {
+    width: 30%;
+    height: 50px;
+    td {
+      border: 1px solid white;
+      padding: 10px;
+      margin: 5px;
+      button {
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+      }
+    }
   }
 }

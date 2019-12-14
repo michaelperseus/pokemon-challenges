@@ -23,6 +23,7 @@ export default class User extends Component {
 
     logoutUser = () => {
         localStorage.removeItem('user');
+        localStorage.removeItem('token');
         this.props.history.push('/');
         window.location.reload(true);
     }
@@ -61,7 +62,12 @@ export default class User extends Component {
             <div>
                 <h1>Welcome, {this.state.user}</h1>
                 <p>You have completed {this.state.runs.length} run(s)!</p>
-                <table>{this.state.runTable}</table>
+                <table className="myRuns">
+                    <tr>
+                        <td>Game</td>
+                        <td>Status</td>
+                        <td>Edit</td>
+                    </tr>{this.state.runTable}</table>
                 <button onClick={this.logoutUser}>Logout</button>
             </div>
         )

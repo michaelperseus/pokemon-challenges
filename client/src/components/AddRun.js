@@ -33,14 +33,14 @@ class AddRun extends Component {
                 completed: this.state.completed,
                 game: this.state.game
             }
-            const sendRun = await fetch('/runs/newRun', {
+            /*const sendRun =*/ await fetch('/runs/newRun', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                   },
                 body: JSON.stringify(newRunData)
             });
-            const returnRun = await sendRun.json();
+            // const returnRun = await sendRun.json();
         }
     }
 

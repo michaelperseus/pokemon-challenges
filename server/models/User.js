@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const saltRounds = 10;
 
@@ -17,7 +18,13 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         require: true
-    }
+    },
+    tokens: [{
+        token: {
+            type: String,
+            required: true
+        }
+    }]
 });
 
 UserSchema.methods.isCorrectPassword = function(password, cb) {
@@ -38,6 +45,32 @@ UserSchema.methods.toJSON = function () {
     delete userObject.password;
 
     return userObject;
+}
+
+UserSchema.statics.findByCredentials = async function(username, password) {
+    const user = await this.findOne({username});
+
+    if(!user) {
+        throw new Error('Could not locate user')
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if(!isMatch) {
+        throw new Error('password incorrect')
+    }
+
+    return user;
+}
+
+UserSchema.methods.generateAuthTokens = async function() {
+    const user = this;
+    const token = jwt.sign({_id: user.username}, process.env.SECRET);
+
+    user.tokens = user.tokens.concat({token});
+    await user.save();
+
+    return token;
 }
 
 UserSchema.pre('save', function(next) {

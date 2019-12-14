@@ -15,6 +15,7 @@ export default class Login extends Component {
           [name]: value
         });
       }
+
       onSubmit = (e) => {
         e.preventDefault();
         fetch('/users/authenticate', {
@@ -26,9 +27,15 @@ export default class Login extends Component {
         })
         .then(res => {
             if (res.status === 200) {
-                res.json().then(data => localStorage.setItem('user', data.username));
-                this.props.history.push('/');
-                window.location.reload(true);
+                res.json().then(data => {
+                  localStorage.setItem('user', data.user.username);
+                  localStorage.setItem('token', data.token);
+                  this.props.history.push('/');
+                  window.location.reload(true);
+                });
+                // res.json().then(data => localStorage.setItem('user', data.username));
+                // this.props.history.push('/');
+                // window.location.reload(true);
             } else {
                 const error = new Error(res.error);
                 throw error;
@@ -39,6 +46,7 @@ export default class Login extends Component {
             alert('Error logging in');
         })
       }
+
       render() {
         return (
           <form onSubmit={this.onSubmit}>

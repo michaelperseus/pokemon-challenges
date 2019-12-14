@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
+// require('../config/dev.env').config({ path: '../config/dev.env' });
+
 const userRoutes = require('./routes/users');
 const gameRoutes = require('./routes/game');
 const runRoutes = require('./routes/runs');
