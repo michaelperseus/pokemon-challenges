@@ -30,6 +30,35 @@ router.post('/register', async (req, res) => {
     })
 })
 
+router.post('/logout', async (req, res) => {
+    try {
+        const user = await User.findOne({username: req.body.username});
+        console.log(req.body.token);
+        user.tokens = await user.tokens.filter((token) => {
+            return token.token !== req.body.token;
+        })
+        await user.save();
+        res.send(user)
+
+    } catch (e) {
+        console.log(e);
+        res.status(500).send(e);
+    }
+})
+
+router.post('/logoutAll', async (req, res) => {
+    try {
+        const user = await User.findOne({username: req.body.username});
+        user.tokens = [];
+        await user.save();
+        res.send(user);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send(e);
+    }
+    
+})
+
 // router.post('/authenticate', (req, res) => {
 //     User.findOne({username: req.body.username}, (err, user) => {
 //         if (err) {

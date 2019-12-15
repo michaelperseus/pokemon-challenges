@@ -21,11 +21,50 @@ export default class User extends Component {
         .then(data => this.setState({runs: data}))
     }
 
-    logoutUser = () => {
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
-        this.props.history.push('/');
-        window.location.reload(true);
+    logoutUser = async () => {
+        const logoutData = {
+            username: localStorage.getItem('user'),
+            token: localStorage.getItem('token')
+        }
+        await fetch('/users/logout', {
+            method: 'POST',
+            body: JSON.stringify(logoutData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => {
+            if (res.status == 200) {
+                localStorage.removeItem('user');
+                localStorage.removeItem('token');
+                this.props.history.push('/');
+                window.location.reload(true);
+            } else {
+                console.log('error logging out');
+            }
+        })
+    }
+
+    logoutAll = async () => {
+        const logoutData = {
+            username: localStorage.getItem('user'),
+            token: localStorage.getItem('token')
+        }
+        await fetch('/users/logoutAll', {
+            method: 'POST',
+            body: JSON.stringify(logoutData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => {
+            if (res.status == 200) {
+                localStorage.removeItem('user');
+                localStorage.removeItem('token');
+                this.props.history.push('/');
+                window.location.reload(true);
+            } else {
+                console.log('error logging out');
+            }
+        })
     }
 
     deleteRun = (id) => {
@@ -69,6 +108,7 @@ export default class User extends Component {
                         <td>Edit</td>
                     </tr>{this.state.runTable}</table>
                 <button onClick={this.logoutUser}>Logout</button>
+                <button onClick={this.logoutAll}>Logout Everywhere</button>
             </div>
         )
     }
