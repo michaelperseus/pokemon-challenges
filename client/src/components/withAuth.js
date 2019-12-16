@@ -18,7 +18,6 @@ export default function withAuth(ComponentToProtect) {
             }
 
             const token = localStorage.getItem('token');
-            console.log(token);
            fetch('/checkToken', {
                 method: 'GET',
                 withCredentials: true,

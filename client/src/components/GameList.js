@@ -38,7 +38,6 @@ class GameList extends Component {
     }
 
     makeGameBox = (game) => {
-        console.log(game);
         const box = <div key={game.gameCode} className="gameBox">
                         <Link to={`/game/${game.gameCode}`}><img src={game.logo} alt={game.name}></img></Link>
                     </div>

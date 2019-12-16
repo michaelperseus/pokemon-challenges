@@ -48,7 +48,6 @@ class Navbar extends Component {
         if (!user) {
             return this.setState({user: 'Login / Sign Up'})
         } else {
-            console.log(user);
             return this.setState({user: user});
         }
     }

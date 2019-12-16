@@ -31,7 +31,6 @@ class Home extends Component {
     fetchTopGame = async () => {
         const game = await fetch('/games/mostPlayedGame')
                 .then(res => res.json());
-        console.log(game);
         this.setState({
             logo: <img src={game[0].logo} alt="game logo"></img>
         })
