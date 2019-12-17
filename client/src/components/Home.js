@@ -32,7 +32,8 @@ class Home extends Component {
         const game = await fetch('/games/mostPlayedGame')
                 .then(res => res.json());
         this.setState({
-            logo: <img src={game[0].logo} alt="game logo"></img>
+            logo: <img src={game[0].logo} alt="game logo"></img>,
+            name: game[0].gameCode
         })
     }
 
@@ -48,9 +49,11 @@ class Home extends Component {
                     <p>So what are you waiting for? Let's take a look at the games list!</p>
                     <Link to={'/game-list'}><button>View All Games!</button></Link>
                 </div>
-                <div>
-                    <h1>Most played Game!</h1>
-                    {this.state.logo}
+                <div className="gameHighlightContainer">
+                    <div className="gameHighlight">
+                        <h1>Most played Game!</h1>
+                        <Link to={`/game/${this.state.name}`}>{this.state.logo}</Link>
+                    </div>
                 </div>
                 <button onClick={this.removeLocal}>Remove local</button>
             </div>

@@ -5,13 +5,14 @@ class AddRun extends Component {
         super(props);
         this.state = {
             game: this.props.match.params.id,
-            completed: '',
+            completed: 'completed',
             name: localStorage.getItem('user')
         }
     }
 
     handleChange = (e) => {
-        if(e.target.type === "radio") {
+        console.log(e.target.type);
+        if(e.target.type === "radio" || e.target.type === "select-one") {
             this.setState({
                 completed: e.target.value
             })
@@ -33,14 +34,23 @@ class AddRun extends Component {
                 completed: this.state.completed,
                 game: this.state.game
             }
-            /*const sendRun =*/ await fetch('/runs/newRun', {
+            await fetch('/runs/newRun', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                   },
                 body: JSON.stringify(newRunData)
+            }).then(res => {
+                if (res.status === 201) {
+                    res.json().then(data => {
+                        console.log(data);
+                        this.props.history.push('/');
+                    })
+                    // window.location.reload(true);
+                } else {
+                    alert('an error has occured, please try again')
+                }
             });
-            // const returnRun = await sendRun.json();
         }
     }
 
@@ -50,13 +60,18 @@ class AddRun extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>Game: </label>
                     <input type="text" value={this.props.match.params.id} disabled></input><br></br>
-                    <label>Completed?</label><br></br>
-                    <label>Completed</label><input type="radio" name="completed" value='completed' onChange={this.handleChange}></input>
+                    <label>Status:</label>
+                    {/* <label>Completed</label><input type="radio" name="completed" value='completed' onChange={this.handleChange}></input>
                     <label>In Progress</label><input type="radio" name="completed" value='in progress' onChange={this.handleChange}></input>
-                    <label>Failed</label><input type="radio" name="completed" value='failed' onChange={this.handleChange}></input><br></br>
+                    <label>Failed</label><input type="radio" name="completed" value='failed' onChange={this.handleChange}></input><br></br> */}
+                    <select onChange={this.handleChange} value={this.state.completed}>
+                        <option name="completed" value="completed">Completed</option>
+                        <option name="completed" value="in progress">In-Progress</option>
+                        <option name="completed" value="failed">Failed</option>
+                    </select><br></br>
                     <label>Name: </label>
                     <input type="text" onChange={this.handleChange} value={this.state.name} name="name" disabled></input><br></br>
-                    <button>Submit</button>
+                    <button>Submit Run</button>
                 </form>
             </div>
         )

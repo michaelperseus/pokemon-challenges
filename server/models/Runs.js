@@ -12,7 +12,16 @@ const RunSchema = new mongoose.Schema({
     user: {
         type: String,
         required: true
-    }
+    },
+    variation: {
+        type: String,
+        default: 'nuzlocke'
+    },
+    pokemon: [{
+        pokemon: {
+            type: String
+        }
+    }]
 },
 {
     timestamps: true
