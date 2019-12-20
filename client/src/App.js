@@ -12,6 +12,7 @@ import Community from './components/Community';
 import Login from './components/Login';
 import withAuth from './components/withAuth';
 import MyProfile from './components/MyProfile';
+import EditRun from './components/EditRun';
 
 import ProtectTest from './components/ProtectTest';
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="/protectTest" component={withAuth(ProtectTest)} />
             <Route path="/login" component={Login} />
             <Route path='/my-profile' component={withAuth(MyProfile)} />
+            <Route path='/edit-run' component={withAuth(EditRun)} />
             <Route component={NotFound} />
           </Switch>
         </main>

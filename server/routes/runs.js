@@ -1,8 +1,11 @@
 const express = require('express');
 const Run = require('../models/Runs');
 const Game = require('../models/Game');
+const mongoose = require('mongoose');
 
 const router = express.Router();
+
+
 
 router.get('/all', async (req, res) => {
     const runs = await Run.find({});
@@ -42,6 +45,36 @@ router.post('/newRun', async (req, res) => {
         game.runs++;
         await game.save();
         res.status(201).send(run);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send(e)
+    }
+})
+
+router.patch('/updateRun', async (req, res) => {
+    console.log(req.body);
+    const allowedUpdates = ['completed', 'pokemon', 'variation', '_id'];
+    const run = await Run.findOne({_id: req.body._id});
+    const updates = Object.keys(req.body);
+    const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
+
+    if (!isValidOperation) {
+        return res.status(400).send('unable to process update')
+    }
+
+    try {
+        updates.forEach((update) => {
+            if (update == 'pokemon') {
+                console.log(req.body[update]);
+                req.body[update].forEach(pkmn => run.pokemon.push({pokemon: pkmn}))
+            } else {
+                run[update] = req.body[update]
+            }
+            
+        });
+        await run.save();
+        console.log(run);
+        res.status(200).send(run)
     } catch (e) {
         console.log(e);
         res.status(500).send(e)

@@ -61,9 +61,6 @@ class AddRun extends Component {
                     <label>Game: </label>
                     <input type="text" value={this.props.match.params.id} disabled></input><br></br>
                     <label>Status:</label>
-                    {/* <label>Completed</label><input type="radio" name="completed" value='completed' onChange={this.handleChange}></input>
-                    <label>In Progress</label><input type="radio" name="completed" value='in progress' onChange={this.handleChange}></input>
-                    <label>Failed</label><input type="radio" name="completed" value='failed' onChange={this.handleChange}></input><br></br> */}
                     <select onChange={this.handleChange} value={this.state.completed}>
                         <option name="completed" value="completed">Completed</option>
                         <option name="completed" value="in progress">In-Progress</option>
