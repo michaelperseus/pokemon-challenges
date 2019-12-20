@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import RunTable from './RunTable';
+
 export default class User extends Component {
     constructor(props) {
         super(props);
@@ -92,7 +94,8 @@ export default class User extends Component {
 
     createTable = async () => {
         const runTable = await this.state.runs.map(run => {
-        return <tr><td>{run.game}</td><td>{run.completed}</td><td>{run.pokemon.length}</td><td><Link to={{pathname: '/edit-run', state: {run: run}}} test={'hello world'}><button>Edit</button></Link><button onClick={() => this.deleteRun(run._id)}>Delete</button></td></tr>})
+            return <RunTable run={run} owned={true}></RunTable>
+        })
         this.setState({runTable: runTable});
     }
 
