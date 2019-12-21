@@ -6,12 +6,20 @@ const mongoose = require('mongoose');
 const router = express.Router();
 
 
-
+//Fetching Routes
 router.get('/all', async (req, res) => {
     const runs = await Run.find({});
     res.send(runs);
 })
 
+router.get('/view/:id', async (req, res) => {
+    try {
+        const run = await Run.findById(req.params.id);
+        res.status(200).send(run)
+    } catch (e) {
+        res.status(500).send(e)
+    }
+})
 
 router.get('/:game/all', async (req, res) => {
     const games = await Run.find({game: req.params.game});
@@ -25,18 +33,8 @@ router.get('/:username', async (req, res) => {
 })
 
 
-router.delete('/delete', async (req, res) => {
-    const run = await Run.findByIdAndDelete(req.body.id);
-        if (!run) {
-            res.status(500).send();
-        } else {
-            const game = await Game.findOne({gameCode: run.game});
-            game.runs--;
-            await game.save();
-            res.status(200).send(run); 
-        } 
-})
 
+// Adding Routes
 router.post('/newRun', async (req, res) => {
     const run = new Run(req.body);
     try {
@@ -51,6 +49,20 @@ router.post('/newRun', async (req, res) => {
     }
 })
 
+//Deleting Routes
+router.delete('/delete', async (req, res) => {
+    const run = await Run.findByIdAndDelete(req.body.id);
+        if (!run) {
+            res.status(500).send();
+        } else {
+            const game = await Game.findOne({gameCode: run.game});
+            game.runs--;
+            await game.save();
+            res.status(200).send(run); 
+        } 
+})
+
+//Updating Routes
 router.patch('/updateRun', async (req, res) => {
     console.log(req.body);
     const allowedUpdates = ['completed', 'pokemon', 'variation', '_id'];
