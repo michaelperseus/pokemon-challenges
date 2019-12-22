@@ -33,9 +33,6 @@ export default class Login extends Component {
                   this.props.history.push('/');
                   window.location.reload(true);
                 });
-                // res.json().then(data => localStorage.setItem('user', data.username));
-                // this.props.history.push('/');
-                // window.location.reload(true);
             } else {
                 const error = new Error(res.error);
                 throw error;

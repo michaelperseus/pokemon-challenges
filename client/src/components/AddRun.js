@@ -46,7 +46,6 @@ class AddRun extends Component {
                         console.log(data);
                         this.props.history.push('/');
                     })
-                    // window.location.reload(true);
                 } else {
                     alert('an error has occured, please try again')
                 }

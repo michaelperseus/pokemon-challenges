@@ -7,7 +7,7 @@ class Community extends Component {
         super(props);
         this.state = {
             runs: [],
-            runTable: ''
+            runTable: <tr><td>loading...</td></tr>
         }
     }
 
@@ -26,13 +26,10 @@ class Community extends Component {
 
     createTable = async () => {
         const runTable = await this.state.runs.map(run => {
-            return <RunTable run={run} owned={false}></RunTable>
+            return <RunTable run={run} owned={false} key={run._id}></RunTable>
         })
         this.setState({runTable})
     }
-
-
-
 
     render() {
         return (
@@ -40,12 +37,15 @@ class Community extends Component {
                 <h1> Community Page!</h1>
                 <p>A total of {this.state.runs.length} have been entered into the site!</p>
                 <table className="myRuns">
-                    <tr>
-                        <td>Game</td>
-                        <td>Status</td>
-                        <td>Pokemon</td>
-                    </tr>
-                    {this.state.runTable}
+                    <thead>
+                        <tr>
+                            <td>Game</td>
+                            <td>Status</td>
+                            <td>Pokemon</td>
+                            <td>User</td>
+                        </tr>
+                    </thead>
+                    <tbody>{this.state.runTable}</tbody>
                 </table>
             </div>
         )

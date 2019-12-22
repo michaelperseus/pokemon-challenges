@@ -39,8 +39,6 @@ router.get('/:title', async (req, res) => {
 
 //Adds a new game to the database
 router.post('/newGame', singleUpload, async (req, res) => {
-    console.log(req.body);
-    console.log(req.file);
     const game = new Game(req.body);
     game.logo = req.file.location;
     try {
@@ -54,7 +52,6 @@ router.post('/newGame', singleUpload, async (req, res) => {
 
 
 router.post('/image', async (req, res) => {
-    console.log(req.body);
     singleUpload(req, res, function(err) {
         if (err) {
             return res.status(422).send({errors: [{title: 'Image Upload Error', detail: err.message}]});

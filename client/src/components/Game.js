@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import RunTable from './RunTable';
+
 class Game extends Component {
     constructor(props) {
         super(props);
@@ -8,7 +10,8 @@ class Game extends Component {
             test: 'false',
             game: '',
             search: '',
-            runs: []
+            runs: [],
+            runTable: <tr><td>loading...</td></tr>
         }
     }
     async componentDidMount() {
@@ -25,6 +28,7 @@ class Game extends Component {
         this.setState({
             runs: runs
         })
+        this.createTable();
     }
 
     async componentDidUpdate() {
@@ -43,7 +47,17 @@ class Game extends Component {
 
     fetchRuns = async () => {
         return await fetch(`/runs/${this.props.match.params.id}/all`)
-        .then(res => res.json())
+        .then(res => res.json());
+        
+    }
+
+    createTable = async () => {
+        const runTables = this.state.runs.map(run => {
+            return <RunTable run={run} owned={false} key={run._id}></RunTable>
+        })
+        this.setState({
+            runTable: runTables
+        })
     }
 
     fetchGame = async () => {
@@ -64,6 +78,19 @@ class Game extends Component {
                     <h1>Pokemon {this.state.game}</h1>
                     <img src={this.state.logo} alt={this.state.game}></img>
                     <p>There have been {this.state.runs.length} runs(s) of this game!</p>
+                    <table className="myRuns">
+                        <thead>
+                            <tr>
+                                <td>Game</td>
+                                <td>Status</td>
+                                <td>Pokemon</td>
+                                <td>User</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.runTable}
+                        </tbody>
+                    </table>
                     <p>Would you like to add one?</p>
                     <button><Link to={`/add-run/${this.state.search}`}>Go Here!</Link></button>
                 </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+
 
 import RunTable from './RunTable';
 
@@ -9,7 +9,7 @@ export default class User extends Component {
         this.state = {
             user: localStorage.getItem('user'),
             runs: [],
-            runTable: ''
+            runTable: <tr><td>loading...</td></tr>
         }
     }
 
@@ -36,7 +36,7 @@ export default class User extends Component {
                 'Content-Type': 'application/json'
             }
         }).then(res => {
-            if (res.status == 200) {
+            if (res.status === 200) {
                 localStorage.removeItem('user');
                 localStorage.removeItem('token');
                 this.props.history.push('/');
@@ -59,7 +59,7 @@ export default class User extends Component {
                 'Content-Type': 'application/json'
             }
         }).then(res => {
-            if (res.status == 200) {
+            if (res.status === 200) {
                 localStorage.removeItem('user');
                 localStorage.removeItem('token');
                 this.props.history.push('/');
@@ -94,7 +94,7 @@ export default class User extends Component {
 
     createTable = async () => {
         const runTable = await this.state.runs.map(run => {
-            return <RunTable run={run} owned={true}></RunTable>
+            return <RunTable run={run} owned={true} key={run._id}></RunTable>
         })
         this.setState({runTable: runTable});
     }
@@ -105,12 +105,18 @@ export default class User extends Component {
                 <h1>Welcome, {this.state.user}</h1>
                 <p>You have completed {this.state.runs.length} run(s)!</p>
                 <table className="myRuns">
-                    <tr>
-                        <td>Game</td>
-                        <td>Status</td>
-                        <td>Pokemon</td>
-                        <td>Edit</td>
-                    </tr>{this.state.runTable}</table>
+                    <thead>
+                        <tr>
+                            <td>Game</td>
+                            <td>Status</td>
+                            <td>Pokemon</td>
+                            <td>Edit</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.runTable}
+                    </tbody>
+                    </table>
                 <button onClick={this.logoutUser}>Logout</button>
                 <button onClick={this.logoutAll}>Logout Everywhere</button>
             </div>

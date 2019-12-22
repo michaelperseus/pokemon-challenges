@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Run extends Component {
     constructor(props) {
@@ -27,6 +28,7 @@ export default class Run extends Component {
     render() {
         return (
             <div>
+                <Link to={'/game-list'}>Return to Game List</Link>
                 <h1>{this.state.runGame}</h1>
                 <p>Pokemon used: {this.state.runPokemon.length}</p>
             </div>

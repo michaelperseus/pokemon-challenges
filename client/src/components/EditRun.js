@@ -37,7 +37,7 @@ class EditRun extends Component {
                 completed: e.target.value
             })
         }
-        else if (e.target.type === "text" || e.target.type == 'textarea') {
+        else if (e.target.type === "text" || e.target.type === 'textarea') {
             this.setState({
                 [e.target.name]: e.target.value
             })
@@ -66,7 +66,7 @@ class EditRun extends Component {
                   },
                 body: JSON.stringify(data)
         }).then(res => {
-            if (res.status == 200) {
+            if (res.status === 200) {
                 this.props.history.push('/my-profile');
             }
             res.json();

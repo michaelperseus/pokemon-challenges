@@ -20,12 +20,6 @@ class Home extends Component {
 
     componentDidMount = async () => {
         await this.fetchTopGame();
-        // console.log(game);
-        // console.log(game[0].name);
-        // this.setState({
-        //     name: game[0].name,
-        //     img: game[0].logo
-        // })
     }
 
     fetchTopGame = async () => {

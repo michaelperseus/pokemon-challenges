@@ -9,21 +9,6 @@ class Navbar extends Component {
             user: 'Login / Signup'
         }
     }
-    // async componentDidMount() {
-    //     const gameList = await this.callGames();
-    //     const linkList = gameList.map(game => {
-    //         return <li key={game.id}><Link to={`/game/${game.gameCode}`}>{game.name}</Link></li>
-    //     })
-    //     this.setState({
-    //         list: linkList
-    //     })
-    // }
-
-    // callGames = async () => {
-    //     return fetch('/games/all')
-    //     .then(res => res.json())
-    //     .then(games => games);
-    // }
 
     componentDidMount = () => {
         this.returnName();
