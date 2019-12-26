@@ -14,6 +14,7 @@ import withAuth from './components/withAuth';
 import MyProfile from './components/MyProfile';
 import EditRun from './components/EditRun';
 import Run from './components/Run';
+import User from './components/User';
 
 import ProtectTest from './components/ProtectTest';
 
@@ -34,6 +35,7 @@ function App() {
             <Route path='/my-profile' component={withAuth(MyProfile)} />
             <Route path='/edit-run' component={withAuth(EditRun)} />
             <Route path='/run/:id' component={Run} />
+            <Route path='/user/:username' component={User} />
             <Route component={NotFound} />
           </Switch>
         </main>

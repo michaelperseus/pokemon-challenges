@@ -10,8 +10,9 @@ router.get('/me', (req, res) => {
     res.send('connection established!')
 })
 
-router.get('/userInfo/:username', /*withAuth,*/ async (req, res) => {
-    const user = await User.find({username: req.params.username});
+router.get('/info/:username', async (req, res) => {
+    const user = await User.findOne({username: {$regex: new RegExp("^" + req.params.username + "$", "i")}});
+    console.log(user);
     if (!user) {
         return res.status(404).send({error: 'User not found'})
     } 
@@ -19,15 +20,23 @@ router.get('/userInfo/:username', /*withAuth,*/ async (req, res) => {
 })
 
 router.post('/register', async (req, res) => {
-    const user = new User(req.body);
-    user.save(async (err) => {
-        if (err) {
-            res.status(500).send({error: 'Error registering new User', err})
-        } else {
-            const token = await user.generateAuthToken();
-            res.status(201).send({user, token});
-        }
-    })
+    const user = await new User(req.body);
+    try {
+        await user.save();
+        const token = await user.generateAuthTokens();
+        res.status(201).send({user, token});
+    } catch (e) {
+        console.log(e);
+        res.status(500).send(e);
+    }
+    // user.save(async (err) => {
+    //     if (err) {
+    //         res.status(500).send({error: 'Error registering new User', err})
+    //     } else {
+    //         const token = await user.generateAuthToken();
+    //         res.status(201).send({user, token});
+    //     }
+    // })
 })
 
 router.post('/logout', async (req, res) => {

@@ -28,10 +28,9 @@ router.get('/:game/all', async (req, res) => {
 
 
 router.get('/:username', async (req, res) => {
-    const runs = await Run.find({user: req.params.username});
+    const runs = await Run.find({user: {$regex: new RegExp("^" + req.params.username + "$", "i")}});
     res.send(runs);
 })
-
 
 
 // Adding Routes

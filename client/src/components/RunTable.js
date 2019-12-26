@@ -8,7 +8,7 @@ function RunTable(props) {
         if (props.owned) {
             return <td><Link to={{pathname: '/edit-run', state: {run: props.run}}} test={'hello world'}><button>Edit</button></Link><button onClick={() => this.deleteRun(props.run._id)}>Delete</button></td>
         } else {
-            return <td>{props.run.user}</td>
+            return <td><Link to={`/user/${props.run.user}`}>{props.run.user}</Link></td>
         }
     }
 
