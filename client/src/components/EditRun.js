@@ -10,25 +10,38 @@ class EditRun extends Component {
             pokemon: [],
             id: '',
             completed: '',
-            pokemonList: ''
+            newPokemon: '',
+            newPokemonList: [],
+            pokemonLi: []
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         console.log(this.props.location.state);
-        this.matchPropsToState(this.props.location.state.run);
+        await this.matchPropsToState(this.props.location.state.run);
+        this.makeList(this.state.pokemon);
     }
 
     matchPropsToState = (run) => {
+        console.log(run);
         this.setState({
             variation: run.variation,
             user: run.user,
             game: run.game,
-            pokemon: run.pokeon,
+            pokemon: run.pokemon,
             id: run._id,
             completed: run.completed
         })
     }
+
+    makeList = (pokemon) => {
+        const list = pokemon.map(poke => {
+            console.log(poke)
+        return <li key={poke.pokemon}>{poke.pokemon}</li>
+        })
+        this.setState({pokemonLi: this.state.pokemonLi.concat(list)})
+    }
+
 
     handleChange = (e) => {
         console.log(e.target.type);
@@ -44,18 +57,29 @@ class EditRun extends Component {
         }
     }
 
-    handlePokemon = () => {
-        const pokemon = this.state.pokemonList.split(" ");
-        this.setState({
-            pokemon
+    handlePokemon = async (e) => {
+        e.preventDefault();
+        await fetch(`https://pokeapi.co/api/v2/pokemon/${this.state.newPokemon}/`)
+        .then(res => {
+            if (res.status !== 200) {
+                return alert('Please enter a valid pokemon')
+            } else {
+                const pokemon = this.state.newPokemon;
+                this.setState({
+                    newPokemonList: this.state.newPokemonList.concat(pokemon),
+                    newPokemon: '',
+                    pokemonLi: this.state.pokemonLi.concat(<li>{pokemon}</li>)
+                })
+            }
         })
+        
     }
 
     handleSubmit = async (e) => {
         e.preventDefault();
         const data = {
             variation: this.state.variation,
-            pokemon: this.state.pokemon,
+            pokemon: this.state.newPokemonList,
             _id: this.state.id,
             completed: this.state.completed
         }
@@ -73,6 +97,7 @@ class EditRun extends Component {
         }).then(data => console.log(data))
     }
 
+
     render() {
         return (
             <div>
@@ -87,10 +112,17 @@ class EditRun extends Component {
                     </select><br></br>
                     <label>Name: </label>
                     <input type="text" onChange={this.handleChange} value={this.state.user} name="name" disabled></input><br></br>
-                    <textarea onChange={this.handleChange} name="pokemonList"></textarea><br></br>
-                    <p onClick={this.handlePokemon}>Update Pokemon</p>
-                    <button>Submit Run</button>
+                    <label>Add Pokemon</label>
+                    <input type="text" value={this.state.newPokemon} onChange={this.handleChange} name="newPokemon"></input>
+                    <button onClick={this.handlePokemon}>Add Pokemon</button>
+                    <br></br>
+                    <button>Save Run</button>
                 </form>
+                <br></br>
+                <p>Current Pokemon</p>
+                <ul>
+                    {this.state.pokemonLi}
+                </ul>
             </div>
         )
     }

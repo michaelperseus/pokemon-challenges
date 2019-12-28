@@ -13,7 +13,6 @@ export default class User extends Component {
     async componentDidMount() {
         await fetch(`/users/info/${this.props.match.params.username}`)
             .then(async res => {
-                console.log(res);
                 if (res.status === 200) {
                     this.fetchRuns()
                 } else {

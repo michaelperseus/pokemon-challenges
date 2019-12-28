@@ -12,12 +12,6 @@ class Home extends Component {
         }
     }
 
-    removeLocal = () => {
-        localStorage.removeItem('user');
-        const test = localStorage.getItem('user');
-        console.log(test);
-    }
-
     componentDidMount = async () => {
         await this.fetchTopGame();
     }
@@ -49,7 +43,6 @@ class Home extends Component {
                         <Link to={`/game/${this.state.name}`}>{this.state.logo}</Link>
                     </div>
                 </div>
-                <button onClick={this.removeLocal}>Remove local</button>
             </div>
         )
     }
