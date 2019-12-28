@@ -12,18 +12,19 @@ class EditRun extends Component {
             completed: '',
             newPokemon: '',
             newPokemonList: [],
-            pokemonLi: []
+            pokemonLi: [],
+            newPokemonLi: []
         }
     }
 
     async componentDidMount() {
-        console.log(this.props.location.state);
-        await this.matchPropsToState(this.props.location.state.run);
+        const runData = await fetch(`/runs/view/${this.props.match.params.id}`)
+        .then(res => res.json());
+        await this.matchPropsToState(runData);
         this.makeList(this.state.pokemon);
     }
 
     matchPropsToState = (run) => {
-        console.log(run);
         this.setState({
             variation: run.variation,
             user: run.user,
@@ -34,10 +35,24 @@ class EditRun extends Component {
         })
     }
 
+    deletePokemon = (poke) => {
+        fetch(`/runs/${this.state.id}/pokemon/${poke._id}`, {
+            method: 'DELETE'
+        })
+        .then(res => {
+            console.log(res);
+            if (res.status === 200) {
+                console.log('deleted');
+                window.location.reload(true);
+            } else {
+                console.log("error deleting")
+            }
+        })
+    }
+
     makeList = (pokemon) => {
         const list = pokemon.map(poke => {
-            console.log(poke)
-        return <li key={poke.pokemon}>{poke.pokemon}</li>
+        return <li key={poke.pokemon}>{poke.pokemon} <span name={poke.pokemon} onClick={() => this.deletePokemon(poke)}>X</span></li>
         })
         this.setState({pokemonLi: this.state.pokemonLi.concat(list)})
     }
@@ -68,7 +83,7 @@ class EditRun extends Component {
                 this.setState({
                     newPokemonList: this.state.newPokemonList.concat(pokemon),
                     newPokemon: '',
-                    pokemonLi: this.state.pokemonLi.concat(<li>{pokemon}</li>)
+                    newPokemonLi: this.state.newPokemonLi.concat(<li>{pokemon}</li>)
                 })
             }
         })
@@ -122,6 +137,10 @@ class EditRun extends Component {
                 <p>Current Pokemon</p>
                 <ul>
                     {this.state.pokemonLi}
+                </ul><br></br>
+                <p>Pokemon to add (Make sure to save!)</p>
+                <ul>
+                    {this.state.newPokemonLi}
                 </ul>
             </div>
         )

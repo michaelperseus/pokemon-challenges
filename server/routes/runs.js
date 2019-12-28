@@ -61,6 +61,26 @@ router.delete('/delete', async (req, res) => {
         } 
 })
 
+
+//Delete a Pokemon
+router.delete('/:run/pokemon/:poke', async (req, res) => {
+    const run = await Run.findById(req.params.run);
+    console.log(run);
+    const newRun = await run.pokemon.filter(poke => {
+        return poke._id != req.params.poke
+    });
+    run.pokemon = newRun;
+    try {
+        await run.save();
+        res.send(run);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send(e)
+    }
+})
+
+
+
 //Updating Routes
 router.patch('/updateRun', async (req, res) => {
     console.log(req.body);
