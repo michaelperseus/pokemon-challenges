@@ -3,10 +3,10 @@
 Version numbers are created using the following system
 a.b.c.d
 
-a = Major Number (1 would be final release)
-b = Minor Number (Significant changes or updates have been made)
-c = Build Number (Smaller changes to the site, nothing ground breaking)
-d = Revision Number (bug fixes or very minor changes)
+- a = Major Number (1 would be final release)
+- b = Minor Number (Significant changes or updates have been made)
+- c = Build Number (Smaller changes to the site, nothing ground breaking)
+- d = Revision Number (bug fixes or very minor changes)
 
 ### Goals for Alpha Version
 - Updated mobile styling
