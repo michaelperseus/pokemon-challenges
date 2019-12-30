@@ -14,5 +14,8 @@ a.b.c.d
 - Change the type of challenge run you are completing
 
 
+### December 29, 2019
+- Added Wedlocke and Egglocke as variations
+
 #### December 28, 2019
  - Pre-Alpha Version published. Beginning of update documentation
