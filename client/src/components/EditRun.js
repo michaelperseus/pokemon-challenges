@@ -60,9 +60,9 @@ class EditRun extends Component {
 
     handleChange = (e) => {
         console.log(e.target.type);
-        if(e.target.type === "radio" || e.target.type === "select-one") {
+        if(e.target.type === "select-one") {
             this.setState({
-                completed: e.target.value
+                [e.target.name]: e.target.value
             })
         }
         else if (e.target.type === "text" || e.target.type === 'textarea') {
@@ -120,10 +120,16 @@ class EditRun extends Component {
                     <label>Game: </label>
                     <input type="text" value={this.state.game}   disabled></input><br></br>
                     <label>Status:</label>
-                    <select onChange={this.handleChange} value={this.state.completed}>
+                    <select onChange={this.handleChange} value={this.state.completed} name="completed">
                         <option name="completed" value="completed">Completed</option>
                         <option name="completed" value="in progress">In-Progress</option>
                         <option name="completed" value="failed">Failed</option>
+                    </select><br></br>
+                    <label>Variation:</label>
+                    <select onChange={this.handleChange} value={this.state.variation} name="variation">
+                        <option name="variation" value="nuzlocke">Nuzlocke</option>
+                        <option name="variation" value="egglocke">Egglocke</option>
+                        <option name="variation" value="wedlocke">Wedlocke</option>
                     </select><br></br>
                     <label>Name: </label>
                     <input type="text" onChange={this.handleChange} value={this.state.user} name="name" disabled></input><br></br>
