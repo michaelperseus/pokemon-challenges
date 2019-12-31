@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 
+import RunTable from './RunTable';
+
 export default class User extends Component {
 
     constructor(props){
         super(props);
         this.state = {
             user: [],
-            validUser: true
+            validUser: true,
+            runTable: <tr><td>loading...</td></tr>
         }
     }
 
@@ -14,7 +17,8 @@ export default class User extends Component {
         await fetch(`/users/info/${this.props.match.params.username}`)
             .then(async res => {
                 if (res.status === 200) {
-                    this.fetchRuns()
+                    await this.fetchRuns();
+                    await this.createTable();
                 } else {
                     this.setState({validUser: false})
                 }
@@ -29,6 +33,13 @@ export default class User extends Component {
             })
     }
 
+    createTable = async () => {
+        const runTables = this.state.user.map(run => {
+            return <RunTable run={run} owned={false} key={run._id}></RunTable>
+        })
+        this.setState({runTable: runTables})
+    }
+
     render() {
         if (this.state.validUser === false) {
             return (
@@ -41,6 +52,19 @@ export default class User extends Component {
                 <div>
                     <h1>{this.props.match.params.username}</h1>
                     <h3>Has completed {this.state.user.length} runs!</h3>
+                    <table className="myRuns">
+                        <thead>
+                            <tr>
+                                <td>Game</td>
+                                <td>Status</td>
+                                <td>Pokemon</td>
+                                <td>User</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.runTable}
+                        </tbody>
+                    </table>
                 </div>
             )
         }

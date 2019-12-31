@@ -47,9 +47,9 @@ class GameList extends Component {
     render() {
         return (
             <div>
-                <h1>Main Series Games!</h1>
+                <h1 className="gameListTitle">Main Series Games!</h1>
                 {this.state.origList}
-                <h1>Fan-Made Hacks</h1>
+                <h1 className="gameListTitle">Fan-Made Hacks</h1>
                 {this.state.hackList}
             </div>
         )
