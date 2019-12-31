@@ -154,6 +154,10 @@ body {
 }
 
 /*-----Game List Design-----*/
+.gameListTitle {
+  text-align: center;
+}
+
 .gameBox {
   width: 90%;
   margin: 0 auto;
@@ -164,21 +168,48 @@ body {
 
 /*-----Game Page Design-----*/
 .gamePage {
+  p, h3 {
+    text-align: center;
+  }
   img {
-    width: 100%;
+    width: 90%;
+    margin: 10px auto 0 auto;
+    display: block;
+  }
+  .addRun {
+    text-align: center;
+    margin: 5px auto;
+    padding: 5px;
+    display: block;
+    width: 60%;
+    border: none;
+    background: $red;
+    cursor: pointer;
+    a {
+      text-decoration: none;
+      color: $white;
+      font-size: 1.3em;
+    }
   }
 }
 
-/*-----My Profile Design-----*/
-.myRuns {
-  border: white 1px solid;
+/*-----Table Design-----*/
+table {
   border-collapse: collapse;
   width: 80%;
+  margin: 0 auto;
+  thead {
+    background: $red;
+    color: $white;
+  }
+  tbody {
+    background: $white;
+    color: $black;
+  }
   tr {
     width: 30%;
     height: 50px;
     td {
-      border: 1px solid white;
       padding: 10px;
       margin: 5px;
       button {
@@ -186,6 +217,48 @@ body {
         padding: 10px;
         cursor: pointer;
       }
+    }
+  }
+  tr:nth-child(even) {
+    background: #eee;
+  }
+}
+
+/*-----Add Run Design-----*/
+.addRunForm {
+  margin: 0 auto;
+  display: block;
+  width: 90%;
+}
+
+/*-----Login / Signup Design-----*/
+.loginPage {
+  width: 90%;
+  margin: 0 auto;
+  .loginForm {
+    h1 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      font-size: 1.5em;
+    }
+    .loginInput {
+      width: 96%;
+      background: #DBD7D7;
+      border: none;
+      padding: 2%;
+      margin-bottom: 10px;
+    }
+    .loginButton {
+      width: 80%;
+      display: block;
+      margin: 0 auto;
+      border: 0;
+      padding: 5px;
+      font-size: 1em;
+      background: $red;
+      color: $white;
     }
   }
 }

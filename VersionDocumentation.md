@@ -1,4 +1,4 @@
-# Pokemon Challenges Pre Alpha Build 0.1.3.1
+# Pokemon Challenges Pre Alpha Build 0.1.3.2
 
 Version numbers are created using the following system
 a.b.c.d
@@ -12,10 +12,12 @@ a.b.c.d
 - Updated mobile styling
 - ~~View runs on other players profiles~~
 - ~~Change the type of challenge run you are completing~~
+- Add Sign Up feature
 
 
-### December 30, 2019 - 0.1.3.1
+### December 30, 2019 - 0.1.3.2
 - Added runs to User Profile page
+- Updated styling of Game Page, Run Table and Login Page
 
 ### December 29, 2019 - 0.1.2.1
 - Added Wedlocke and Egglocke as variations

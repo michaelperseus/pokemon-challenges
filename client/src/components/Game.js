@@ -75,9 +75,10 @@ class Game extends Component {
         } else {
             return (
                 <div className="gamePage">
-                    <h1>Pokemon {this.state.game}</h1>
                     <img src={this.state.logo} alt={this.state.game}></img>
+                    {localStorage.getItem('user') ? <button className="addRun"><Link to={`/add-run/${this.state.search}`}>ADD A RUN!</Link></button> : ''}
                     <p>There have been {this.state.runs.length} runs(s) of this game!</p>
+                    <h3>All Runs</h3>
                     <table className="myRuns">
                         <thead>
                             <tr>
@@ -91,8 +92,6 @@ class Game extends Component {
                             {this.state.runTable}
                         </tbody>
                     </table>
-                    <p>Would you like to add one?</p>
-                    <button><Link to={`/add-run/${this.state.search}`}>Go Here!</Link></button>
                 </div>
             )
         }

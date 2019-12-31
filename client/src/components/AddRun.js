@@ -59,7 +59,7 @@ class AddRun extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit} className="addRunForm">
                     <label>Game: </label>
                     <input type="text" value={this.props.match.params.id} disabled></input><br></br>
                     <label>Status:</label>
