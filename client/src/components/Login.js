@@ -5,8 +5,18 @@ export default class Login extends Component {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '', 
+            password2: '',
+            email: '',
+            login: true,
+            res: ''
         }
+    }
+
+    togglePage = () => {
+      this.setState({
+        login: !this.state.login
+      })
     }
 
     handleInputChange = (e) => {
@@ -16,62 +26,153 @@ export default class Login extends Component {
         });
       }
 
-      onSubmit = (e) => {
+      onSubmit = async (e) => {
         e.preventDefault();
-        fetch('/users/authenticate', {
+        //Send the user information to sign up
+        if (this.state.username === '' || this.state.password === '') {
+          return alert('Please fill out all fields!')
+        }
+        if (e.target.name === 'signUp') {
+          if (this.state.password !== this.state.password2) {
+            return alert('Passwords do not match');
+          }
+          const userInfo = {
+            username: this.state.username,
+            password: this.state.password,
+            email: this.state.email
+          }
+          await fetch('/users/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userInfo)
+          }).then((res) => {
+            this.setState({res: res.status})
+            return res.json()
+          }).then(data => {
+            if (this.state.res !== 201) {
+              return alert('Signup Failed')
+            } else {
+              localStorage.setItem('user', data.user.username);
+              localStorage.setItem('token', data.token);
+              this.props.history.push('/');
+              window.location.reload(true);
+            }
+          })
+        } 
+        //Send the user information to log in
+        else {
+          fetch('/users/authenticate', {
             method: 'POST',
             body: JSON.stringify(this.state),
             headers: {
                 'Content-Type': 'application/json'
             }
-        })
-        .then(res => {
-            if (res.status === 200) {
-                res.json().then(data => {
-                  localStorage.setItem('user', data.user.username);
-                  localStorage.setItem('token', data.token);
-                  this.props.history.push('/');
-                  window.location.reload(true);
-                });
-            } else {
-                const error = new Error(res.error);
-                throw error;
-            }
-        })
-        .catch(err => {
-            console.error(err);
-            alert('Error logging in');
-        })
+          })
+          .then(res => {
+              if (res.status === 200) {
+                  res.json().then(data => {
+                    localStorage.setItem('user', data.user.username);
+                    localStorage.setItem('token', data.token);
+                    this.props.history.push('/');
+                    window.location.reload(true);
+                  });
+              } else {
+                  const error = new Error(res.error);
+                  throw error;
+              }
+          })
+          .catch(err => {
+              console.error(err);
+              alert('Error logging in');
+          })
+        }
+        
       }
 
       render() {
-        return (
-          <div className='loginPage'>
-            <form onSubmit={this.onSubmit} className="loginForm">
-              <h1>Login Below!</h1>
-              <label>Username</label>
-              <input
-                className="loginInput"
-                type="text"
-                name="username"
-                placeholder="Enter username"
-                value={this.state.username}
-                onChange={this.handleInputChange}
-                required
-              />
-              <label>Password</label>
-              <input
-                className="loginInput"
-                type="password"
-                name="password"
-                placeholder="Enter password"
-                value={this.state.password}
-                onChange={this.handleInputChange}
-                required
-              />
-            <input type="submit" value="Login" className="loginButton"/>
-            </form>
-          </div>
-        );
+        if (this.state.login) {
+          return (
+            <div className='loginPage'>
+              <form onSubmit={this.onSubmit} className="loginForm" name="login">
+                <h1>Login Below!</h1>
+                <label>Username</label>
+                <input
+                  className="loginInput"
+                  type="text"
+                  name="username"
+                  placeholder="Enter username"
+                  value={this.state.username}
+                  onChange={this.handleInputChange}
+                  required
+                />
+                <label>Password</label>
+                <input
+                  className="loginInput"
+                  type="password"
+                  name="password"
+                  placeholder="Enter password"
+                  value={this.state.password}
+                  onChange={this.handleInputChange}
+                  required
+                />
+              <input type="submit" value="Login" className="loginButton"/>
+              </form>
+              <p onClick={this.togglePage}>Don't have an account? Sign up!</p>
+            </div>
+          );
+        } else {
+          return (
+            <div className='loginPage'>
+              <form onSubmit={this.onSubmit} className="loginForm" name="signUp">
+                <h1>Sign Up Below!</h1>
+                <label>Email</label>
+                <input
+                  className="loginInput"
+                  type="email"
+                  name="email"
+                  placeholder="Enter email"
+                  value={this.state.email}
+                  onChange={this.handleInputChange}
+                  required
+                />
+                <label>Username</label>
+                <input
+                  className="loginInput"
+                  type="text"
+                  name="username"
+                  placeholder="Enter username"
+                  value={this.state.username}
+                  onChange={this.handleInputChange}
+                  required
+                />
+                <label>Password</label>
+                <input
+                  className="loginInput"
+                  type="password"
+                  name="password"
+                  placeholder="Enter password"
+                  value={this.state.password}
+                  onChange={this.handleInputChange}
+                  required
+                />
+                <label>Repeat Password</label>
+                <input
+                  className="loginInput"
+                  type="password"
+                  name="password2"
+                  placeholder="Enter password"
+                  value={this.state.password2}
+                  onChange={this.handleInputChange}
+                  required
+                />
+              <input type="submit" value="Sign Up" className="loginButton"/>
+              </form>
+              <p onClick={this.togglePage}>Already have an account? Log in!</p>
+            </div>
+          );
+        }
+        
       }
 }
