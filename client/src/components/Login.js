@@ -96,7 +96,7 @@ export default class Login extends Component {
           return (
             <div className='loginPage'>
               <form onSubmit={this.onSubmit} className="loginForm" name="login">
-                <h1>Login Below!</h1>
+                <h1>Login!</h1>
                 <label>Username</label>
                 <input
                   className="loginInput"
@@ -119,14 +119,14 @@ export default class Login extends Component {
                 />
               <input type="submit" value="Login" className="loginButton"/>
               </form>
-              <p onClick={this.togglePage}>Don't have an account? Sign up!</p>
+              <p className="togglePage" onClick={this.togglePage}>Don't have an account? Sign up!</p>
             </div>
           );
         } else {
           return (
             <div className='loginPage'>
               <form onSubmit={this.onSubmit} className="loginForm" name="signUp">
-                <h1>Sign Up Below!</h1>
+                <h1>Sign Up!</h1>
                 <label>Email</label>
                 <input
                   className="loginInput"
@@ -169,7 +169,7 @@ export default class Login extends Component {
                 />
               <input type="submit" value="Sign Up" className="loginButton"/>
               </form>
-              <p onClick={this.togglePage}>Already have an account? Log in!</p>
+              <p className="togglePage" onClick={this.togglePage}>Already have an account? Log in!</p>
             </div>
           );
         }

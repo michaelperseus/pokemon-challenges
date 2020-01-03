@@ -10,14 +10,14 @@ a.b.c.d
 
 ### Goals for Alpha Version
 - Updated mobile styling
-  - [ ] Home Page
-  - [ ] Game List Page
-  - [ ] Game Page
+  - [X] Home Page
+  - [X] Game List Page
+  - [X] Game Page
   - [ ] Run Page
   - [ ] Public User Page
   - [ ] User Profile Page
   - [ ] Community Page
-  - [ ] Login Page
+  - [X] Login Page
   - [ ] Add Run Page
   - [ ] Edit Run Page
 - ~~View runs on other players profiles~~
@@ -26,6 +26,7 @@ a.b.c.d
 
 #### January 2, 2020 - 0.2.3.3
 - Added the ability to Sign Up
+- Updated styling of Signup Page and Run Page
 
 #### December 30, 2019 - 0.1.3.2
 - Added runs to User Profile page

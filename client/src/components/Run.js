@@ -23,15 +23,14 @@ export default class Run extends Component {
             runGame: data.game,
             runUser: data.user,
             runStatus: data.completed,
-            runVariation: data.variation
+            runVariation: data.variation,
         })});
         this.listPokemon()
     }
 
      listPokemon = async () => {
         const list = this.state.runPokemon.map(poke => {
-            console.log(poke)
-        return <Pokemon key={poke.id} name={poke.pokemon} />
+        return <Pokemon key={poke.pokemon} name={poke.pokemon} />
         })
         this.setState({pokemonList: list})
     }
@@ -40,9 +39,36 @@ export default class Run extends Component {
     render() {
         return (
             <div>
-                <Link to={'/game-list'}>Return to Game List</Link>
-                <h1>{this.state.runGame}</h1>
-                <p>Pokemon used: {this.state.runPokemon.length}</p>
+                <Link to={'/game-list'} className="return">Return to Previous Page</Link>
+                <table>
+                    <thead>
+                        <tr>
+                            <td colSpan='2'>Run Info</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>User</td>
+                            <td>{this.state.runUser}</td>
+                        </tr>
+                        <tr>
+                            <td>Game</td>
+                            <td>{this.state.runGame}</td>
+                        </tr>
+                        <tr>
+                            <td>Mode</td>
+                            <td>{this.state.runVariation}</td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td>{this.state.runStatus}</td>
+                        </tr>
+                        <tr>
+                            <td>Pokemon Caught</td>
+                            <td>{this.state.runPokemon.length}</td>
+                        </tr>
+                    </tbody>
+                </table>
                 <div>
                     {this.state.pokemonList}
                 </div>

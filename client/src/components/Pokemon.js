@@ -20,7 +20,6 @@ export default class Pokemon extends Component {
         await fetch(`https://pokeapi.co/api/v2/pokemon/${this.props.name}`)
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             this.setState({pokemon: data, sprite: data.sprites.front_default})
         })
     }
@@ -30,7 +29,7 @@ export default class Pokemon extends Component {
         return (
             <div>
                 <p>{this.state.pokemon.name}</p>
-                <img src={this.state.sprite}></img>
+                <img src={this.state.sprite} alt={this.state.pokemon.name}></img>
             </div>
         )
     }
