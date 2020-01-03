@@ -1,4 +1,4 @@
-# Pokemon Challenges Pre Alpha Build 0.2.3.3
+# Pokemon Challenges Alpha Build 0.3.0.0
 
 Version numbers are created using the following system
 a.b.c.d
@@ -8,21 +8,27 @@ a.b.c.d
 - c = Build Number (Smaller changes to the site, nothing ground breaking)
 - d = Revision Number (bug fixes or very minor changes)
 
-### Goals for Alpha Version
-- Updated mobile styling
-  - [X] Home Page
-  - [X] Game List Page
-  - [X] Game Page
-  - [ ] Run Page
-  - [ ] Public User Page
-  - [ ] User Profile Page
-  - [ ] Community Page
-  - [X] Login Page
-  - [ ] Add Run Page
-  - [ ] Edit Run Page
-- ~~View runs on other players profiles~~
-- ~~Change the type of challenge run you are completing~~
-- ~~Add Sign Up feature~~
+### Goals for Beta Version (More updates coming soon)
+- Full Styling for Tablet / Desktop versions
+- Create News Page to post about updates
+- Add Nicknames to Pokemon
+- Add option to mark Pokemon as starter
+- Add statuses to Pokemon (ie: dead, alive)
+- Add Profile Images for users
+- Add Comment section to runs
+- Add all main series Pokemon Games
+- Add all Drayano hacks
+- Add more featured sections to home page
+- Update mobile menu icon
+- Add filter ability to game list (ie: only hacks, main games, side games)
+- Add stats to each game page
+- Add ability to delete your profile
+- Add additional run variations
+- Add User Feedback page
+- Fix issue with menu not always closing when moving to new page
+
+#### January 3, 2020 - 0.3.0.0
+- Updated mobile styling for remaining pages
 
 #### January 2, 2020 - 0.2.3.3
 - Added the ability to Sign Up

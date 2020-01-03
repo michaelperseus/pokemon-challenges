@@ -23,6 +23,11 @@ body {
   color: white;
 }
 
+/*-----Misc. Design-----*/
+.goBack {
+  padding: 3px 10px;
+}
+
 /*-----Navbar Design-----*/
 .navbarBig {
   background: $red;
@@ -224,11 +229,67 @@ table {
   }
 }
 
-/*-----Add Run Design-----*/
-.addRunForm {
+.runTable {
+  margin-bottom: 10px;
+}
+
+/*-----Add / Edit Run Design-----*/
+.addRunForm, .editRunForm {
   margin: 0 auto;
   display: block;
   width: 90%;
+  label {
+    display: block;
+    font-size: 1.5em;
+  }
+  input {
+    width: 96%;
+    background: #DBD7D7;
+    border: none;
+    padding: 2%;
+    margin-bottom: 10px;
+  }
+  button {
+    display: block;
+    margin: 10px 0;
+    border: none;
+    background: $red;
+    padding: 10px;
+    color: $white;
+  }
+  .addPokemon {
+    background: $white;
+    padding: 5px;
+    color: $black;
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  select {
+    width: 50%;
+    background: $white;
+    font-size: .8em;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.runPokemon {
+  width: 90%;
+  margin: 0 auto;
+  p {
+    font-size: 1.1em;
+  }
+  ul {
+    margin-left: 5px;
+    li {
+      list-style-type: none;
+    }
+  }
+}
+
+.delete {
+  color: $red;
 }
 
 /*-----Login / Signup Design-----*/
@@ -265,5 +326,24 @@ table {
     text-align: center;
     margin-top: 20px;
     cursor: pointer;
+  }
+}
+
+/*-----User Page Design-----*/
+#userPage {
+  h1, h3 {
+    text-align: center;
+  }
+}
+
+#logoutGroup {
+  width: 80%;
+  margin: 0 auto;
+  button {
+    border: none;
+    width: 40%;
+    margin: 5%;
+    padding: 5px 0;
+    background: $red;
   }
 }

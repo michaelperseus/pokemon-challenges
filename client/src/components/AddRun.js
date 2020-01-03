@@ -12,9 +12,7 @@ class AddRun extends Component {
     }
 
     handleChange = (e) => {
-        console.log(e.target.type);
         if(e.target.type === "radio" || e.target.type === "select-one") {
-            console.log(e.target.name)
             this.setState({
                 [e.target.name]: e.target.value
             })
@@ -60,22 +58,22 @@ class AddRun extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit} className="addRunForm">
-                    <label>Game: </label>
-                    <input type="text" value={this.props.match.params.id} disabled></input><br></br>
-                    <label>Status:</label>
+                    <label>Name</label>
+                    <input type="text" onChange={this.handleChange} value={this.state.name} name="name" disabled></input>
+                    <label>Game</label>
+                    <input type="text" value={this.props.match.params.id} disabled></input>
+                    <label>Status</label>
                     <select onChange={this.handleChange} value={this.state.completed} name="completed">
                         <option name="completed" value="completed">Completed</option>
                         <option name="completed" value="in progress">In-Progress</option>
                         <option name="completed" value="failed">Failed</option>
-                    </select><br></br>
-                    <label>Variation:</label>
+                    </select>
+                    <label>Variation</label>
                     <select onChange={this.handleChange} value={this.state.variation} name="variation">
                         <option name="variation" value="nuzlocke">Nuzlocke</option>
                         <option name="variation" value="egglocke">Egglocke</option>
                         <option name="variation" value="wedlocke">Wedlocke</option>
-                    </select><br></br>
-                    <label>Name: </label>
-                    <input type="text" onChange={this.handleChange} value={this.state.name} name="name" disabled></input><br></br>
+                    </select>
                     <button>Submit Run</button>
                 </form>
             </div>

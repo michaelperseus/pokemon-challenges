@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import Pokemon from './Pokemon';
 
@@ -15,6 +14,7 @@ export default class Run extends Component {
             runVariation: '',
             pokemonList: ''
         }
+        this.goBack = this.goBack.bind(this);
     }
 
     async componentDidMount() {
@@ -35,12 +35,16 @@ export default class Run extends Component {
         this.setState({pokemonList: list})
     }
 
+    goBack() {
+        this.props.history.goBack();
+    }
+
 
     render() {
         return (
             <div>
-                <Link to={'/game-list'} className="return">Return to Previous Page</Link>
-                <table>
+                <p className="goBack" onClick={this.goBack}>Go back</p>
+                <table className="runTable">
                     <thead>
                         <tr>
                             <td colSpan='2'>Run Info</td>
@@ -69,9 +73,16 @@ export default class Run extends Component {
                         </tr>
                     </tbody>
                 </table>
-                <div>
-                    {this.state.pokemonList}
-                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <td colSpan='2'>Pokemon Used</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.pokemonList}
+                    </tbody>
+                </table>
             </div>
         )
     }

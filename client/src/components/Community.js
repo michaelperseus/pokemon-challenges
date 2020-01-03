@@ -33,9 +33,9 @@ class Community extends Component {
 
     render() {
         return (
-            <div>
+            <div id="userPage">
                 <h1> Community Page!</h1>
-                <p>A total of {this.state.runs.length} have been entered into the site!</p>
+                <h3>{this.state.runs.length} have been submitted by users!</h3>
                 <table className="myRuns">
                     <thead>
                         <tr>

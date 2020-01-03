@@ -49,9 +49,9 @@ export default class User extends Component {
             )
         } else {
             return (
-                <div>
+                <div id="userPage">
                     <h1>{this.props.match.params.username}</h1>
-                    <h3>Has completed {this.state.user.length} runs!</h3>
+                    <h3>has submitted {this.state.user.length} runs!</h3>
                     <table className="myRuns">
                         <thead>
                             <tr>

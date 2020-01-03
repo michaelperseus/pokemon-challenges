@@ -101,9 +101,9 @@ export default class User extends Component {
 
     render() {
         return (
-            <div>
+            <div id="userPage">
                 <h1>Welcome, {this.state.user}</h1>
-                <p>You have completed {this.state.runs.length} run(s)!</p>
+                <h3>You have completed {this.state.runs.length} run(s)!</h3>
                 <table className="myRuns">
                     <thead>
                         <tr>
@@ -117,8 +117,10 @@ export default class User extends Component {
                         {this.state.runTable}
                     </tbody>
                     </table>
-                <button onClick={this.logoutUser}>Logout</button>
-                <button onClick={this.logoutAll}>Logout Everywhere</button>
+                <div id="logoutGroup">
+                    <button onClick={this.logoutUser}>Logout</button>
+                    <button onClick={this.logoutAll}>Logout Everywhere</button>
+                </div>
             </div>
         )
     }

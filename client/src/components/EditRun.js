@@ -52,7 +52,7 @@ class EditRun extends Component {
 
     makeList = (pokemon) => {
         const list = pokemon.map(poke => {
-        return <li key={poke.pokemon}>{poke.pokemon} <span name={poke.pokemon} onClick={() => this.deletePokemon(poke)}>X</span></li>
+        return <li key={poke.pokemon}>{poke.pokemon} <span className="delete" name={poke.pokemon} onClick={() => this.deletePokemon(poke)}>X</span></li>
         })
         this.setState({pokemonLi: this.state.pokemonLi.concat(list)})
     }
@@ -116,38 +116,38 @@ class EditRun extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Game: </label>
-                    <input type="text" value={this.state.game}   disabled></input><br></br>
-                    <label>Status:</label>
+                <form onSubmit={this.handleSubmit} className="editRunForm">
+                    <label>Name</label>
+                    <input type="text" onChange={this.handleChange} value={this.state.user} name="name" disabled></input>
+                    <label>Game</label>
+                    <input type="text" value={this.state.game}   disabled></input>
+                    <label>Status</label>
                     <select onChange={this.handleChange} value={this.state.completed} name="completed">
                         <option name="completed" value="completed">Completed</option>
                         <option name="completed" value="in progress">In-Progress</option>
                         <option name="completed" value="failed">Failed</option>
-                    </select><br></br>
-                    <label>Variation:</label>
+                    </select>
+                    <label>Variation</label>
                     <select onChange={this.handleChange} value={this.state.variation} name="variation">
                         <option name="variation" value="nuzlocke">Nuzlocke</option>
                         <option name="variation" value="egglocke">Egglocke</option>
                         <option name="variation" value="wedlocke">Wedlocke</option>
-                    </select><br></br>
-                    <label>Name: </label>
-                    <input type="text" onChange={this.handleChange} value={this.state.user} name="name" disabled></input><br></br>
+                    </select>
                     <label>Add Pokemon</label>
                     <input type="text" value={this.state.newPokemon} onChange={this.handleChange} name="newPokemon"></input>
-                    <button onClick={this.handlePokemon}>Add Pokemon</button>
-                    <br></br>
+                    <button onClick={this.handlePokemon} className="addPokemon">Add Pokemon</button>
                     <button>Save Run</button>
                 </form>
-                <br></br>
-                <p>Current Pokemon</p>
-                <ul>
-                    {this.state.pokemonLi}
-                </ul><br></br>
-                <p>Pokemon to add (Make sure to save!)</p>
-                <ul>
-                    {this.state.newPokemonLi}
-                </ul>
+                <div className="runPokemon">
+                    <p>Current Pokemon</p>
+                    <ul>
+                        {this.state.pokemonLi}
+                    </ul><br></br>
+                    <p>Pokemon to add (Make sure to save!)</p>
+                    <ul>
+                        {this.state.newPokemonLi}
+                    </ul>
+                </div>
             </div>
         )
     }

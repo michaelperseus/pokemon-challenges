@@ -27,10 +27,10 @@ export default class Pokemon extends Component {
 
     render() {
         return (
-            <div>
-                <p>{this.state.pokemon.name}</p>
-                <img src={this.state.sprite} alt={this.state.pokemon.name}></img>
-            </div>
+            <tr>
+                <td>{this.state.pokemon.name}</td>
+                <td><img src={this.state.sprite} alt={this.state.pokemon.name}></img></td>
+            </tr>
         )
     }
 }
