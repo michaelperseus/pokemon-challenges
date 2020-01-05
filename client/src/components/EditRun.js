@@ -87,7 +87,6 @@ class EditRun extends Component {
                 })
             }
         })
-        
     }
 
     handleSubmit = async (e) => {

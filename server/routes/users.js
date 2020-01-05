@@ -29,14 +29,6 @@ router.post('/register', async (req, res) => {
         console.log(e);
         res.status(500).send(e);
     }
-    // user.save(async (err) => {
-    //     if (err) {
-    //         res.status(500).send({error: 'Error registering new User', err})
-    //     } else {
-    //         const token = await user.generateAuthToken();
-    //         res.status(201).send({user, token});
-    //     }
-    // })
 })
 
 router.post('/logout', async (req, res) => {
