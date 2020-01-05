@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 
 // require('../config/dev.env').config({ path: '../config/dev.env' });
 
@@ -23,13 +24,14 @@ app.use('/users', userRoutes);
 app.use('/games', gameRoutes);
 app.use('/runs', runRoutes);
 app.use('/test', testRoutes);
+app.use(express.static(path.join(__dirname, "client", "build")));
 
 app.get('/checkToken', withAuth, function(req, res) {
     res.sendStatus(200);
 })
 
 app.get('*', (req, res) => {
-    res.send('Good job');
+    runRoutes.sendFile(path.join(__dirname, "client", "build", "index.html"));
 })
 
 app.listen(port, () => {
