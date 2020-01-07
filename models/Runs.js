@@ -20,6 +20,17 @@ const RunSchema = new mongoose.Schema({
     pokemon: [{
         pokemon: {
             type: String
+        },
+        nickname: {
+            type: String
+        },
+        starter: {
+            type: Boolean,
+            default: false
+        },
+        status: {
+            type: String,
+            defaukt: 'alive'
         }
     }]
 },

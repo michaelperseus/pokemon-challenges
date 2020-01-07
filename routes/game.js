@@ -24,6 +24,11 @@ router.get('/mostPlayedGame', async (req, res) => {
     res.send(runs);
 })
 
+router.get('/mostRecentGame', async (req, res) => {
+    const runs = await Game.find({}).sort('-_id').limit(1);
+    res.send(runs)
+})
+
 //Return the requested game
 router.get('/:title', async (req, res) => {
     const game = await Game.findOne({gameCode: req.params.title});
