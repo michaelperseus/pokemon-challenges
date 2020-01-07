@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.3.0.0
+# Pokemon Challenges Alpha Build 0.3.1.0
 
 Version numbers are created using the following system
 a.b.c.d
@@ -25,7 +25,13 @@ a.b.c.d
 - Add ability to delete your profile
 - Add additional run variations
 - Add User Feedback page
+- Add User ratings for games
 - Fix issue with menu not always closing when moving to new page
+
+#### January 6, 2020 - 0.3.1.0
+- Added Renegade Platinum as a game option
+- Added Most Recent Game to front page
+- Updated Pokemon model on server to allow for nickname, starter and status. Will be added to the front end soon so Pokemon can be updated by user
 
 #### January 3, 2020 - 0.3.0.0
 - Updated mobile styling for remaining pages
