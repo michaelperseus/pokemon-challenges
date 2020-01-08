@@ -131,6 +131,10 @@ class EditRun extends Component {
                         <option name="variation" value="nuzlocke">Nuzlocke</option>
                         <option name="variation" value="egglocke">Egglocke</option>
                         <option name="variation" value="wedlocke">Wedlocke</option>
+                        <option name="variation" value="solo-run">Solo Run</option>
+                        <option name="monotype" value="wedlocke">Monotype</option>
+                        <option name="variation" value="eeveelocke">Eeveelocke</option>
+                        <option name="variation" value="wonderlocke">Wonderlocke</option>
                     </select>
                     <label>Add Pokemon</label>
                     <input type="text" value={this.state.newPokemon} onChange={this.handleChange} name="newPokemon"></input>

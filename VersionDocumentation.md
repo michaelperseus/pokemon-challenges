@@ -28,6 +28,9 @@ a.b.c.d
 - Add User ratings for games
 - Fix issue with menu not always closing when moving to new page
 
+#### January 7, 2020 - 0.3.1.1
+- Added Generation 3 Games
+
 #### January 6, 2020 - 0.3.1.0
 - Added Renegade Platinum as a game option
 - Added Most Recent Game to front page
