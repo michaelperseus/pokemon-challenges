@@ -7,7 +7,9 @@ class GameList extends Component {
         this.state = {
             list: '',
             hackList: '',
-            origList: ''
+            origList: '',
+            filter: 'all',
+            generation: 'all'
         }
     }
 
@@ -38,19 +40,83 @@ class GameList extends Component {
     }
 
     makeGameBox = (game) => {
-        const box = <div key={game.gameCode} className="gameBox">
+        const box = <div key={game.gameCode} className="gameBox" data-gen={game.generation}>
                         <Link to={`/game/${game.gameCode}`}><img src={game.logo} alt={game.name}></img></Link>
                     </div>
         return box;
     }
 
+    filterList = (filter) => {
+        const filterList = document.querySelectorAll('.filter');
+        filterList.forEach(item => {
+            item.classList.remove('active');
+        })
+        const active = document.querySelector(`.${filter}`);
+        active.classList.add('active');
+        this.setState({
+            filter: filter
+        })
+    }
+
+    filterGen = (gen) => {
+        const filterList = document.querySelectorAll('.filterGen');
+        filterList.forEach(item => {
+            item.classList.remove('active');
+        })
+        const active = document.querySelector(`.${gen}`);
+        console.log(active.dataset.test);
+        active.classList.add('active');
+        if (gen === 'allGen') {
+            const goodGen = document.querySelectorAll(`[data-gen]`);
+            goodGen.forEach(game => {
+                game.classList.remove('boxBeGone')
+            }) 
+        } else {
+            const games = document.querySelectorAll('[data-gen]');
+            games.forEach(item => {
+                item.classList.add('boxBeGone')
+            })
+            const goodGen = document.querySelectorAll(`[data-gen=${gen}]`);
+            goodGen.forEach(game => {
+                game.classList.remove('boxBeGone')
+            })
+        }
+    }
+
+    renderFilter() {
+        if (this.state.filter === 'all') {
+            return <div><h1 className="gameListTitle">Main Series Games!</h1> {this.state.origList}<h1 className="gameListTitle">Fan-Made Hacks</h1>{this.state.hackList}</div>;
+        } else if (this.state.filter === 'main') {
+            return <div><h1 className="gameListTitle">Main Series Games!</h1> {this.state.origList}</div>;
+        } else {
+            return <div><h1 className="gameListTitle">Fan-Made Hacks</h1>{this.state.hackList}</div>
+        }
+
+        
+    }
+
     render() {
         return (
             <div>
-                <h1 className="gameListTitle">Main Series Games!</h1>
-                {this.state.origList}
-                <h1 className="gameListTitle">Fan-Made Hacks</h1>
-                {this.state.hackList}
+                <div id="filterBox">
+                    <p>
+                        <span className="filter all active" onClick={() => this.filterList('all')}>All</span> |  
+                         <span className="filter main" onClick={() => this.filterList('main')}>Main Series</span> |  
+                         <span className="filter hacks" onClick={() => this.filterList('hacks')}>Hacks</span>
+                    </p>
+                    <p>
+                        <span className="filterGen allGen active" onClick={() => this.filterGen('allGen')} data-test="yes">All</span> | 
+                         <span className="filterGen one" onClick={() => this.filterGen('one')}>1</span> |  
+                         <span className="filterGen two" onClick={() => this.filterGen('two')}>2</span> |  
+                         <span className="filterGen three" onClick={() => this.filterGen('three')}>3</span> |  
+                         <span className="filterGen four" onClick={() => this.filterGen('four')}>4</span> |  
+                         <span className="filterGen five" onClick={() => this.filterGen('five')}>5</span> |  
+                         <span className="filterGen six" onClick={() => this.filterGen('six')}>6</span> |  
+                         <span className="filterGen seven" onClick={() => this.filterGen('seven')}>7</span> |  
+                         <span className="filterGen eight" onClick={() => this.filterGen('eight')}>8</span>
+                    </p>
+                </div>
+                {this.renderFilter()}
             </div>
         )
     }

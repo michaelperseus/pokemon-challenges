@@ -159,6 +159,17 @@ body {
 }
 
 /*-----Game List Design-----*/
+#filterBox {
+  text-align: center;
+  .active {
+    color: yellow;
+  }
+}
+
+.boxBeGone {
+  display: none;
+}
+
 .gameListTitle {
   text-align: center;
 }
@@ -347,3 +358,7 @@ table {
     background: $red;
   }
 }
+
+
+
+/*-----Test Area-----*/
