@@ -20,7 +20,7 @@ a.b.c.d
 - Add all Drayano hacks
 - Add more featured sections to home page
 - Update mobile menu icon
-- Add filter ability to game list (ie: only hacks, main games, side games)
+- ~~Add filter ability to game list (ie: only hacks, main games, side games)~~
 - Add stats to each game page
 - Add ability to delete your profile
 - Add additional run variations
@@ -28,8 +28,12 @@ a.b.c.d
 - Add User ratings for games
 - Fix issue with menu not always closing when moving to new page
 
+#### January 8, 2020 - 0.3.2.1
+- Added ability to filter games on search page by Original or Hack as well as generation
+
 #### January 7, 2020 - 0.3.1.1
 - Added Generation 3 Games
+- Added several new run variations
 
 #### January 6, 2020 - 0.3.1.0
 - Added Renegade Platinum as a game option

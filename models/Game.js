@@ -6,7 +6,7 @@ const GameSchema = new mongoose.Schema({
         required: true
     },
     generation: {
-        type: Number,
+        type: String,
         required: true
     },
     hack: {

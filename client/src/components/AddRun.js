@@ -35,6 +35,9 @@ class AddRun extends Component {
                 game: this.state.game,
                 variation: this.state.variation
             }
+            if (this.state.starter !== '') {
+                newRunData.pokemon = this.state.starter
+            }
             await fetch('/runs/newRun', {
                 method: 'POST',
                 headers: {
