@@ -103,6 +103,7 @@ export default class User extends Component {
         return (
             <div id="userPage">
                 <h1>Welcome, {this.state.user}</h1>
+                <img src={localStorage.getItem('avatar')} alt={this.state.user}></img>
                 <h3>You have completed {this.state.runs.length} run(s)!</h3>
                 <table className="myRuns">
                     <thead>

@@ -12,11 +12,18 @@ router.get('/me', (req, res) => {
 
 router.get('/info/:username', async (req, res) => {
     const user = await User.findOne({username: {$regex: new RegExp("^" + req.params.username + "$", "i")}});
-    console.log(user);
     if (!user) {
         return res.status(404).send({error: 'User not found'})
     } 
     res.status(200).send(user);
+})
+
+router.get('/avatar/:username', async (req, res) => {
+    const user = await User.findOne({username: {$regex: new RegExp("^" + req.params.username + "$", "i")}});
+    if (!user) {
+        return res.status(404).send({error: 'User not found'})
+    } 
+    res.status(200).send({avatar: user.avatar});
 })
 
 router.post('/register', async (req, res) => {
