@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.3.1.0
+# Pokemon Challenges Alpha Build 0.3.2.2
 
 Version numbers are created using the following system
 a.b.c.d
@@ -27,6 +27,10 @@ a.b.c.d
 - Add User Feedback page
 - Add User ratings for games
 - Fix issue with menu not always closing when moving to new page
+
+#### January 11, 2020 - 0.3.2.2
+- Fixed error with images uploading to the wrong server folder
+- Rewrote code on the backend to prepare for profile picture feature to be added
 
 #### January 8, 2020 - 0.3.2.1
 - Added ability to filter games on search page by Original or Hack as well as generation
