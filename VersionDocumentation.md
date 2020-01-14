@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.3.2.2
+# Pokemon Challenges Alpha Build 0.3.2.3
 
 Version numbers are created using the following system
 a.b.c.d
@@ -14,7 +14,7 @@ a.b.c.d
 - Add Nicknames to Pokemon
 - Add option to mark Pokemon as starter
 - Add statuses to Pokemon (ie: dead, alive)
-- Add Profile Images for users
+- ~~Add Profile Images for users~~
 - Add Comment section to runs
 - Add all main series Pokemon Games
 - Add all Drayano hacks
@@ -23,10 +23,17 @@ a.b.c.d
 - ~~Add filter ability to game list (ie: only hacks, main games, side games)~~
 - Add stats to each game page
 - Add ability to delete your profile
-- Add additional run variations
+- ~~Add additional run variations~~
 - Add User Feedback page
 - Add User ratings for games
 - Fix issue with menu not always closing when moving to new page
+
+#### January 13, 2020 - 0.3.3.0
+- Added ability to upload new profile picture
+- Minor changes to styling on 'My Profile' page
+
+#### January 12, 2020 - 0.3.2.3
+- Added default profile picture to accounts
 
 #### January 11, 2020 - 0.3.2.2
 - Fixed error with images uploading to the wrong server folder

@@ -13,7 +13,6 @@ const s3 = new aws.S3();
 
 //Filters the file to make sure it can be uploaded properly
 const fileFilter = (req, file, cb) => {
-    console.log(file);
     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
         cb(null, true);
     } else {
@@ -27,7 +26,10 @@ const upload = multer({
     storage: multerS3({
         // acl: 'public-read',
         s3,
-        bucket: 'pokemon-challenges/games',
+        bucket: function(req, res, cb) {
+            cb(null, `pokemon-challenges/${req.body.type}`)
+        },
+        // `pokemon-challenges/${req.body.type}`,
         metadata: function(req, file, cb) {
             cb(null, {fieldname: 'TESTING_METADATA'});
         },

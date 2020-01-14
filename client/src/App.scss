@@ -350,6 +350,17 @@ table {
     margin: 0 auto;
     display: block;
   }
+  #newAvatar {
+    width: 80%;
+    margin: 10px auto;
+    button {
+      display: block;
+      margin-top: 10px;
+      border: none;
+      background: $white;
+      padding: 5px;
+    }
+  }
 }
 
 #logoutGroup {
