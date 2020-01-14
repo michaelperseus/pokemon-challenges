@@ -75,6 +75,7 @@ export default class Login extends Component {
                   res.json().then(data => {
                     localStorage.setItem('user', data.user.username);
                     localStorage.setItem('token', data.token);
+                    localStorage.setItem('avatar', data.user.avatar);
                     this.props.history.push('/');
                     window.location.reload(true);
                   });

@@ -4,6 +4,11 @@ const router = express.Router();
 const User = require('../models/User');
 const withAuth = require('../middleware/middleware');
 
+const multer = require('multer');
+
+const upload = require('../services/file-upload');
+const singleUpload = upload.single('image');
+
 const jwt = require('jsonwebtoken');
 
 router.get('/me', (req, res) => {
@@ -12,11 +17,18 @@ router.get('/me', (req, res) => {
 
 router.get('/info/:username', async (req, res) => {
     const user = await User.findOne({username: {$regex: new RegExp("^" + req.params.username + "$", "i")}});
-    console.log(user);
     if (!user) {
         return res.status(404).send({error: 'User not found'})
     } 
     res.status(200).send(user);
+})
+
+router.get('/avatar/:username', async (req, res) => {
+    const user = await User.findOne({username: {$regex: new RegExp("^" + req.params.username + "$", "i")}});
+    if (!user) {
+        return res.status(404).send({error: 'User not found'})
+    } 
+    res.status(200).send({avatar: user.avatar});
 })
 
 router.post('/register', async (req, res) => {
@@ -25,6 +37,19 @@ router.post('/register', async (req, res) => {
         await user.save();
         const token = await user.generateAuthTokens();
         res.status(201).send({user, token});
+    } catch (e) {
+        console.log(e);
+        res.status(500).send(e);
+    }
+})
+
+//Adds a new game to the database
+router.post('/newAvatar', singleUpload, async (req, res) => {
+    const user = await User.findOne({username: req.body.name});
+    user.avatar = req.file.location;
+    try {
+        await user.save();
+        res.send(user);
     } catch (e) {
         console.log(e);
         res.status(500).send(e);

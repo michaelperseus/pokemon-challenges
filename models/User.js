@@ -19,6 +19,11 @@ const UserSchema = new mongoose.Schema({
         type: String,
         require: true
     },
+    avatar: {
+        type: String,
+        require: false,
+        default: 'https://pokemon-challenges.s3.amazonaws.com/users/default.jpg'
+    },
     tokens: [{
         token: {
             type: String,
