@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.3.2.3
+# Pokemon Challenges Alpha Build 0.3.3.0
 
 Version numbers are created using the following system
 a.b.c.d
@@ -31,6 +31,7 @@ a.b.c.d
 #### January 13, 2020 - 0.3.3.0
 - Added ability to upload new profile picture
 - Minor changes to styling on 'My Profile' page
+- Added Sinnoh Games
 
 #### January 12, 2020 - 0.3.2.3
 - Added default profile picture to accounts
