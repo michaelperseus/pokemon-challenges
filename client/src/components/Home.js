@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import HomeBanner from '../img/Logos2.png'
+import HomeBanner from '../img/Logos2.png';
+import PlaceHolder from '../img/Placeholder.png';
 
 class Home extends Component {
     constructor(props) {
@@ -65,6 +66,10 @@ class Home extends Component {
                     <div className="gameHighlight">
                         <h1>Most Recent Game!</h1>
                         <Link to={`/game/${this.state.recent.name}`}>{this.state.recent.logo}</Link>
+                    </div>
+                    <div className="gameHighlight">
+                        <h1>Highest Rated Game!</h1>
+                        <Link to={`/}`}><img src={PlaceHolder} alt="Placeholder"></img></Link>
                     </div>
                 </div>
             </div>

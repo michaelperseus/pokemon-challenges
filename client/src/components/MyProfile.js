@@ -116,6 +116,10 @@ export default class User extends Component {
         })
     }
 
+    deleteProfile = () => {
+        alert('delete function coming soon!')
+    }
+
     testUpload = async (e) => {
         e.preventDefault();
         
@@ -162,6 +166,7 @@ export default class User extends Component {
                     <button onClick={this.logoutUser}>Logout</button>
                     <button onClick={this.logoutAll}>Logout Everywhere</button>
                 </div>
+                <button id="deleteProfile" onClick={this.deleteProfile}>Delete Profile</button>
             </div>
         )
     }

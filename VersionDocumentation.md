@@ -26,7 +26,15 @@ a.b.c.d
 - ~~Add additional run variations~~
 - Add User Feedback page
 - Add User ratings for games
+
+### Known Bugs
 - Fix issue with menu not always closing when moving to new page
+- Fix issue with Game Page filter showing items from unselected options
+
+#### January 15, 2020 - 0.3.3.1
+- Added Gen 5 Games to Database
+- Added 'Delete Profile' button to front end
+- Added Placeholder data to front page for 'Highest Rated Game'
 
 #### January 13, 2020 - 0.3.3.0
 - Added ability to upload new profile picture
