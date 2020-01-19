@@ -375,6 +375,43 @@ table {
   }
 }
 
+#deleteProfile {
+  margin: 0 auto;
+  display: block;
+  background: $white;
+  border: none;
+  padding: 10px;
+  font-weight: bold;
+  color: $red;
+}
 
+/*-----Comment Design-----*/
+#commentContainer {
+  width: 80%;
+  margin: 0 auto;
+  form {
+    label {
+      display: block;
+    }
+    textarea {
+      display: block;
+      width: 100%;
+      resize: vertical;
+      min-height: 50px;
+    }
+    button {
+      border: none;
+      background: $white;
+      color: $red;
+      padding: 5px;
+      margin-top: 5px;
+    }
+  }
+}
+
+.comment {
+  border: 1px solid white;
+  margin: 5px 0;
+}
 
 /*-----Test Area-----*/

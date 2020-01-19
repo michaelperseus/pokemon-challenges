@@ -37,7 +37,11 @@ class EditRun extends Component {
 
     deletePokemon = (poke) => {
         fetch(`/runs/${this.state.id}/pokemon/${poke._id}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
         })
         .then(res => {
             console.log(res);
@@ -83,7 +87,7 @@ class EditRun extends Component {
                 this.setState({
                     newPokemonList: this.state.newPokemonList.concat(pokemon),
                     newPokemon: '',
-                    newPokemonLi: this.state.newPokemonLi.concat(<li>{pokemon}</li>)
+                    newPokemonLi: this.state.newPokemonLi.concat(<li key={pokemon}>{pokemon}</li>)
                 })
             }
         })
@@ -100,7 +104,8 @@ class EditRun extends Component {
         fetch('/runs/updateRun', {
             method: 'PATCH',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
                   },
                 body: JSON.stringify(data)
         }).then(res => {

@@ -14,7 +14,8 @@ function RunTable(props) {
             method: 'DELETE',
             body: JSON.stringify(deleteData),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         })
         .then(res => {

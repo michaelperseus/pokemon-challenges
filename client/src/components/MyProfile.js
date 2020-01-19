@@ -44,7 +44,8 @@ export default class User extends Component {
             method: 'POST',
             body: JSON.stringify(logoutData),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }).then(res => {
             if (res.status === 200) {
@@ -67,7 +68,8 @@ export default class User extends Component {
             method: 'POST',
             body: JSON.stringify(logoutData),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }).then(res => {
             if (res.status === 200) {
@@ -77,28 +79,6 @@ export default class User extends Component {
                 window.location.reload(true);
             } else {
                 console.log('error logging out');
-            }
-        })
-    }
-
-    deleteRun = (id) => {
-
-        const deleteData = {
-            id: id
-        }
-        
-        fetch(`/runs/delete`, {
-            method: 'DELETE',
-            body: JSON.stringify(deleteData),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(res => {
-            if (res.status === 200) {
-                window.location.reload(true);
-            } else {
-                alert('Error deleting')
             }
         })
     }
@@ -116,6 +96,36 @@ export default class User extends Component {
         })
     }
 
+    deleteProfile = async () => {
+        const confirm = window.confirm('Are you sure you want to delete your profile?');
+        if (confirm) {
+            const deleteData = {
+                username: this.state.user
+            }
+    
+            await fetch('/users/deleteProfile', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify(deleteData)
+            })
+            .then(res => {
+                if (res.status === 200) {
+                    localStorage.removeItem('user');
+                    localStorage.removeItem('token');
+                    this.props.history.push('/');
+                    window.location.reload(true);
+                } else {
+                    console.log('error deleting profile');
+                }
+            })
+        } else {
+            return
+        }
+    }
+
     testUpload = async (e) => {
         e.preventDefault();
         
@@ -125,10 +135,15 @@ export default class User extends Component {
         fd.append('image', this.state.newAvatar, 'avatar.png');
         await fetch('/users/newAvatar', {
             method: 'POST',
+            headers: { 
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
             body: fd
         })
         .then(res => res.json())
         .then(data => {
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
             console.log(data);
             window.location.reload(true);
         });
@@ -162,6 +177,7 @@ export default class User extends Component {
                     <button onClick={this.logoutUser}>Logout</button>
                     <button onClick={this.logoutAll}>Logout Everywhere</button>
                 </div>
+                <button id="deleteProfile" onClick={this.deleteProfile}>Delete Profile</button>
             </div>
         )
     }

@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.3.3.0
+# Pokemon Challenges Alpha Build 0.3.4.0
 
 Version numbers are created using the following system
 a.b.c.d
@@ -15,7 +15,7 @@ a.b.c.d
 - Add option to mark Pokemon as starter
 - Add statuses to Pokemon (ie: dead, alive)
 - ~~Add Profile Images for users~~
-- Add Comment section to runs
+- ~~Add Comment section to runs~~
 - Add all main series Pokemon Games
 - Add all Drayano hacks
 - Add more featured sections to home page
@@ -26,7 +26,22 @@ a.b.c.d
 - ~~Add additional run variations~~
 - Add User Feedback page
 - Add User ratings for games
+- Add User notes section to Run
+
+### Known Bugs
 - Fix issue with menu not always closing when moving to new page
+- Fix issue with Game Page filter showing items from unselected options
+
+#### January 18, 2020 - 0.3.4.0
+- Added the ability to leave comments on runs when logged in
+
+#### January 17, 2020 - 0.3.3.2
+- Added additional security features to the server
+
+#### January 15, 2020 - 0.3.3.1
+- Added Gen 5 Games to Database
+- Added 'Delete Profile' button to front end
+- Added Placeholder data to front page for 'Highest Rated Game'
 
 #### January 13, 2020 - 0.3.3.0
 - Added ability to upload new profile picture

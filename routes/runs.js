@@ -3,6 +3,8 @@ const Run = require('../models/Runs');
 const Game = require('../models/Game');
 const mongoose = require('mongoose');
 
+const withAuth = require('../middleware/middleware');
+
 const router = express.Router();
 
 
@@ -34,7 +36,7 @@ router.get('/:username', async (req, res) => {
 
 
 // Adding Routes
-router.post('/newRun', async (req, res) => {
+router.post('/newRun', withAuth, async (req, res) => {
     const run = new Run(req.body);
     try {
         await run.save();
@@ -48,8 +50,22 @@ router.post('/newRun', async (req, res) => {
     }
 })
 
+//Add a new comment to a run
+router.post('/newComment', withAuth, async (req, res) => {
+    try {
+        const run = await Run.findById(req.body.runId);
+        await run.comments.push({user: req.body.username, message: req.body.message, posted: req.body.posted})
+        await run.save();
+        res.send(run)
+    } catch (e) {
+        console.log(e);
+        res.send(e);
+    }
+    
+})
+
 //Deleting Routes
-router.delete('/delete', async (req, res) => {
+router.delete('/delete', withAuth, async (req, res) => {
     const run = await Run.findByIdAndDelete(req.body.id);
         if (!run) {
             res.status(500).send();
@@ -63,7 +79,7 @@ router.delete('/delete', async (req, res) => {
 
 
 //Delete a Pokemon
-router.delete('/:run/pokemon/:poke', async (req, res) => {
+router.delete('/:run/pokemon/:poke', withAuth, async (req, res) => {
     const run = await Run.findById(req.params.run);
     console.log(run);
     const newRun = await run.pokemon.filter(poke => {
@@ -82,8 +98,7 @@ router.delete('/:run/pokemon/:poke', async (req, res) => {
 
 
 //Updating Routes
-router.patch('/updateRun', async (req, res) => {
-    console.log(req.body);
+router.patch('/updateRun', withAuth, async (req, res) => {
     const allowedUpdates = ['completed', 'pokemon', 'variation', '_id'];
     const run = await Run.findOne({_id: req.body._id});
     const updates = Object.keys(req.body);
