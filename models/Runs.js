@@ -32,6 +32,17 @@ const RunSchema = new mongoose.Schema({
             type: String,
             defaukt: 'alive'
         }
+    }],
+    comments: [{
+        user: {
+            type: String
+        },
+        message: {
+            type: String
+        },
+        posted: {
+            type: Date
+        }
     }]
 },
 {

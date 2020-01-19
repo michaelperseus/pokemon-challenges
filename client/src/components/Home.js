@@ -69,7 +69,7 @@ class Home extends Component {
                     </div>
                     <div className="gameHighlight">
                         <h1>Highest Rated Game!</h1>
-                        <Link to={`/}`}><img src={PlaceHolder} alt="Placeholder"></img></Link>
+                        <Link to={`/`}><img src={PlaceHolder} alt="Placeholder"></img></Link>
                     </div>
                 </div>
             </div>

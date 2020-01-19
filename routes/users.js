@@ -11,9 +11,6 @@ const singleUpload = upload.single('image');
 
 const jwt = require('jsonwebtoken');
 
-router.get('/me', (req, res) => {
-    res.send('connection established!')
-})
 
 router.get('/info/:username', async (req, res) => {
     const user = await User.findOne({username: {$regex: new RegExp("^" + req.params.username + "$", "i")}});
@@ -44,7 +41,7 @@ router.post('/register', async (req, res) => {
 })
 
 //Adds a new game to the database
-router.post('/newAvatar', singleUpload, async (req, res) => {
+router.post('/newAvatar', withAuth, singleUpload, async (req, res) => {
     const user = await User.findOne({username: req.body.name});
     user.avatar = req.file.location;
     try {
@@ -56,7 +53,7 @@ router.post('/newAvatar', singleUpload, async (req, res) => {
     }
 })
 
-router.post('/logout', async (req, res) => {
+router.post('/logout', withAuth, async (req, res) => {
     try {
         const user = await User.findOne({username: req.body.username});
         console.log(req.body.token);
@@ -72,7 +69,7 @@ router.post('/logout', async (req, res) => {
     }
 })
 
-router.post('/logoutAll', async (req, res) => {
+router.post('/logoutAll', withAuth, async (req, res) => {
     try {
         const user = await User.findOne({username: req.body.username});
         user.tokens = [];
@@ -85,31 +82,6 @@ router.post('/logoutAll', async (req, res) => {
     
 })
 
-// router.post('/authenticate', (req, res) => {
-//     User.findOne({username: req.body.username}, (err, user) => {
-//         if (err) {
-//             console.error(err);
-//             res.status(500).json({error: 'error'});
-//         } else if (!user) {
-//             res.status(401).json({error: 'User not found'});
-//         } else {
-//             user.isCorrectPassword(req.body.password, (err, same) => {
-//                 if (err) {
-//                     res.status(500).json({error: 'password'})
-//                 } else if (!same) {
-//                     res.status(401).json({error: 'Incorrect email or password'})
-//                 } else {
-//                     const payload = req.body.username;
-//                     const token = jwt.sign(payload, process.env.SECRET, {
-//                         // expiresIn: '500m'
-//                     });
-//                     res.cookie('token', token, {httpOnly: true}).status(200).send(user);
-//                 }
-//             })
-//         }
-//     })
-// })
-
 router.post('/authenticate', async (req, res) => {
     try {
         const user = await User.findByCredentials(req.body.username, req.body.password);
@@ -118,6 +90,18 @@ router.post('/authenticate', async (req, res) => {
     } catch (e) {
         console.log(e);
         res.status(400).send(e);
+    }
+})
+
+
+router.delete('/deleteProfile', withAuth, async (req, res) => {
+    try {
+        const user = await User.findOne({username: req.body.username});
+        await user.remove();
+        res.send(user);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send(e);
     }
 })
 
