@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.3.4.0
+# Pokemon Challenges Alpha Build 0.3.4.1
 
 Version numbers are created using the following system
 a.b.c.d
@@ -31,6 +31,11 @@ a.b.c.d
 ### Known Bugs
 - Fix issue with menu not always closing when moving to new page
 - Fix issue with Game Page filter showing items from unselected options
+
+#### January 19, 2020 - 0.3.4.1
+- Added link to user in comment
+- Added minor styling to comments
+- Fixed issue with comments sharing the same key
 
 #### January 18, 2020 - 0.3.4.0
 - Added the ability to leave comments on runs when logged in
