@@ -71,7 +71,7 @@ export default class Run extends Component {
 
     loadComment = () => {
         const comments = this.state.runComments.map(com => {
-            return <Comment key={com.user} user={com.user} message={com.message} />
+            return <Comment key={com.posted} user={com.user} time={com.posted} message={com.message} />
         })
         this.setState({comments: comments})
     }
@@ -140,6 +140,7 @@ export default class Run extends Component {
                 </table>
                 <div id="commentContainer">
                     {this.renderComment()}
+                    <h5>All Comments! ({this.state.runComments.length})</h5>
                     {this.state.comments}
                 </div>
             </div>
