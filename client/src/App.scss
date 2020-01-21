@@ -429,4 +429,27 @@ table {
   }
 }
 
+
+/*-----News Area-----*/
+#blogContainer {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.blogPost {
+  h1 {
+    text-align: center;
+  }
+  
+  h3 {
+    color: yellow;
+    font-size: 1em;
+    text-align: center;
+  }
+  p {
+    line-height: 1.5em;
+    margin: 10px 0;
+  }
+}
+
 /*-----Test Area-----*/

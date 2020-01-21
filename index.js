@@ -9,6 +9,7 @@ const userRoutes = require('./routes/users');
 const gameRoutes = require('./routes/game');
 const runRoutes = require('./routes/runs');
 const testRoutes = require('./routes/test');
+const newsRoutes = require('./routes/news');
 
 const withAuth = require('./middleware/middleware');
 
@@ -24,6 +25,7 @@ app.use('/users', userRoutes);
 app.use('/games', gameRoutes);
 app.use('/runs', runRoutes);
 app.use('/test', testRoutes);
+app.use('/news', newsRoutes);
 app.use(express.static(path.join(__dirname, "client", "build")));
 
 app.get('/checkToken', withAuth, function(req, res) {
