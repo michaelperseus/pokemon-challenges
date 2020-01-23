@@ -5,7 +5,9 @@
 $red: #ff7575;
 $darkRed: #E16161;
 $white: #ffffff;
+$offWhite: #F1F1F1;
 $black: #707070;
+$yellow: #FFF68E;
 
 * {
   margin: 0;
@@ -30,17 +32,20 @@ body {
 
 /*-----Navbar Design-----*/
 .navbarBig {
-  background: $red;
+  background: $offWhite;
   margin: 0;
   top: 0;
+  height: 50px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto 1fr;
   a {
     text-decoration: none;
+    align-self: center;
     h1 {
       font-family: 'Chango', 'sans-serif';
       margin-left: 5px;
-      color: $white;
+      color: $red;
+      font-size: 1.5em;
     }
   }
   ul {
@@ -51,8 +56,13 @@ body {
       padding: 0 5px;
       a {
         text-decoration: none;
-        color: $white;
+        color: $red;
+        font-size: 1.5em;
       }
+    }
+    .navLine {
+      color: $red;
+      font-size: 1.5em;
     }
   }
 }
@@ -142,6 +152,10 @@ body {
       &:hover {
         background: $darkRed;
       }
+      @media only screen and (min-width: 750px) {
+        width: 50%;
+        font-size: 1em;
+      }
     }
   }
 }
@@ -162,7 +176,7 @@ body {
 #filterBox {
   text-align: center;
   .active {
-    color: yellow;
+    color: $yellow;
   }
 }
 
@@ -201,10 +215,17 @@ body {
     border: none;
     background: $red;
     cursor: pointer;
+    @media only screen and (min-width: 750px) {
+      padding: 10px;
+      margin: 10px auto;
+    }
     a {
       text-decoration: none;
       color: $white;
       font-size: 1.3em;
+      @media only screen and (min-width: 750px) {
+        font-size: 2em;
+      }
     }
   }
 }
@@ -416,7 +437,7 @@ table {
   border-bottom: 1px solid white;
   margin: 5px 0;
   .commentUser {
-    color: yellow;
+    color: $yellow;
     text-decoration: none;
   }
   .commentMessage {
@@ -432,8 +453,14 @@ table {
 
 /*-----News Area-----*/
 #blogContainer {
-  width: 95%;
+  width: 85%;
   margin: 0 auto;
+  ul {
+    list-style-type: disc;
+    li {
+      margin-left: 10px;
+    }
+  }
 }
 
 .blogPost {
@@ -442,7 +469,7 @@ table {
   }
   
   h3 {
-    color: yellow;
+    color: $yellow;
     font-size: 1em;
     text-align: center;
   }

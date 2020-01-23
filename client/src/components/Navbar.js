@@ -59,9 +59,13 @@ class Navbar extends Component {
                             <h1>P.C.</h1>
                         </Link>
                         <ul>
-                            <li><Link to={'/'}>Home</Link></li>
                             <li><Link to={'/game-list'}>Games</Link></li>
+                            <li className="navLine"> | </li>
                             <li><Link to={'/community'}>Community</Link></li>
+                            <li className="navLine"> | </li>
+                            <li><Link to={'/news'}>News</Link></li>
+                            <li className="navLine"> | </li>
+                            <li>{this.returnLoginStatus()}</li>
                         </ul>
                     </nav>
                 </nav>

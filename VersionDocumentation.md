@@ -32,6 +32,12 @@ a.b.c.d
 - ~~Fix issue with menu not always closing when moving to new page~~
 - Fix issue with Game Page filter showing items from unselected options
 
+#### January 22, 2020 - 0.3.4.3
+- Added react-markdown package to client
+- Continued development of the News page. It should be live in the next update
+- Updated various npm packages with issues
+- Minor styling changes for tablet view
+
 #### January 20, 2020 - 0.3.4.2
 - Fixed issue with mobile menu not closing when clicking outside of box or moving to new page
 - Added template for news page
