@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.3.4.1
+# Pokemon Challenges Alpha Build 0.3.5.4
 
 Version numbers are created using the following system
 a.b.c.d
@@ -21,16 +21,36 @@ a.b.c.d
 - Add more featured sections to home page
 - Update mobile menu icon
 - ~~Add filter ability to game list (ie: only hacks, main games, side games)~~
-- Add stats to each game page
-- Add ability to delete your profile
+- ~~Add stats to each game page~~
+- ~~Add ability to delete your profile~~
 - ~~Add additional run variations~~
 - Add User Feedback page
 - Add User ratings for games
 - Add User notes section to Run
 
 ### Known Bugs
-- Fix issue with menu not always closing when moving to new page
+- ~~Fix issue with menu not always closing when moving to new page~~
+- ~~News page isn't loading all posts~~
 - Fix issue with Game Page filter showing items from unselected options
+
+#### January 23, 2020 - 0.3.5.4
+- Added additional stats to each game page as well as the community page
+- Removed common functions and placed into a seperate 'common.js' file
+- Minor style updates
+- Fixed News Page not showing all posts
+
+#### January 23, 2020 - 0.3.4.4
+- Styling updates for tablet view
+
+#### January 22, 2020 - 0.3.4.3
+- Added react-markdown package to client
+- Continued development of the News page. It should be live in the next update
+- Updated various npm packages with issues
+- Minor styling changes for tablet view
+
+#### January 20, 2020 - 0.3.4.2
+- Fixed issue with mobile menu not closing when clicking outside of box or moving to new page
+- Added template for news page
 
 #### January 19, 2020 - 0.3.4.1
 - Added link to user in comment
@@ -45,7 +65,7 @@ a.b.c.d
 
 #### January 15, 2020 - 0.3.3.1
 - Added Gen 5 Games to Database
-- Added 'Delete Profile' button to front end
+- Added 'Delete Profile' button feature
 - Added Placeholder data to front page for 'Highest Rated Game'
 
 #### January 13, 2020 - 0.3.3.0

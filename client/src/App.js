@@ -16,6 +16,7 @@ import MyProfile from './components/MyProfile';
 import EditRun from './components/EditRun';
 import Run from './components/Run';
 import User from './components/User';
+import News from './components/News';
 
 import ProtectTest from './components/ProtectTest';
 
@@ -37,6 +38,7 @@ function App() {
             <Route path='/edit-run/:id' component={withAuth(runAuth(EditRun))} />
             <Route path='/run/:id' component={Run} />
             <Route path='/user/:username' component={User} />
+            <Route path='/news' component={News} />
             <Route component={NotFound} />
           </Switch>
         </main>

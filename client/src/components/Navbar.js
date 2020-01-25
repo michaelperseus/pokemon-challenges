@@ -6,7 +6,8 @@ class Navbar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: 'Login / Signup'
+            user: 'Login / Signup',
+            navOpen: false
         }
     }
 
@@ -26,6 +27,7 @@ class Navbar extends Component {
     toggleNav = () => {
         const nav = document.querySelector('.navbarSmall');
         nav.classList.toggle('navbarSmall-On');
+        this.setState({navOpen: !this.state.navOpen});
     }
 
     returnName = () => {
@@ -38,6 +40,17 @@ class Navbar extends Component {
     }
 
     render() {
+        window.addEventListener('click', (e) => {
+            if(this.state.navOpen) {
+                if (document.getElementById('smallNav').contains(e.target)) {
+                    return
+                } else {
+                    this.toggleNav()
+                }
+            } else {
+                return
+            }
+        })
         return (
             <div>
                 <nav className="webNav">
@@ -46,13 +59,17 @@ class Navbar extends Component {
                             <h1>P.C.</h1>
                         </Link>
                         <ul>
-                            <li><Link to={'/'}>Home</Link></li>
                             <li><Link to={'/game-list'}>Games</Link></li>
+                            <li className="navLine"> | </li>
                             <li><Link to={'/community'}>Community</Link></li>
+                            <li className="navLine"> | </li>
+                            <li><Link to={'/news'}>News</Link></li>
+                            <li className="navLine"> | </li>
+                            <li>{this.returnLoginStatus()}</li>
                         </ul>
                     </nav>
                 </nav>
-                <nav className="mobileNav">
+                <nav className="mobileNav" id="smallNav">
                     <div className="navbarButton" onClick={this.toggleNav}>
                         <div className="innerButton"></div>
                     </div>
@@ -61,6 +78,7 @@ class Navbar extends Component {
                             <li><Link to={'/'} onClick={this.toggleNav}>Home</Link></li>
                             <li><Link to={'/game-list'} onClick={this.toggleNav}>Games</Link></li>
                             <li><Link to={'/community'} onClick={this.toggleNav}>Community</Link></li>
+                            <li><Link to={'/news'} onClick={this.toggleNav}>News</Link></li>
                             <li>{this.returnLoginStatus()}</li>
                         </ul>
                         <span onClick={this.toggleNav}>X</span>
