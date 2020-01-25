@@ -99,20 +99,30 @@ class GameList extends Component {
         return (
             <div>
                 <div id="filterBox">
-                    <p>
-                        <span className="filter all active" onClick={() => this.filterList('all')}>All</span> |  
-                         <span className="filter main" onClick={() => this.filterList('main')}>Main Series</span> |  
+                    <p className="series">
+                        <span className="filter all active" onClick={() => this.filterList('all')}>All</span>
+                        <span> | </span>  
+                         <span className="filter main" onClick={() => this.filterList('main')}>Main Series</span>
+                         <span> | </span>    
                          <span className="filter hacks" onClick={() => this.filterList('hacks')}>Hacks</span>
                     </p>
-                    <p>
-                        <span className="filterGen allGen active" onClick={() => this.filterGen('allGen')} data-test="yes">All</span> | 
-                         <span className="filterGen one" onClick={() => this.filterGen('one')}>1</span> |  
-                         <span className="filterGen two" onClick={() => this.filterGen('two')}>2</span> |  
-                         <span className="filterGen three" onClick={() => this.filterGen('three')}>3</span> |  
-                         <span className="filterGen four" onClick={() => this.filterGen('four')}>4</span> |  
-                         <span className="filterGen five" onClick={() => this.filterGen('five')}>5</span> |  
-                         <span className="filterGen six" onClick={() => this.filterGen('six')}>6</span> |  
-                         <span className="filterGen seven" onClick={() => this.filterGen('seven')}>7</span> |  
+                    <p className="generation">
+                        <span className="filterGen allGen active" onClick={() => this.filterGen('allGen')} data-test="yes">All</span>
+                        <span> | </span>  
+                         <span className="filterGen one" onClick={() => this.filterGen('one')}>1</span>
+                         <span> | </span>   
+                         <span className="filterGen two" onClick={() => this.filterGen('two')}>2</span>
+                         <span> | </span>  
+                         <span className="filterGen three" onClick={() => this.filterGen('three')}>3</span>
+                         <span> | </span>  
+                         <span className="filterGen four" onClick={() => this.filterGen('four')}>4</span>
+                         <span> | </span>   
+                         <span className="filterGen five" onClick={() => this.filterGen('five')}>5</span>
+                         <span> | </span>  
+                         <span className="filterGen six" onClick={() => this.filterGen('six')}>6</span>
+                         <span> | </span>  
+                         <span className="filterGen seven" onClick={() => this.filterGen('seven')}>7</span>
+                         <span> | </span>  
                          <span className="filterGen eight" onClick={() => this.filterGen('eight')}>8</span>
                     </p>
                 </div>

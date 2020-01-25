@@ -8,7 +8,8 @@ export default class News extends Component {
             title: '',
             date: '',
             body: [],
-            test: null
+            test: null,
+            newsLoop: ''
         }
     }
 
@@ -17,10 +18,11 @@ export default class News extends Component {
         .then(res => res.json())
         .then(data => {
             console.log(data);
+            const newsLoop = data.map(news => {
+                return <div className="blogPost"><h1>{news.title}</h1><h3>{news.date}</h3><div><Marked source={news.body} escapeHtml={false} /></div></div>
+            })
             this.setState({
-                title: data.title,
-                date: data.date,
-                test: data.body
+                newsLoop
             })
         })
     }
@@ -28,11 +30,7 @@ export default class News extends Component {
     render() {
         return (
             <div id="blogContainer">
-                <div className="blogPost">
-                    <h1>{this.state.title}</h1>
-                    <h3>{this.state.date}</h3>
-                    <div><Marked source={this.state.test} escapeHtml={false} /></div>
-                </div>
+                {this.state.newsLoop}
             </div>
         )
     }

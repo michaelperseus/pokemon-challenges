@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import RunTable from './RunTable';
 
+import {sortRunsByType} from '../utils/common';
+
 class Game extends Component {
     constructor(props) {
         super(props);
@@ -11,8 +13,10 @@ class Game extends Component {
             game: '',
             search: '',
             runs: [],
-            runTable: <tr><td>loading...</td></tr>
+            runTable: <tr><td>loading...</td></tr>,
+            typeTable: <tr><td>loading...</td></tr>
         }
+        this.sortRunsByType = sortRunsByType.bind(this);
     }
     async componentDidMount() {
         fetch(`/games/${this.props.match.params.id}`)
@@ -29,6 +33,7 @@ class Game extends Component {
             runs: runs
         })
         this.createTable();
+        this.sortRunsByType();
     }
 
     async componentDidUpdate() {
@@ -78,6 +83,18 @@ class Game extends Component {
                     <img src={this.state.logo} alt={this.state.game}></img>
                     {localStorage.getItem('user') ? <button className="addRun"><Link to={`/add-run/${this.state.search}`}>ADD A RUN!</Link></button> : ''}
                     <p>There have been {this.state.runs.length} runs(s) of this game!</p>
+                    <h3>Most Common Variations</h3>
+                    <table className="myRuns">
+                        <thead>
+                            <tr>
+                                <td>Type</td>
+                                <td>Runs</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.typeTable}
+                        </tbody>
+                    </table>
                     <h3>All Runs</h3>
                     <table className="myRuns">
                         <thead>

@@ -19,7 +19,7 @@ router.post('/newPost', async (req, res) => {
 
 router.get('/post', async (req, res) => {
     try {
-        const post = await News.findById('5e26739a607f1732f5da1e16');
+        const post = await News.find().sort('-_id');
         res.send(post)
     } catch (e) {
         res.status(500).send(e)

@@ -7,6 +7,7 @@ $darkRed: #E16161;
 $white: #ffffff;
 $offWhite: #F1F1F1;
 $black: #707070;
+$lightGray: #C4C4C4;
 $yellow: #FFF68E;
 
 * {
@@ -23,6 +24,7 @@ body {
   min-height: 100vh;
   font-size: calc(10px + 2vmin);
   color: white;
+  margin-bottom: 50px;
 }
 
 /*-----Misc. Design-----*/
@@ -136,9 +138,18 @@ body {
   width: 80%;
   img {
     width: 100%;
+    @media only screen and (min-width: 750px) {
+      width: 90%;
+      margin: 0 auto;
+      display: block;
+    }
   }
   p {
     margin-bottom: 15px;
+    @media only screen and (min-width: 750px) {
+      width: 90%;
+      margin: 5px auto 15px auto;
+    }
   }
   a {
     text-decoration: none;
@@ -160,6 +171,10 @@ body {
   }
 }
 .gameHighlightContainer {
+  @media only screen and (min-width: 750px) {
+    width: 90%;
+    margin: 0 auto;
+  }
   .gameHighlight {
     h1 {
     text-align: center;
@@ -168,6 +183,9 @@ body {
       width: 90%;
       display: block;
       margin: 0 auto;
+      @media only screen and (min-width: 750px) {
+        width: 75%;
+      }
     }
   }
 }
@@ -175,6 +193,24 @@ body {
 /*-----Game List Design-----*/
 #filterBox {
   text-align: center;
+  color: $lightGray;
+  .series {
+    font-size: 1.5em;
+    width: 70%;
+    margin: 5px auto;
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+  }
+  .generation {
+    width: 60%;
+    margin: 5px auto;
+    font-size: 1em;
+    display: grid;
+    grid-template-columns: repeat(17, auto);
+  }
+  .filter, .filterGen {
+    cursor: pointer;
+  }
   .active {
     color: $yellow;
   }
@@ -191,6 +227,9 @@ body {
 .gameBox {
   width: 90%;
   margin: 0 auto;
+  @media only screen and (min-width: 750px) {
+    width: 80%;
+  }
   img {
     width: 100%;
   }
@@ -234,7 +273,7 @@ body {
 table {
   border-collapse: collapse;
   width: 80%;
-  margin: 0 auto;
+  margin: 10px auto;
   thead {
     background: $red;
     color: $white;
@@ -374,12 +413,20 @@ table {
   #newAvatar {
     width: 80%;
     margin: 10px auto;
+    label {
+      display: block;
+    }
     button {
       display: block;
       margin-top: 10px;
       border: none;
       background: $white;
       padding: 5px;
+      cursor: pointer;
+      @media only screen and (min-width: 750px) {
+        width: 20%;
+        font-size: .8em;
+      }
     }
   }
 }
@@ -393,6 +440,10 @@ table {
     margin: 5%;
     padding: 5px 0;
     background: $red;
+    cursor: pointer;
+    @media only screen and (min-width: 750px) {
+      font-size: .8em;
+    }
   }
 }
 
@@ -404,6 +455,10 @@ table {
   padding: 10px;
   font-weight: bold;
   color: $red;
+  cursor: pointer;
+  @media only screen and (min-width: 750px) {
+    font-size: .8em;
+  }
 }
 
 /*-----Comment Design-----*/
