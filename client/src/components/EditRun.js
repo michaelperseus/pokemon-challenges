@@ -18,7 +18,7 @@ class EditRun extends Component {
     }
 
     async componentDidMount() {
-        const runData = await fetch(`/runs/view/${this.props.match.params.id}`)
+        const runData = await fetch(`/runs/view/${this.props.match.params.runId}`)
         .then(res => res.json());
         await this.matchPropsToState(runData);
         this.makeList(this.state.pokemon);
@@ -148,6 +148,11 @@ class EditRun extends Component {
                 </form>
                 <div className="runPokemon">
                     <p>Current Pokemon</p>
+                    <table>
+                        <thead>
+                            <tr>Pokemon</tr>
+                        </thead>
+                    </table>
                     <ul>
                         {this.state.pokemonLi}
                     </ul><br></br>

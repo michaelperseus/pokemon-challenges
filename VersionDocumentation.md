@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.3.5.4
+# Pokemon Challenges Alpha Build 0.3.5.6
 
 Version numbers are created using the following system
 a.b.c.d
@@ -10,7 +10,7 @@ a.b.c.d
 
 ### Goals for Beta Version (More updates coming soon)
 - Full Styling for Tablet / Desktop versions
-- Create News Page to post about updates
+- ~~Create News Page to post about updates~~
 - Add Nicknames to Pokemon
 - Add option to mark Pokemon as starter
 - Add statuses to Pokemon (ie: dead, alive)
@@ -32,6 +32,12 @@ a.b.c.d
 - ~~Fix issue with menu not always closing when moving to new page~~
 - ~~News page isn't loading all posts~~
 - Fix issue with Game Page filter showing items from unselected options
+
+#### January 25, 2020 - 0.3.5.6
+- Added new components for Editing a Pokemon to Main App
+
+#### January 24, 2020 - 0.3.5.5
+- Added additional games
 
 #### January 23, 2020 - 0.3.5.4
 - Added additional stats to each game page as well as the community page

@@ -12,7 +12,7 @@ export default function runAuth(ComponentToProtect) {
         };
 
         async componentDidMount () {
-            await fetch(`/runs/view/${this.props.match.params.id}`)
+            await fetch(`/runs/view/${this.props.match.params.runId}`)
             .then(res => res.json())
             .then(data => {
                 if (data.user !== localStorage.getItem('user')) {
