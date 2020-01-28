@@ -320,6 +320,13 @@ table {
     padding: 2%;
     margin-bottom: 10px;
   }
+  .formRadio {
+    border: none;
+    display: block;
+    input {
+      width: 20%;
+    }
+  }
   button {
     display: block;
     margin: 10px 0;

@@ -23,6 +23,14 @@ router.get('/view/:id', async (req, res) => {
     }
 })
 
+router.get('/runPokemon/:runId/:pokemonId', async (req, res) => {
+    const run = await Run.findById(req.params.runId);
+    const pokemon = await run.pokemon.filter(poke => {
+        return poke._id == req.params.pokemonId
+    })
+    res.send({pokemon});
+})
+
 router.get('/:game/all', async (req, res) => {
     const games = await Run.find({game: req.params.game});
     res.send(games);
@@ -33,6 +41,7 @@ router.get('/:username', async (req, res) => {
     const runs = await Run.find({user: {$regex: new RegExp("^" + req.params.username + "$", "i")}});
     res.send(runs);
 })
+
 
 
 // Adding Routes

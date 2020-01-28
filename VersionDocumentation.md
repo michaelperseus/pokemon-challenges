@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.3.5.6
+# Pokemon Challenges Alpha Build 0.3.5.7
 
 Version numbers are created using the following system
 a.b.c.d
@@ -32,6 +32,9 @@ a.b.c.d
 - ~~Fix issue with menu not always closing when moving to new page~~
 - ~~News page isn't loading all posts~~
 - Fix issue with Game Page filter showing items from unselected options
+
+#### January 27, 2020 - 0.3.5.7
+ - Continued development of the "Edit Pokemon" page. Should be fully functional in the next update
 
 #### January 25, 2020 - 0.3.5.6
 - Added new components for Editing a Pokemon to Main App

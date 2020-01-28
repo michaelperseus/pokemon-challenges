@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class EditRun extends Component {
     constructor(props) {
@@ -56,7 +57,7 @@ class EditRun extends Component {
 
     makeList = (pokemon) => {
         const list = pokemon.map(poke => {
-        return <li key={poke.pokemon}>{poke.pokemon} <span className="delete" name={poke.pokemon} onClick={() => this.deletePokemon(poke)}>X</span></li>
+        return <li key={poke.pokemon}>{poke.pokemon} <Link to={`/edit-pokemon/${this.props.match.params.runId}/${poke._id}`}>Edit</Link></li>
         })
         this.setState({pokemonLi: this.state.pokemonLi.concat(list)})
     }
@@ -137,7 +138,7 @@ class EditRun extends Component {
                         <option name="variation" value="egglocke">Egglocke</option>
                         <option name="variation" value="wedlocke">Wedlocke</option>
                         <option name="variation" value="solo-run">Solo Run</option>
-                        <option name="monotype" value="wedlocke">Monotype</option>
+                        <option name="variation" value="monotype">Monotype</option>
                         <option name="variation" value="eeveelocke">Eeveelocke</option>
                         <option name="variation" value="wonderlocke">Wonderlocke</option>
                     </select>
