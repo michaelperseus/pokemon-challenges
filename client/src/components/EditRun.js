@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class EditRun extends Component {
     constructor(props) {
@@ -10,17 +11,14 @@ class EditRun extends Component {
             pokemon: [],
             id: '',
             completed: '',
-            newPokemon: '',
-            newPokemonList: [],
-            pokemonLi: [],
-            newPokemonLi: []
+            pokemonLi: []
         }
     }
 
     async componentDidMount() {
-        const runData = await fetch(`/runs/view/${this.props.match.params.id}`)
+        const runData = await fetch(`/runs/view/${this.props.match.params.runId}`)
         .then(res => res.json());
-        await this.matchPropsToState(runData);
+        this.matchPropsToState(runData);
         this.makeList(this.state.pokemon);
     }
 
@@ -56,7 +54,7 @@ class EditRun extends Component {
 
     makeList = (pokemon) => {
         const list = pokemon.map(poke => {
-        return <li key={poke.pokemon}>{poke.pokemon} <span className="delete" name={poke.pokemon} onClick={() => this.deletePokemon(poke)}>X</span></li>
+        return <tr><td>{poke.pokemon}</td><td>{poke.status}</td><td>{poke.nickname}</td><td><Link to={`/edit-pokemon/${this.props.match.params.runId}/${poke._id}`}>Edit</Link></td></tr>
         })
         this.setState({pokemonLi: this.state.pokemonLi.concat(list)})
     }
@@ -76,28 +74,10 @@ class EditRun extends Component {
         }
     }
 
-    handlePokemon = async (e) => {
-        e.preventDefault();
-        await fetch(`https://pokeapi.co/api/v2/pokemon/${this.state.newPokemon}/`)
-        .then(res => {
-            if (res.status !== 200) {
-                return alert('Please enter a valid pokemon')
-            } else {
-                const pokemon = this.state.newPokemon;
-                this.setState({
-                    newPokemonList: this.state.newPokemonList.concat(pokemon),
-                    newPokemon: '',
-                    newPokemonLi: this.state.newPokemonLi.concat(<li key={pokemon}>{pokemon}</li>)
-                })
-            }
-        })
-    }
-
     handleSubmit = async (e) => {
         e.preventDefault();
         const data = {
             variation: this.state.variation,
-            pokemon: this.state.newPokemonList,
             _id: this.state.id,
             completed: this.state.completed
         }
@@ -137,24 +117,26 @@ class EditRun extends Component {
                         <option name="variation" value="egglocke">Egglocke</option>
                         <option name="variation" value="wedlocke">Wedlocke</option>
                         <option name="variation" value="solo-run">Solo Run</option>
-                        <option name="monotype" value="wedlocke">Monotype</option>
+                        <option name="variation" value="monotype">Monotype</option>
                         <option name="variation" value="eeveelocke">Eeveelocke</option>
                         <option name="variation" value="wonderlocke">Wonderlocke</option>
                     </select>
-                    <label>Add Pokemon</label>
-                    <input type="text" value={this.state.newPokemon} onChange={this.handleChange} name="newPokemon"></input>
-                    <button onClick={this.handlePokemon} className="addPokemon">Add Pokemon</button>
                     <button>Save Run</button>
                 </form>
+                <button className="addPokemon"><Link to={`/add-pokemon/${this.props.match.params.runId}`}>Add Pokemon</Link></button>
                 <div className="runPokemon">
                     <p>Current Pokemon</p>
-                    <ul>
-                        {this.state.pokemonLi}
-                    </ul><br></br>
-                    <p>Pokemon to add (Make sure to save!)</p>
-                    <ul>
-                        {this.state.newPokemonLi}
-                    </ul>
+                    <table>
+                        <thead>
+                            <td>Pokemon</td>
+                            <td>Status</td>
+                            <td>Nickname</td>
+                            <td>edit</td>
+                        </thead>
+                        <tbody>
+                            {this.state.pokemonLi}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         )

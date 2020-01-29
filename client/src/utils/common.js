@@ -27,7 +27,7 @@ export const sortRunsByType = async function() {
 
     runs.forEach(type => {
         for (var i = 0; i < this.state.runs.length; i++) {
-            if (type.type == this.state.runs[i].variation) {
+            if (type.type === this.state.runs[i].variation) {
                 type.runs++
             } 
     }
@@ -60,7 +60,7 @@ export const sortRunsByStatus = async function() {
 
     runs.forEach(type => {
         for (var i = 0; i < this.state.runs.length; i++) {
-            if (type.status == this.state.runs[i].completed) {
+            if (type.status === this.state.runs[i].completed) {
                 type.runs++
             } 
     }
