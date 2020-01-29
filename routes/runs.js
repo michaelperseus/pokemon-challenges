@@ -73,6 +73,29 @@ router.post('/newComment', withAuth, async (req, res) => {
     
 })
 
+//Add a Pokemon
+router.post('/addPokemon/:runId', withAuth, async (req, res) => {
+    const run = await Run.findOne({_id: req.params.runId});
+    if (!run) {
+        res.status(404).send({error: 'could not locate run'})
+    }
+    const newPoke = {
+        pokemon: req.body.pokemon,
+        starter: req.body.starter,
+        nickname: req.body.nickname,
+        status: req.body.status
+    }
+    try {
+        run.pokemon.push(newPoke);
+        await run.save();
+        res.status(201).send(run)
+    } catch (e) {
+        console.log(e);
+        res.status(500).send(e);
+    }
+    
+})
+
 //Deleting Routes
 router.delete('/delete', withAuth, async (req, res) => {
     const run = await Run.findByIdAndDelete(req.body.id);
@@ -102,6 +125,32 @@ router.delete('/:run/pokemon/:poke', withAuth, async (req, res) => {
         console.log(e);
         res.status(500).send(e)
     }
+})
+
+
+//Update a Pokemon
+router.patch('/editPokemon/:runId/:pokeId', withAuth, async (req, res) => {
+    const allowedUpdates = ['pokemon', 'starter', 'nickname', 'status', '_id'];
+    const run = await Run.findOne({_id: req.params.runId});
+    const updates = Object.keys(req.body);
+    const isValidOperation = updates.every(update => allowedUpdates.includes(update));
+
+    if (!isValidOperation || !run) {
+        return res.status(400).send('unable to process update')
+    }
+
+    run.pokemon.forEach(poke => {
+        if (poke._id == req.params.pokeId) {
+            poke.pokemon = req.body.pokemon,
+            poke.starter = req.body.starter,
+            poke.status = req.body.status,
+            poke.nickname = req.body.nickname
+        } else {
+            return
+        }
+    })
+    await run.save();
+    res.status(201).send({run})
 })
 
 

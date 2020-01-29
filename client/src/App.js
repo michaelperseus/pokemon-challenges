@@ -18,6 +18,7 @@ import Run from './components/Run';
 import User from './components/User';
 import News from './components/News';
 import EditPokemon from './components/EditPokemon';
+import AddPokemon from './components/AddPokemon';
 
 import ProtectTest from './components/ProtectTest';
 
@@ -41,6 +42,7 @@ function App() {
             <Route path='/user/:username' component={User} />
             <Route path='/news' component={News} />
             <Route path='/edit-pokemon/:runId/:pokemonId' component={withAuth(runAuth(EditPokemon))} />
+            <Route path='/add-pokemon/:runId' component={withAuth(runAuth(AddPokemon))} />
             <Route component={NotFound} />
           </Switch>
         </main>

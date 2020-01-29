@@ -11,17 +11,14 @@ class EditRun extends Component {
             pokemon: [],
             id: '',
             completed: '',
-            newPokemon: '',
-            newPokemonList: [],
-            pokemonLi: [],
-            newPokemonLi: []
+            pokemonLi: []
         }
     }
 
     async componentDidMount() {
         const runData = await fetch(`/runs/view/${this.props.match.params.runId}`)
         .then(res => res.json());
-        await this.matchPropsToState(runData);
+        this.matchPropsToState(runData);
         this.makeList(this.state.pokemon);
     }
 
@@ -77,28 +74,10 @@ class EditRun extends Component {
         }
     }
 
-    handlePokemon = async (e) => {
-        e.preventDefault();
-        await fetch(`https://pokeapi.co/api/v2/pokemon/${this.state.newPokemon}/`)
-        .then(res => {
-            if (res.status !== 200) {
-                return alert('Please enter a valid pokemon')
-            } else {
-                const pokemon = this.state.newPokemon;
-                this.setState({
-                    newPokemonList: this.state.newPokemonList.concat(pokemon),
-                    newPokemon: '',
-                    newPokemonLi: this.state.newPokemonLi.concat(<li key={pokemon}>{pokemon}</li>)
-                })
-            }
-        })
-    }
-
     handleSubmit = async (e) => {
         e.preventDefault();
         const data = {
             variation: this.state.variation,
-            pokemon: this.state.newPokemonList,
             _id: this.state.id,
             completed: this.state.completed
         }
@@ -142,11 +121,9 @@ class EditRun extends Component {
                         <option name="variation" value="eeveelocke">Eeveelocke</option>
                         <option name="variation" value="wonderlocke">Wonderlocke</option>
                     </select>
-                    <label>Add Pokemon</label>
-                    <input type="text" value={this.state.newPokemon} onChange={this.handleChange} name="newPokemon"></input>
-                    <button onClick={this.handlePokemon} className="addPokemon">Add Pokemon</button>
                     <button>Save Run</button>
                 </form>
+                <Link to={`/add-pokemon/${this.props.match.params.runId}`}><button className="addPokemon">Add Pokemon</button></Link>
                 <div className="runPokemon">
                     <p>Current Pokemon</p>
                     <table>

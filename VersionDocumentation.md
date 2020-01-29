@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.3.5.7
+# Pokemon Challenges Alpha Build 0.3.9.9
 
 Version numbers are created using the following system
 a.b.c.d
@@ -32,6 +32,11 @@ a.b.c.d
 - ~~Fix issue with menu not always closing when moving to new page~~
 - ~~News page isn't loading all posts~~
 - Fix issue with Game Page filter showing items from unselected options
+- Multiple Pokemon can be selected as a starter for a run
+
+#### January 28, 2020 - 0.3.9.9
+- Added a new Edit Pokemon / Add Pokemon Page
+- You can now set nicknames, statuses for Pokemon and choose a starter
 
 #### January 27, 2020 - 0.3.5.7
  - Continued development of the "Edit Pokemon" page. Should be fully functional in the next update

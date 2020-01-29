@@ -11,19 +11,9 @@ export default class EditPokemon extends Component {
         }
     }
 
-    async componentDidMount() {
-        await fetch(`/runs/runPokemon/${this.props.match.params.runId}/${this.props.match.params.pokemonId}`)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data.pokemon[0]);
-            this.setState({
-                species: data.pokemon[0].pokemon,
-                starter: data.pokemon[0].starter,
-                nickname: data.pokemon[0].nickname || data.pokemon[0].pokemon,
-                status: data.pokemon[0].status || 'fainted'
-            })
-        })
-    }
+    // async componentDidMount() {
+
+    // }
 
     handleChange = (e) => {
         if (e.target.name === "starter") {
@@ -48,7 +38,6 @@ export default class EditPokemon extends Component {
             starter: this.state.starter,
             nickname: this.state.nickname === '' ? this.state.species : this.state.nickname,
             status: this.state.status,
-            _id: this.props.match.params.pokemonId
         }
         //Checks to make sure it is a valid pokemon
         await fetch(`https://pokeapi.co/api/v2/pokemon/${update.pokemon}/`)
@@ -56,8 +45,8 @@ export default class EditPokemon extends Component {
             if (res.status !== 200) {
                 return console.log('invalid pokemon')
             }
-            await fetch(`/runs/editPokemon/${this.props.match.params.runId}/${this.props.match.params.pokemonId}`, {
-                method: 'PATCH',
+            await fetch(`/runs/addPokemon/${this.props.match.params.runId}`, {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
