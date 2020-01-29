@@ -54,7 +54,7 @@ class EditRun extends Component {
 
     makeList = (pokemon) => {
         const list = pokemon.map(poke => {
-        return <li key={poke.pokemon}>{poke.pokemon} <Link to={`/edit-pokemon/${this.props.match.params.runId}/${poke._id}`}>Edit</Link></li>
+        return <tr><td>{poke.pokemon}</td><td>{poke.status}</td><td>{poke.nickname}</td><td><Link to={`/edit-pokemon/${this.props.match.params.runId}/${poke._id}`}>Edit</Link></td></tr>
         })
         this.setState({pokemonLi: this.state.pokemonLi.concat(list)})
     }
@@ -123,21 +123,20 @@ class EditRun extends Component {
                     </select>
                     <button>Save Run</button>
                 </form>
-                <Link to={`/add-pokemon/${this.props.match.params.runId}`}><button className="addPokemon">Add Pokemon</button></Link>
+                <button className="addPokemon"><Link to={`/add-pokemon/${this.props.match.params.runId}`}>Add Pokemon</Link></button>
                 <div className="runPokemon">
                     <p>Current Pokemon</p>
                     <table>
                         <thead>
-                            <tr>Pokemon</tr>
+                            <td>Pokemon</td>
+                            <td>Status</td>
+                            <td>Nickname</td>
+                            <td>edit</td>
                         </thead>
+                        <tbody>
+                            {this.state.pokemonLi}
+                        </tbody>
                     </table>
-                    <ul>
-                        {this.state.pokemonLi}
-                    </ul><br></br>
-                    <p>Pokemon to add (Make sure to save!)</p>
-                    <ul>
-                        {this.state.newPokemonLi}
-                    </ul>
                 </div>
             </div>
         )

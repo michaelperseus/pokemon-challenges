@@ -335,13 +335,6 @@ table {
     padding: 10px;
     color: $white;
   }
-  .addPokemon {
-    background: $white;
-    padding: 5px;
-    color: $black;
-    margin-top: 0;
-    margin-bottom: 15px;
-  }
   select {
     width: 50%;
     background: $white;
@@ -350,11 +343,31 @@ table {
       outline: none;
     }
   }
+  .save {
+    background: $white;
+    color: $black;
+  }
+}
+
+.addPokemon {
+  background: $white;
+  padding: 10px;
+  margin: 0 auto 15px auto;
+  border: none;
+  display: block;
+  a {
+    text-decoration: none;
+    color: $black;
+    font-size: 1.2em;
+  }
 }
 
 .runPokemon {
   width: 90%;
   margin: 0 auto;
+  table {
+    width: 95%;
+  }
   p {
     font-size: 1.1em;
   }
@@ -367,7 +380,13 @@ table {
 }
 
 .delete {
-  color: $red;
+  color: $white;
+  border: none;
+  background: $red;
+  padding: 5px;
+  display: block;
+  margin: 0 auto;
+  font-size: 1em;
 }
 
 /*-----Login / Signup Design-----*/

@@ -25,6 +25,25 @@ export default class EditPokemon extends Component {
         })
     }
 
+    deletePokemon = () => {
+        fetch(`/runs/${this.props.match.params.runId}/pokemon/${this.props.match.params.pokemonId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        .then(res => {
+            console.log(res);
+            if (res.status === 200) {
+                console.log('deleted');
+                this.props.history.push(`/edit-run/${this.props.match.params.runId}`);
+            } else {
+                console.log("error deleting")
+            }
+        })
+    }
+
     handleChange = (e) => {
         if (e.target.name === "starter") {
             const text = e.target.name;
@@ -93,8 +112,9 @@ export default class EditPokemon extends Component {
                         <option name="status" value="alive">Alive</option>
                         <option name="status" value="fainted">Fainted</option>
                     </select>
-                    <button>Save</button>
+                    <button className="save">Save</button>
                 </form>
+                <button className="delete" onClick={this.deletePokemon}>DELETE POKEMON</button>
             </div>
         )
     }
