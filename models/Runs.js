@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
 
 const RunSchema = new mongoose.Schema({
     game: {
@@ -22,7 +23,12 @@ const RunSchema = new mongoose.Schema({
             type: String
         },
         nickname: {
-            type: String
+            type: String,
+            validate(value) {
+                if (!validator.isLength(value, {min: 1, max: 20})) {
+                    throw new Error('Nickname is invalid length');
+                }
+            }
         },
         starter: {
             type: Boolean,
