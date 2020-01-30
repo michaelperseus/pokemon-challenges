@@ -34,6 +34,9 @@ export default class EditPokemon extends Component {
     handleSubmit = async (e) => {
         e.preventDefault();
         alert('Adding....');
+        if (this.state.species === '') {
+            return alert('Please enter a Pokemon');
+        }
         const update = {
             pokemon: this.state.species,
             starter: this.state.starter,
