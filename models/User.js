@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const validator = require('validator');
 
 const saltRounds = 10;
 
@@ -8,7 +9,16 @@ const UserSchema = new mongoose.Schema({
     username: {
         type: String,
         require: true,
-        unique: true
+        unique: true,
+        trim: true,
+        validate(value) {
+            if (!validator.isAlphanumeric(value)) {
+                throw new Error('Username containes illegal characters');
+            }
+            if (!validator.isLength(value, {min: 3, max: 20})) {
+                throw new Error('Username is invalid length');
+            }
+        }
     },
     email: {
         type: String,
@@ -82,6 +92,10 @@ UserSchema.pre('save', function(next) {
     //Checks if document is new or a password has been set
     if (this.isNew || this.isModified('password')) {
         const document = this;
+        if (!validator.isAlphanumeric(document.password) || !validator.isLength(document.password, {min: 6, max: 20})) {
+            const err = {message: 'password is invalid'};
+            next(err);
+        }
         bcrypt.hash(document.password, saltRounds, function(err, hashedPassword) {
             if (err) {
                 next(err);

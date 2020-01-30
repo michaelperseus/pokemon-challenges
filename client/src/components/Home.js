@@ -51,11 +51,15 @@ class Home extends Component {
         return (
             <div>
                 <div className="homeBox">
+                    <div className="announcement">
+                        <h3>Hello Alpha Testers!</h3>
+                        <p>There is now an official Trello Board for this project! You can go here to see all known issues/bugs as well as upcoming features for the Alpha build! Thank you!</p>
+                        <a href="https://trello.com/b/Tp15Sn0e/pokemon-challenges"><button>Visit the Trello Board!</button></a>
+                    </div>
                     <img src={HomeBanner} alt="Home Screen Banner"></img>
                     <p>Pokémon Challenges is a hub for players who love to give their playthroughs a little extra spice and fun!</p>
                     <p>Here, you can log in and track all the different playthroughs you've done, if you won or failed and what Pokémon you used along the way!</p>
                     <p>There is also a community feature to see what others players have done, what the most common games are and more!</p>
-                    <p>For a list of all known bugs and upcoming features, please visit this <a href="https://github.com/Hardytack/pokemon-challenges/blob/master/VersionDocumentation.md">Version Documentation</a> page!</p>
                     <p>So what are you waiting for? Let's take a look at the games list!</p>
                     <Link to={'/game-list'}><button>View All Games!</button></Link>
                 </div>
