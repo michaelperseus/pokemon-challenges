@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.4.0.0
+# Pokemon Challenges Alpha Build 0.4.1.0
 
 Version numbers are created using the following system
 a.b.c.d
@@ -26,7 +26,7 @@ a.b.c.d
 - ~~Add additional run variations~~
 - Add User Feedback page
 - Add User ratings for games
-- Add User notes section to Run
+- ~~Add User notes section to Run~~
 
 ### Known Bugs
 - ~~Fix issue with menu not always closing when moving to new page~~
@@ -34,6 +34,10 @@ a.b.c.d
 - Fix issue with Game Page filter showing items from unselected options
 - Multiple Pokemon can be selected as a starter for a run
 - Errors appear in the console for some pages referring to a white space issue. This does not currently effect performance
+- Some games appear out of release order on the Game Select page
+
+#### January 29, 2020 - 0.4.1.0
+- Added a 'User Notes' section to runs
 
 #### January 28, 2020 - 0.4.0.0
 - Added a new Edit Pokemon / Add Pokemon Page

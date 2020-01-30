@@ -16,7 +16,8 @@ export default class Run extends Component {
             runComments: [],
             pokemonList: 'loading...',
             commentText: 'Write a comment',
-            comments: []
+            comments: [],
+            runNotes: ''
         }
         this.goBack = this.goBack.bind(this);
     }
@@ -28,7 +29,8 @@ export default class Run extends Component {
             runUser: data.user,
             runStatus: data.completed,
             runVariation: data.variation,
-            runComments: data.comments
+            runComments: data.comments,
+            runNotes: data.runNotes
         })});
         this.listPokemon();
         this.loadComment();
@@ -138,6 +140,11 @@ export default class Run extends Component {
                         {this.state.pokemonList}
                     </tbody>
                 </table>
+                <div id="runNotes">
+                    <h3>User Notes:</h3>
+                    <p>{this.state.runNotes}</p>
+                    <hr></hr>
+                </div>
                 <div id="commentContainer">
                     {this.renderComment()}
                     <h5>All Comments! ({this.state.runComments.length})</h5>
