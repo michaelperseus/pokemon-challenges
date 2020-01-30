@@ -48,9 +48,11 @@ export default class Login extends Component {
             },
             body: JSON.stringify(userInfo)
           }).then((res) => {
+            console.log(res);
             this.setState({res: res.status})
             return res.json()
           }).then(data => {
+            console.log(this.data);
             if (this.state.res !== 201) {
               return alert('Signup Failed')
             } else {
@@ -138,7 +140,7 @@ export default class Login extends Component {
                   onChange={this.handleInputChange}
                   required
                 />
-                <label>Username</label>
+                <label>Username <span className="smallWarning">Length: 3 - 20 characters, only AlphaNumeric</span></label>
                 <input
                   className="loginInput"
                   type="text"
@@ -148,7 +150,7 @@ export default class Login extends Component {
                   onChange={this.handleInputChange}
                   required
                 />
-                <label>Password</label>
+                <label>Password <span className="smallWarning">Length: 6 - 20 characters, only AlphaNumeric</span></label>
                 <input
                   className="loginInput"
                   type="password"

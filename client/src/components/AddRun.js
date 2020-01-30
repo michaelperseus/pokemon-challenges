@@ -26,6 +26,7 @@ class AddRun extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
+        alert('Adding....');
         if (this.state.name === '' || this.state.completed === '' || this.state.game === '') {
             alert('You need to complete all the field!');
         } else {
