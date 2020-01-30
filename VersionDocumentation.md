@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.4.1.0
+# Pokemon Challenges Alpha Build 0.4.1.3
 
 Version numbers are created using the following system
 a.b.c.d
@@ -35,6 +35,11 @@ a.b.c.d
 - Multiple Pokemon can be selected as a starter for a run
 - Errors appear in the console for some pages referring to a white space issue. This does not currently effect performance
 - Some games appear out of release order on the Game Select page
+
+#### January 29, 2020 - 0.4.1.3
+- Fixed issue with 'Add Pokemon' button not working
+- Added more security to usernames and passwords that can be submitted
+- Fixed exploit where users could enter illegal characters into text fields
 
 #### January 29, 2020 - 0.4.1.0
 - Added a 'User Notes' section to runs
