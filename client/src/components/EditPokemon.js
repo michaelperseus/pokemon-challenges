@@ -62,6 +62,12 @@ export default class EditPokemon extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
+        const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\/$ ]+$/i;
+        const confirmNotes = this.state.nickname.match(regex);
+        if (!confirmNotes) {
+            return alert('invalid nickname!')
+        }
+
         const update = {
             pokemon: this.state.species.toLowerCase(),
             starter: this.state.starter,
