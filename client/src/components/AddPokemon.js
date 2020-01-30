@@ -50,8 +50,7 @@ export default class EditPokemon extends Component {
         .then(async res => {
             if (res.status !== 200) {
                 // const data = await res.json();
-                console.log(res);
-                return alert('invalid pokemon')
+                return alert(res.status, 'invalid pokemon')
             }
             await fetch(`/runs/addPokemon/${this.props.match.params.runId}`, {
                 method: 'POST',
