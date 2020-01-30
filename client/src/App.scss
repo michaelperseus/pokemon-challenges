@@ -320,6 +320,11 @@ table {
     padding: 2%;
     margin-bottom: 10px;
   }
+  textarea {
+    resize: vertical;
+    width: 100%;
+    min-height: 50px;
+  }
   .formRadio {
     border: none;
     display: block;
@@ -484,6 +489,15 @@ table {
   cursor: pointer;
   @media only screen and (min-width: 750px) {
     font-size: .8em;
+  }
+}
+
+/*-----Notes Design-----*/
+#runNotes {
+  width: 80%;
+  margin: 10px auto;
+  p {
+    margin-bottom: 10px;
   }
 }
 

@@ -33,6 +33,10 @@ const RunSchema = new mongoose.Schema({
             defaukt: 'alive'
         }
     }],
+    runNotes: {
+        type: String,
+        default: ''
+    },
     comments: [{
         user: {
             type: String

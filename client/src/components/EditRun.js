@@ -11,7 +11,8 @@ class EditRun extends Component {
             pokemon: [],
             id: '',
             completed: '',
-            pokemonLi: []
+            pokemonLi: [],
+            runNotes: ''
         }
     }
 
@@ -29,7 +30,8 @@ class EditRun extends Component {
             game: run.game,
             pokemon: run.pokemon,
             id: run._id,
-            completed: run.completed
+            completed: run.completed,
+            runNotes: run.runNotes
         })
     }
 
@@ -79,7 +81,8 @@ class EditRun extends Component {
         const data = {
             variation: this.state.variation,
             _id: this.state.id,
-            completed: this.state.completed
+            completed: this.state.completed,
+            runNotes: this.state.runNotes
         }
         fetch('/runs/updateRun', {
             method: 'PATCH',
@@ -121,6 +124,8 @@ class EditRun extends Component {
                         <option name="variation" value="eeveelocke">Eeveelocke</option>
                         <option name="variation" value="wonderlocke">Wonderlocke</option>
                     </select>
+                    <label>Run Notes</label>
+                    <textarea onChange={this.handleChange} value={this.state.runNotes} name='runNotes'></textarea>
                     <button>Save Run</button>
                 </form>
                 <button className="addPokemon"><Link to={`/add-pokemon/${this.props.match.params.runId}`}>Add Pokemon</Link></button>
