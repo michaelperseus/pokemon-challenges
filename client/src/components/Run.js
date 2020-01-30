@@ -15,7 +15,7 @@ export default class Run extends Component {
             runVariation: '',
             runComments: [],
             pokemonList: 'loading...',
-            commentText: 'Write a comment',
+            commentText: '',
             comments: [],
             runNotes: ''
         }
@@ -38,6 +38,12 @@ export default class Run extends Component {
 
     handleComment = async (e) => {
         e.preventDefault();
+
+        const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\/$ ]+$/i;
+        const confirmNotes = this.state.commentText.match(regex);
+        if (!confirmNotes) {
+            return alert('invalid comment!')
+        }
 
         const data = {
             runId: this.state.runId,
@@ -87,7 +93,7 @@ export default class Run extends Component {
             return (
                 <form id="newcomment" onSubmit={this.handleComment}>
                         <label>Leave a Comment!</label>
-                        <textarea onChange={this.handleCommentText} value={this.state.commentText}></textarea>
+                        <textarea onChange={this.handleCommentText} value={this.state.commentText} placeholder="Write a comment"></textarea>
                         <button>Submit</button>
                     </form>
             )
