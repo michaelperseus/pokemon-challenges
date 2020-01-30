@@ -33,20 +33,22 @@ export default class EditPokemon extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        alert('Adding....');
         if (this.state.species === '') {
             return alert('Please enter a Pokemon');
         }
         const update = {
-            pokemon: this.state.species,
+            pokemon: this.state.species.toLowerCase(),
             starter: this.state.starter,
             nickname: this.state.nickname === '' ? this.state.species : this.state.nickname,
             status: this.state.status,
         }
+
+        const fetchurl = `https://pokeapi.co/api/v2/pokemon/${update.pokemon}/`
         //Checks to make sure it is a valid pokemon
-        await fetch(`https://pokeapi.co/api/v2/pokemon/${update.pokemon}/`)
+        await fetch(fetchurl)
         .then(async res => {
             if (res.status !== 200) {
+                // const data = await res.json();
                 return alert('invalid pokemon')
             }
             await fetch(`/runs/addPokemon/${this.props.match.params.runId}`, {
