@@ -44,7 +44,9 @@ export default class EditPokemon extends Component {
             status: this.state.status,
         }
         //Checks to make sure it is a valid pokemon
-        await fetch(`https://pokeapi.co/api/v2/pokemon/${update.pokemon}/`)
+        await fetch(`https://pokeapi.co/api/v2/pokemon/${update.pokemon}/`, {
+            mode: 'no-cors'
+        })
         .then(async res => {
             if (res.status !== 200) {
                 // const data = await res.json();
