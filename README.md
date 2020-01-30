@@ -11,6 +11,7 @@ This is a work-in-progress project where users will be able to create an account
 - mongoose
 - aws-sdk
 - multer
+- validator
 
 #### Front End
 - ReactJS
