@@ -63,7 +63,7 @@ export default class EditPokemon extends Component {
     handleSubmit = async (e) => {
         e.preventDefault();
         const update = {
-            pokemon: this.state.species,
+            pokemon: this.state.species.toLowerCase(),
             starter: this.state.starter,
             nickname: this.state.nickname === '' ? this.state.species : this.state.nickname,
             status: this.state.status,
