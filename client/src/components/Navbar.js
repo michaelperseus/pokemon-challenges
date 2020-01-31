@@ -71,7 +71,9 @@ class Navbar extends Component {
                 </nav>
                 <nav className="mobileNav" id="smallNav">
                     <div className="navbarButton" onClick={this.toggleNav}>
-                        <div className="innerButton"></div>
+                        <div className="innerButton bar1"></div>
+                        <div className="innerButton bar2"></div>
+                        <div className="innerButton bar3"></div>
                     </div>
                     <div className="navbarSmall">
                         <ul>

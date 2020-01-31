@@ -85,7 +85,7 @@ body {
 .navbarButton {
   width: 50px;
   height: 50px;
-  background: $red;
+  background: $white;
   border-radius: 50%;
   position: fixed;
   bottom: 15px;
@@ -93,11 +93,18 @@ body {
   display: grid;
   .innerButton {
     width: 75%;
-    height: 75%;
-    background: $white;
-    border-radius: 50%;
-    align-self: center;
+    height: 20%;
+    background: $black;
     justify-self: center;
+  }
+  .bar1 {
+    align-self: end;
+  }
+  .bar2 {
+    align-self: center;
+  }
+  .bar3 {
+    align-self: start;
   }
 }
 
