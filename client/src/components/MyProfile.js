@@ -129,9 +129,21 @@ export default class User extends Component {
     testUpload = async (e) => {
         e.preventDefault();
         
+        if (this.state.newAvatar === null) {
+            return alert('Please select a file!');
+        }
+
+        if (this.state.newAvatar.size > 2000000) {
+            return alert('File size is too large');
+        }
+
+        if (this.state.newAvatar.type !== 'image/png' && this.state.newAvatar.type !== 'image/jpeg') {
+            return alert('Please select a png or jpeg file!');
+        }
+
         const fd = new FormData();
         fd.append('name', this.state.user);
-        fd.append('type', 'users')
+        fd.append('type', 'users');
         fd.append('image', this.state.newAvatar, 'avatar.png');
         await fetch('/users/newAvatar', {
             method: 'POST',
@@ -142,9 +154,6 @@ export default class User extends Component {
         })
         .then(res => res.json())
         .then(data => {
-            localStorage.removeItem('user');
-            localStorage.removeItem('token');
-            console.log(data);
             window.location.reload(true);
         });
     }
