@@ -14,10 +14,10 @@ export default class Pokemon extends Component {
     }
 
     async fetchPokemon() {
-        if (!this.props.name) {
+        if (!this.props.data) {
             return
         }
-        await fetch(`https://pokeapi.co/api/v2/pokemon/${this.props.name}`)
+        await fetch(`https://pokeapi.co/api/v2/pokemon/${this.props.data.pokemon}`)
         .then(res => res.json())
         .then(data => {
             this.setState({pokemon: data, sprite: data.sprites.front_default})
@@ -29,6 +29,8 @@ export default class Pokemon extends Component {
         return (
             <tr>
                 <td>{this.state.pokemon.name}</td>
+                <td>{this.props.data.status}</td>
+                <td>{this.props.data.nickname}</td>
                 <td><img src={this.state.sprite} alt={this.state.pokemon.name}></img></td>
             </tr>
         )

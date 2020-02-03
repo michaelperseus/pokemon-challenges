@@ -65,7 +65,7 @@ export default class Run extends Component {
 
     listPokemon = async () => {
         const list = this.state.runPokemon.map(poke => {
-        return <Pokemon key={poke.pokemon} name={poke.pokemon} />
+        return <Pokemon key={poke.pokemon} data={poke} />
         })
         this.setState({pokemonList: list})
     }
@@ -138,7 +138,9 @@ export default class Run extends Component {
                 <table>
                     <thead>
                         <tr>
-                            <td colSpan='2'>Pokemon Used</td>
+                            <td>Pokemon Used</td>
+                            <td>Status</td>
+                            <td colSpan='2'>Nickname</td>
                         </tr>
                     </thead>
                     <tbody>
