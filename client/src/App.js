@@ -21,10 +21,12 @@ import EditPokemon from './components/EditPokemon';
 import AddPokemon from './components/AddPokemon';
 
 import ProtectTest from './components/ProtectTest';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <Router>
+      <ScrollToTop>
       <div className="App">
         <Navbar />
         <main className="mainBody">
@@ -47,6 +49,7 @@ function App() {
           </Switch>
         </main>
       </div>
+      </ScrollToTop>
     </Router>
     
   );
