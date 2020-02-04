@@ -7,7 +7,9 @@ export default class EditPokemon extends Component {
             species: '',
             starter: false,
             starterValue: this.starter ? 'yes' : 'no',
-            nickname: ''
+            nickname: '',
+            status: 'alive',
+            disabledButton: false
         }
     }
 
@@ -33,6 +35,7 @@ export default class EditPokemon extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
+        this.setState({disabledButton: true});
         const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\/$ ]+$/i;
         const confirmNotes = this.state.nickname.match(regex);
         if (!confirmNotes) {
@@ -94,7 +97,7 @@ export default class EditPokemon extends Component {
                         <option name="status" value="alive">Alive</option>
                         <option name="status" value="fainted">Fainted</option>
                     </select>
-                    <button>Save</button>
+                    <button disabled={this.state.disabledButton}>Save</button>
                 </form>
             </div>
         )

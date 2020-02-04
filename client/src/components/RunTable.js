@@ -29,7 +29,7 @@ function RunTable(props) {
 
     const returnOwned = (props) => {
         if (props.owned) {
-            return <td><Link to={{pathname: `/edit-run/${props.run._id}`, state: {run: props.run}}}><button>Edit</button></Link><button onClick={() => deleteRun(props.run._id)}>Delete</button></td>
+            return <td className="userEdit"><Link to={{pathname: `/edit-run/${props.run._id}`, state: {run: props.run}}}><button>Edit</button></Link><button onClick={() => deleteRun(props.run._id)}>Delete</button></td>
         } else {
             return <td><Link to={`/user/${props.run.user}`}>{props.run.user}</Link></td>
         }
@@ -38,8 +38,8 @@ function RunTable(props) {
     return (
             <tr>
                 <td><Link to={`/run/${props.run._id}`}>{props.run.game}</Link></td>
-                <td>{props.run.completed}</td>
-                <td>{props.run.pokemon.length}</td>
+                <td className="nonMobile">{props.run.completed}</td>
+                <td className="nonMobile">{props.run.pokemon.length}</td>
                 {returnOwned(props)}
             </tr>
     )

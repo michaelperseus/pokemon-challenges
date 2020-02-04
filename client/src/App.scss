@@ -30,6 +30,8 @@ body {
 /*-----Misc. Design-----*/
 .goBack {
   padding: 3px 10px;
+  cursor: pointer;
+  display: inline-block;
 }
 
 /*-----Navbar Design-----*/
@@ -85,7 +87,7 @@ body {
 .navbarButton {
   width: 50px;
   height: 50px;
-  background: $red;
+  background: $white;
   border-radius: 50%;
   position: fixed;
   bottom: 15px;
@@ -93,11 +95,18 @@ body {
   display: grid;
   .innerButton {
     width: 75%;
-    height: 75%;
-    background: $white;
-    border-radius: 50%;
-    align-self: center;
+    height: 20%;
+    background: $black;
     justify-self: center;
+  }
+  .bar1 {
+    align-self: end;
+  }
+  .bar2 {
+    align-self: center;
+  }
+  .bar3 {
+    align-self: start;
   }
 }
 
@@ -168,24 +177,25 @@ body {
       margin: 5px auto 15px auto;
     }
   }
-  a {
-    text-decoration: none;
     button {
       border: none;
       padding: 10px;
       background: $red;
-      color: $white;
       margin: 0 auto;
       display: block;
+      cursor: pointer;
       &:hover {
         background: $darkRed;
+      }
+      a {
+        text-decoration: none;
+        color: $white;
       }
       @media only screen and (min-width: 750px) {
         width: 50%;
         font-size: 1em;
       }
     }
-  }
 }
 .gameHighlightContainer {
   @media only screen and (min-width: 750px) {
@@ -196,13 +206,18 @@ body {
     h1 {
     text-align: center;
     }
-    img {
+    a {
       width: 90%;
       display: block;
       margin: 0 auto;
       @media only screen and (min-width: 750px) {
         width: 75%;
       }
+    }
+    img {
+      width: 100%;
+      display: block;
+      margin: 0 auto;
     }
   }
 }
@@ -300,7 +315,7 @@ table {
     color: $black;
   }
   tr {
-    width: 30%;
+    width: 25%;
     height: 50px;
     td {
       padding: 10px;
@@ -314,6 +329,19 @@ table {
   }
   tr:nth-child(even) {
     background: #eee;
+  }
+}
+
+.nonMobile {
+  display: none;
+  @media only screen and (min-width: 750px) {
+    display: table-cell;
+  }
+}
+
+.userEdit {
+  a {
+    margin: 0 5px;
   }
 }
 
@@ -458,9 +486,11 @@ table {
     text-align: center;
   }
   img {
-    width: 50%;
     margin: 0 auto;
     display: block;
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
   }
   #newAvatar {
     width: 80%;

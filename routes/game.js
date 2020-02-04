@@ -11,7 +11,7 @@ const singleUpload = upload.single('image');
 
 //Returns all games
 router.get('/all', async (req, res) => {
-    const game = await Game.find({});
+    const game = await Game.find({}).sort('release');
     if(!game) {
         res.status(404).send('Could not locate any games');
     }
