@@ -30,8 +30,8 @@ export default class Pokemon extends Component {
             <tr>
                 <td>{this.state.pokemon.name}</td>
                 <td>{this.props.data.status}</td>
-                <td>{this.props.data.nickname}</td>
-                <td><img src={this.state.sprite} alt={this.state.pokemon.name}></img></td>
+                <td className="nonMobile">{this.props.data.nickname}</td>
+                <td className="nonMobile"><img src={this.state.sprite} alt={this.state.pokemon.name}></img></td>
             </tr>
         )
     }

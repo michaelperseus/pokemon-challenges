@@ -315,7 +315,7 @@ table {
     color: $black;
   }
   tr {
-    width: 30%;
+    width: 25%;
     height: 50px;
     td {
       padding: 10px;
@@ -329,6 +329,19 @@ table {
   }
   tr:nth-child(even) {
     background: #eee;
+  }
+}
+
+.nonMobile {
+  display: none;
+  @media only screen and (min-width: 750px) {
+    display: table-cell;
+  }
+}
+
+.userEdit {
+  a {
+    margin: 0 5px;
   }
 }
 

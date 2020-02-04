@@ -67,8 +67,8 @@ export default class User extends Component {
                         <thead>
                             <tr>
                                 <td>Game</td>
-                                <td>Status</td>
-                                <td>Pokemon</td>
+                                <td className="nonMobile">Status</td>
+                                <td className="nonMobile">Pokemon</td>
                                 <td>User</td>
                             </tr>
                         </thead>

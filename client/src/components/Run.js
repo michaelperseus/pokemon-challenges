@@ -140,7 +140,8 @@ export default class Run extends Component {
                         <tr>
                             <td>Pokemon Used</td>
                             <td>Status</td>
-                            <td colSpan='2'>Nickname</td>
+                            <td className="nonMobile">Nickname</td>
+                            <td className="nonMobile"></td>
                         </tr>
                     </thead>
                     <tbody>
