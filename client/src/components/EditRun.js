@@ -78,7 +78,7 @@ class EditRun extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\/$ ]+$/i;
+        const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\/$ ]+$/i;
         const confirmNotes = this.state.runNotes.match(regex);
         if (!confirmNotes) {
             return alert('invalid notes!')

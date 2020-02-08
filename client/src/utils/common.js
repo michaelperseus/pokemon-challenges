@@ -35,7 +35,7 @@ export const sortRunsByType = async function() {
     const ordered = runs.sort((a, b) => a.runs > b.runs ? -1 : 1);
 
     const typeTable = ordered.map(type => {
-    return <tr><td>{type.type}</td><td>{type.runs}</td></tr>
+    return <tr key={type.type}><td>{type.type}</td><td>{type.runs}</td></tr>
     })
 
     this.setState({typeTable: typeTable})

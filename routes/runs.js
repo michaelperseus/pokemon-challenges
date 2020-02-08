@@ -86,6 +86,11 @@ router.post('/addPokemon/:runId', withAuth, async (req, res) => {
         status: req.body.status
     }
     try {
+        if (newPoke.starter === true) {
+            run.pokemon.forEach(poke => {
+                poke.starter = false
+            })
+        }
         run.pokemon.push(newPoke);
         await run.save();
         res.status(201).send(run)
@@ -139,6 +144,12 @@ router.patch('/editPokemon/:runId/:pokeId', withAuth, async (req, res) => {
         return res.status(400).send('unable to process update')
     }
 
+    if (req.body.starter === true) {
+        run.pokemon.forEach(poke => {
+            poke.starter = false
+        })
+    }
+
     run.pokemon.forEach(poke => {
         if (poke._id == req.params.pokeId) {
             poke.pokemon = req.body.pokemon,
@@ -169,7 +180,6 @@ router.patch('/updateRun', withAuth, async (req, res) => {
     try {
         updates.forEach((update) => {
             if (update == 'pokemon') {
-                console.log(req.body[update]);
                 req.body[update].forEach(pkmn => run.pokemon.push({pokemon: pkmn}))
             } else {
                 run[update] = req.body[update]
