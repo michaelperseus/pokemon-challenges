@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.4.2.2
+# Pokemon Challenges Alpha Build 0.4.2.5
 
 Version numbers are created using the following system
 a.b.c.d
@@ -43,13 +43,21 @@ a.b.c.d
 - ~~Nicknames and Statuses for Pokemon don't appear on public run page~~
 - ~~Viewport doesn't always scroll to the top when moving to a new page~~
 - ~~Some tables cause a horizontal scroll bar for mobile users~~
-- Fix issue with Game Page filter showing items from unselected options
-- Multiple Pokemon can be selected as a starter for a run
+- ~~Clicking save multiple times on the 'Add Pokemon' page can cause the Pokemon to be added several times~~
+- ~~Multiple Pokemon can be selected as a starter for a run~~
+- ~~Fix issue with Game Page filter showing items from unselected options~~
 - Errors appear in the console for some pages referring to a white space issue. This does not currently effect performance
-- Clicking save multiple times on the 'Add Pokemon' page can cause the Pokemon to be added several times
 - After logging out on all devices from one device, a user will still be apepared logged in on another device despite actually being logged out
 - Deleting a profile or run does not require confirmation or password entry
 - Additional visual feedback is needed for when users are making changes
+- Saving a run will sometimes give an error if notes are blank
+
+
+#### February 10, 2020 - 0.4.2.5
+- Fixed issue with game filter not working properly
+
+#### February 4, 2020 - 0.4.2.4
+- Fixed issue with being able to select multiple pokemon as a starter
 
 #### February 3, 2020 - 0.4.2.3
 - 'Fixed' issue with horizontal scrollbar. It's only a temporary fix as the entire table system will need to be created at a later point as proper data isnt showing on the page it should.

@@ -38,7 +38,7 @@ export default class Run extends Component {
 
     handleComment = async (e) => {
         e.preventDefault();
-        const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\/$ ]+$/i;
+        const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\/$ ]+$/i;
         const confirmNotes = this.state.commentText.match(regex);
         if (!confirmNotes) {
             return alert('invalid comment!')
