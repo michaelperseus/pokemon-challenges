@@ -223,17 +223,62 @@ body {
 }
 
 /*-----Game List Design-----*/
+// #filterBox {
+//   text-align: center;
+//   color: $lightGray;
+//   .filterType {
+//     font-size: 1.5em;
+//     width: 70%;
+//     margin: 5px auto;
+//     display: grid;
+//     grid-template-columns: repeat(5, auto);
+//   }
+//   .generation {
+//     width: 60%;
+//     margin: 5px auto;
+//     font-size: 1em;
+//     display: grid;
+//     grid-template-columns: repeat(17, auto);
+//   }
+//   .filter, .filterGen {
+//     cursor: pointer;
+//   }
+//   .active {
+//     color: $yellow;
+//   }
+// }
+
+// .boxBeGone {
+//   display: none;
+// }
+
+// .gameListTitle {
+//   text-align: center;
+// }
+
+// .gameBox {
+//   width: 90%;
+//   margin: 0 auto;
+//   @media only screen and (min-width: 750px) {
+//     width: 80%;
+//   }
+//   img {
+//     width: 100%;
+//   }
+// }
+
+/*-----New Game List Design-----*/
 #filterBox {
   text-align: center;
   color: $lightGray;
-  .series {
+  #filterType {
     font-size: 1.5em;
     width: 70%;
     margin: 5px auto;
     display: grid;
     grid-template-columns: repeat(5, auto);
   }
-  .generation {
+  #filterGen {
     width: 60%;
     margin: 5px auto;
     font-size: 1em;
@@ -246,14 +291,29 @@ body {
   .active {
     color: $yellow;
   }
+
 }
 
-.boxBeGone {
+.game {
+  width: 90%;
+  text-align: center;
+  color: black;
+  margin: 0 auto;
+  padding: 0;
+  img {
+    width: 100%;
+  }
+}
+
+.inactive {
   display: none;
 }
 
-.gameListTitle {
-  text-align: center;
+#gameContainer {
+  h3 {
+    text-align: center;
+    font-size: 2em;
+  }
 }
 
 .gameBox {
@@ -266,6 +326,7 @@ body {
     width: 100%;
   }
 }
+
 
 /*-----Game Page Design-----*/
 .gamePage {

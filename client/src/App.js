@@ -3,7 +3,6 @@ import './App.scss';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Game from './components/Game';
-import GameList from './components/GameList';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
 import AddRun from './components/AddRun';
@@ -19,6 +18,7 @@ import User from './components/User';
 import News from './components/News';
 import EditPokemon from './components/EditPokemon';
 import AddPokemon from './components/AddPokemon';
+import GameList from './components/GameList';
 
 import ProtectTest from './components/ProtectTest';
 import ScrollToTop from './components/ScrollToTop';
