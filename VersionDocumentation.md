@@ -51,6 +51,7 @@ a.b.c.d
 - Deleting a profile or run does not require confirmation or password entry
 - Additional visual feedback is needed for when users are making changes
 - Saving a run will sometimes give an error if notes are blank
+- Some buttons have issues with clickable areas
 
 
 #### February 10, 2020 - 0.4.2.5

@@ -20,7 +20,6 @@ import EditPokemon from './components/EditPokemon';
 import AddPokemon from './components/AddPokemon';
 import GameList from './components/GameList';
 
-import ProtectTest from './components/ProtectTest';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -36,7 +35,6 @@ function App() {
             <Route path="/game/:id" component={Game} />
             <Route path="/add-run/:id" component={withAuth(AddRun)} />
             <Route path='/community' component={Community} />
-            <Route path="/protectTest" component={withAuth(ProtectTest)} />
             <Route path="/login" component={Login} />
             <Route path='/my-profile' component={withAuth(MyProfile)} />
             <Route path='/edit-run/:runId' component={withAuth(runAuth(EditRun))} />
