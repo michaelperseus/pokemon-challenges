@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.4.2.5
+# Pokemon Challenges Alpha Build 0.4.2.6
 
 Version numbers are created using the following system
 a.b.c.d
@@ -21,7 +21,7 @@ a.b.c.d
 - ~~Add stats to each game page~~
 - ~~Add ability to delete your profile~~
 - ~~Add additional run variations~~
-- Full Styling for Tablet / Desktop versions
+- Full Styling for Mobile / Tablet / Desktop versions
 - Add all main series Pokemon Games
 - Add all Drayano hacks
 - Add more featured sections to home page
@@ -53,6 +53,10 @@ a.b.c.d
 - Saving a run will sometimes give an error if notes are blank
 - Some buttons have issues with clickable areas
 
+
+#### February 11, 2020 - 0.4.2.6
+- Rewrote the CSS for the Home Page design
+- Added the most recent news post to homepage for Landscape Tablet and Higher resolutions
 
 #### February 10, 2020 - 0.4.2.5
 - Fixed issue with game filter not working properly

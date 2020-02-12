@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700&display=swap');
 
 /*-----SASS Variables-----*/
+/*--Colors--*/
 $red: #ff7575;
 $darkRed: #E16161;
 $white: #ffffff;
@@ -10,6 +11,39 @@ $black: #707070;
 $lightGray: #C4C4C4;
 $yellow: #FFF68E;
 
+/*--Breakpoints--*/
+$mobile: 480px;
+$tablet-portrait: 768px;
+$tablet-landscape: 980px;
+$laptop: 1366px;
+$desktop: 1690px;
+
+
+/*-----SASS Mixins-----*/
+%basic-button {
+  cursor: pointer;
+  border: none;
+}
+
+%blogPost {
+  h1 {
+    text-align: center;
+  }
+  
+  h3 {
+    color: $yellow;
+    font-size: 1em;
+    text-align: center;
+  }
+  p {
+    line-height: 1.5em;
+    margin: 10px 0;
+  }
+}
+
+
+
+/*-----Universal Styling-----*/
 * {
   margin: 0;
   padding: 0;
@@ -20,11 +54,13 @@ body {
   background-color: $black;
 }
 
+
 .mainBody {
   min-height: 100vh;
   font-size: calc(10px + 2vmin);
   color: white;
-  margin-bottom: 50px;
+  margin: 0 auto 50px auto;
+  max-width: 1300px;
 }
 
 /*-----Misc. Design-----*/
@@ -75,7 +111,7 @@ body {
   display: none;
 }
 
-@media only screen and (min-width: 750px) {
+@media only screen and (min-width: $tablet-portrait) {
   .webNav {
     display: block;
   }
@@ -141,133 +177,187 @@ body {
   display: block;
 }
 
+
+/*-----Footer Design-----*/
+#footer {
+  width: 100%;
+  background: $white;
+  text-align: center;
+  span {
+    color: $black;
+    width: 100%;
+  }
+}
+
+
 /*-----Home Screen Design-----*/
-.homeBox {
+#home {
+  width: 90%;
   margin: 10px auto;
-  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr;
+  @media only screen and (min-width: $tablet-landscape) {
+    width: 95%;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 50px;
+  }
+  @media only screen and (min-width: $laptop) {
+    width: 100%;
+  }
   .announcement {
+    width: 100%;
+    margin: 0 auto 10px auto;
     background: $white;
     color: $black;
-    margin-bottom: 10px;
     padding-bottom: 10px;
+    @media only screen and (min-width: $tablet-landscape) {
+      width: 80%;
+      grid-column: span 2;
+      margin: 20px auto 30px auto;
+    }
     h3 {
       text-align: center;
     }
     p {
       width: 90%;
       margin: 0 auto;
+      @media only screen and (min-width: $tablet-landscape) {
+        font-size: .8em;
+      }
     }
     button {
-      margin: 10px auto;
-      cursor: pointer;
-    }
-  }
-  img {
-    width: 100%;
-    @media only screen and (min-width: 750px) {
-      width: 90%;
-      margin: 0 auto;
-      display: block;
-    }
-  }
-  p {
-    margin-bottom: 15px;
-    @media only screen and (min-width: 750px) {
-      width: 90%;
-      margin: 5px auto 15px auto;
-    }
-  }
-    button {
-      border: none;
-      padding: 10px;
+      @extend %basic-button;
       background: $red;
-      margin: 0 auto;
       display: block;
-      cursor: pointer;
+      width: 50%;
+      margin: 10px auto 0 auto;
+      transition: all .25s ease;
       &:hover {
         background: $darkRed;
       }
       a {
-        text-decoration: none;
+        display: block;
         color: $white;
-      }
-      @media only screen and (min-width: 750px) {
-        width: 50%;
-        font-size: 1em;
+        text-decoration: none;
+        padding: 10px;
+        font-size: 1.2em;
+        margin: 0 auto;
+        @media only screen and (min-width: $tablet-portrait) {
+          font-size: 1.7em;
+        }
       }
     }
-}
-.gameHighlightContainer {
-  @media only screen and (min-width: 750px) {
-    width: 90%;
-    margin: 0 auto;
   }
-  .gameHighlight {
-    h1 {
-    text-align: center;
-    }
-    a {
+  #homeSplash {
+    width: 80%;
+    margin: 0 auto;
+    @media only screen and (min-width: $tablet-landscape) {
       width: 90%;
-      display: block;
-      margin: 0 auto;
-      @media only screen and (min-width: 750px) {
-        width: 75%;
-      }
     }
     img {
       width: 100%;
+    }
+    p {
+      font-size: 1em;
+      line-height: 1.3em;
+      margin-bottom: 10px;
+      @media only screen and (min-width: $tablet-landscape) {
+        font-size: .9em;
+        margin-bottom: 15px;
+      }
+    }
+    button {
+      @extend %basic-button;
       display: block;
       margin: 0 auto;
+      background: $red;
+      width: 50%;
+      transition: all .25s ease;
+      &:hover {
+        background: $darkRed;
+      }
+      a {
+        display: block;
+        padding: 10px;
+        font-size: 1.2em;
+        text-decoration: none;
+        color: $white;
+        @media only screen and (min-width: $tablet-portrait) {
+          font-size: 1.7em;
+        }
+      }
+    }
+  }
+
+  #homeBlog {
+    @extend %blogPost;
+    display: none;
+    width: 90%;
+    margin: 15px auto;
+    h1 {
+      font-size: 1.5em;
+    }
+    ul {
+      font-size: .75em;
+    }
+    @media only screen and (min-width: $tablet-landscape) {
+      display: block;
+    }
+  }
+
+  #gameHighlightContainer {
+    margin-top: 20px;
+    display: grid;
+    align-content: start;
+    @media only screen and (min-width: $mobile) {
+      width: 90%;
+      margin: 10px auto;
+    }
+    @media only screen and (min-width: $tablet-portrait) {
+      width: 100%;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 20px;
+    }
+    @media only screen and (min-width: $tablet-landscape) {
+      width: 90%;
+      margin-top: 0;
+      grid-template-columns: 1fr;
+    }
+    @media only screen and (min-width: $laptop) {
+      width: 75%;
+    }
+    .highlights {
+      width: 100%;
+      @media only screen and (min-width: $tablet-portrait) and (max-width: $tablet-landscape - 1) {
+        grid-column: span 2;
+        width: 75%;
+        display: block;
+        margin: 20px auto;
+      }
+    }
+    .gameHighlight {
+      h1 {
+        text-align: center;
+        font-size: 1.5em;
+        @media only screen and (min-width: $tablet-portrait) {
+          font-size: 1.1em;
+        }
+        @media only screen and (min-width: $tablet-landscape) {
+          font-size: 1.4em;
+        }
+      }
+      a {
+        width: 100%;
+        img {
+          width: 100%;
+        }
+      }
     }
   }
 }
 
+
 /*-----Game List Design-----*/
-// #filterBox {
-//   text-align: center;
-//   color: $lightGray;
-//   .filterType {
-//     font-size: 1.5em;
-//     width: 70%;
-//     margin: 5px auto;
-//     display: grid;
-//     grid-template-columns: repeat(5, auto);
-//   }
-//   .generation {
-//     width: 60%;
-//     margin: 5px auto;
-//     font-size: 1em;
-//     display: grid;
-//     grid-template-columns: repeat(17, auto);
-//   }
-//   .filter, .filterGen {
-//     cursor: pointer;
-//   }
-//   .active {
-//     color: $yellow;
-//   }
-// }
-
-// .boxBeGone {
-//   display: none;
-// }
-
-// .gameListTitle {
-//   text-align: center;
-// }
-
-// .gameBox {
-//   width: 90%;
-//   margin: 0 auto;
-//   @media only screen and (min-width: 750px) {
-//     width: 80%;
-//   }
-//   img {
-//     width: 100%;
-//   }
-// }
-
-/*-----New Game List Design-----*/
 #filterBox {
   text-align: center;
   color: $lightGray;
@@ -319,7 +409,7 @@ body {
 .gameBox {
   width: 90%;
   margin: 0 auto;
-  @media only screen and (min-width: 750px) {
+  @media only screen and (min-width: $tablet-portrait) {
     width: 80%;
   }
   img {
@@ -347,7 +437,7 @@ body {
     border: none;
     background: $red;
     cursor: pointer;
-    @media only screen and (min-width: 750px) {
+    @media only screen and (min-width: $tablet-portrait) {
       padding: 10px;
       margin: 10px auto;
     }
@@ -355,7 +445,7 @@ body {
       text-decoration: none;
       color: $white;
       font-size: 1.3em;
-      @media only screen and (min-width: 750px) {
+      @media only screen and (min-width: $tablet-portrait) {
         font-size: 2em;
       }
     }
@@ -395,7 +485,7 @@ table {
 
 .nonMobile {
   display: none;
-  @media only screen and (min-width: 750px) {
+  @media only screen and (min-width: $tablet-portrait) {
     display: table-cell;
   }
 }
@@ -566,7 +656,7 @@ table {
       background: $white;
       padding: 5px;
       cursor: pointer;
-      @media only screen and (min-width: 750px) {
+      @media only screen and (min-width: $tablet-portrait) {
         width: 20%;
         font-size: .8em;
       }
@@ -584,7 +674,7 @@ table {
     padding: 5px 0;
     background: $red;
     cursor: pointer;
-    @media only screen and (min-width: 750px) {
+    @media only screen and (min-width: $tablet-portrait) {
       font-size: .8em;
     }
   }
@@ -599,7 +689,7 @@ table {
   font-weight: bold;
   color: $red;
   cursor: pointer;
-  @media only screen and (min-width: 750px) {
+  @media only screen and (min-width: $tablet-portrait) {
     font-size: .8em;
   }
 }

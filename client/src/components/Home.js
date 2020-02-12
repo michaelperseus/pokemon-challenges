@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Marked from 'react-markdown';
 
 import HomeBanner from '../img/Logos2.png';
 import PlaceHolder from '../img/Placeholder.png';
+import Highlights from '../img/Highlights.png';
 
 class Home extends Component {
     constructor(props) {
@@ -15,6 +17,11 @@ class Home extends Component {
             recent: {
                 name: '',
                 logo: ''
+            },
+            news: {
+                title: '',
+                date: '',
+                body: ''
             }
         }
     }
@@ -22,6 +29,23 @@ class Home extends Component {
     componentDidMount = async () => {
         await this.fetchTopGame();
         await this.fetchRecentGame();
+        await this.fetchLatestNews();
+    }
+
+    fetchLatestNews = async () => {
+        await fetch('/news/latestPost')
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            this.setState({
+                news: {
+                    title: data[0].title,
+                    date: data[0].date,
+                    body: data[0].body
+
+                }
+            })
+        })
     }
 
     fetchTopGame = async () => {
@@ -49,31 +73,43 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
-                <div className="homeBox">
-                    <div className="announcement">
-                        <h3>Hello Alpha Testers!</h3>
-                        <p>There is now an official Trello Board for this project! You can go here to see all known issues/bugs as well as upcoming features for the Alpha build! Thank you!</p>
-                        <button><a href="https://trello.com/b/Tp15Sn0e/pokemon-challenges">Visit the Trello Board!</a></button>
-                    </div>
+            <div id="home">
+                <div className="announcement">
+                    <h3>Hello Alpha Testers!</h3>
+                    <p>There is now an official Trello Board for this project! You can go here to see all known issues/bugs as well as upcoming features for the Alpha build! Thank you!</p>
+                    <button><a href="https://trello.com/b/Tp15Sn0e/pokemon-challenges">Visit the Trello Board!</a></button>
+                </div>
+                <div id="homeSplash">
                     <img src={HomeBanner} alt="Home Screen Banner"></img>
                     <p>Pokémon Challenges is a hub for players who love to give their playthroughs a little extra spice and fun!</p>
                     <p>Here, you can log in and track all the different playthroughs you've done, if you won or failed and what Pokémon you used along the way!</p>
                     <p>There is also a community feature to see what others players have done, what the most common games are and more!</p>
                     <p>So what are you waiting for? Let's take a look at the games list!</p>
                     <button><Link to={'/game-list'}>View All Games!</Link></button>
+                    <div id="homeBlog">
+                        <h1>{this.state.news.title}</h1>
+                        <h3>{this.state.news.date}</h3>
+                        <div>
+                            <Marked source={this.state.news.body} escapeHtml={false} />
+                        </div>
+                    </div>
                 </div>
-                <div className="gameHighlightContainer">
+                <div id="gameHighlightContainer">
+                    <img className="highlights" src={Highlights}></img>
                     <div className="gameHighlight">
                         <h1>Most Played Game!</h1>
                         <Link to={`/game/${this.state.top.name}`}>{this.state.top.logo}</Link>
                     </div>
                     <div className="gameHighlight">
-                        <h1>Most Recent Game!</h1>
-                        <Link to={`/game/${this.state.recent.name}`}>{this.state.recent.logo}</Link>
+                        <h1>Highest Rated Game!</h1>
+                        <Link to={`/`}><img src={PlaceHolder} alt="Placeholder"></img></Link>
                     </div>
                     <div className="gameHighlight">
-                        <h1>Highest Rated Game!</h1>
+                        <h1>Most Completed Game!</h1>
+                        <Link to={`/`}><img src={PlaceHolder} alt="Placeholder"></img></Link>
+                    </div>
+                    <div className="gameHighlight">
+                        <h1>Most Failed Game!</h1>
                         <Link to={`/`}><img src={PlaceHolder} alt="Placeholder"></img></Link>
                     </div>
                 </div>

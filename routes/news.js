@@ -27,6 +27,16 @@ router.get('/post', async (req, res) => {
     
 })
 
+router.get('/latestPost', async (req, res) => {
+    try {
+        const post = await News.find().sort('-_id').limit(1);
+        res.send(post);
+    } catch (e) {
+        res.status(500).send(e)
+    }
+    
+})
+
 
 
 

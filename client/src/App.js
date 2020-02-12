@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Game from './components/Game';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import AddRun from './components/AddRun';
 import NotFound from './components/NotFound';
 import Community from './components/Community';
@@ -46,6 +47,7 @@ function App() {
             <Route component={NotFound} />
           </Switch>
         </main>
+        <Footer />
       </div>
       </ScrollToTop>
     </Router>
