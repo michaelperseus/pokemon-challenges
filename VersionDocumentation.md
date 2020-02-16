@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.4.2.6
+# Pokemon Challenges Alpha Build 0.4.2.7
 
 Version numbers are created using the following system
 a.b.c.d
@@ -21,8 +21,8 @@ a.b.c.d
 - ~~Add stats to each game page~~
 - ~~Add ability to delete your profile~~
 - ~~Add additional run variations~~
+- ~~Add all main series Pokemon Games~~
 - Full Styling for Mobile / Tablet / Desktop versions
-- Add all main series Pokemon Games
 - Add all Drayano hacks
 - Add more featured sections to home page
 - Add User Feedback page
@@ -51,8 +51,10 @@ a.b.c.d
 - Deleting a profile or run does not require confirmation or password entry
 - Additional visual feedback is needed for when users are making changes
 - Saving a run will sometimes give an error if notes are blank
-- Some buttons have issues with clickable areas
 
+
+#### February 12, 2020 - 0.4.2.7
+- Added remaining main series games
 
 #### February 11, 2020 - 0.4.2.6
 - Rewrote the CSS for the Home Page design

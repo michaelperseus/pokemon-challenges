@@ -98,9 +98,17 @@ class NewGameList extends Component {
 
     //Changes the color of the filter buttons
     changeFilterColor = () => {
-        const filters = document.querySelectorAll('.filter');
-        filters.forEach(filter => {
-            if (filter.classList.contains(this.state.filterType) || filter.classList.contains(this.state.filterGen)) {
+        const filterType = document.querySelectorAll('.filtertype');
+        const filterGen = document.querySelectorAll('.filtergen');
+        filterType.forEach(filter => {
+            if (filter.classList.contains(this.state.filterType)) {
+                filter.classList.add('active')
+            } else {
+                filter.classList.remove('active')
+            }
+        })
+        filterGen.forEach(filter => {
+            if (filter.classList.contains(this.state.filterGen)) {
                 filter.classList.add('active')
             } else {
                 filter.classList.remove('active')
@@ -113,30 +121,30 @@ class NewGameList extends Component {
             <div>
                 <div id="filterBox">
                     <p id="filterType">
-                        <span className="filter all active" onClick={() => this.filterGames("filterType", "all")}>All</span>
+                        <span className="filter filtertype all active" onClick={() => this.filterGames("filterType", "all")}>All</span>
                         <span> | </span>
-                        <span className="filter main" onClick={() => this.filterGames("filterType", "main")}>Main Series</span>
+                        <span className="filter filtertype main" onClick={() => this.filterGames("filterType", "main")}>Main Series</span>
                         <span> | </span>
-                        <span className="filter hack" onClick={() => this.filterGames("filterType", "hack")}>Hacks</span>
+                        <span className="filter filtertype hack" onClick={() => this.filterGames("filterType", "hack")}>Hacks</span>
                     </p>
                     <p id="filterGen">
-                        <span className="filter all active" onClick={() => this.filterGames("filterGen", "all")}>All</span>
+                        <span className="filter filtergen all active" onClick={() => this.filterGames("filterGen", "all")}>All</span>
                         <span> | </span>
-                        <span className="filter one" onClick={() => this.filterGames("filterGen", "one")}>1</span>
+                        <span className="filter filtergen one" onClick={() => this.filterGames("filterGen", "one")}>1</span>
                         <span> | </span>
-                        <span className="filter two" onClick={() => this.filterGames("filterGen", "two")}>2</span>
+                        <span className="filter filtergen two" onClick={() => this.filterGames("filterGen", "two")}>2</span>
                         <span> | </span>
-                        <span className="filter three" onClick={() => this.filterGames("filterGen", "three")}>3</span>
+                        <span className="filter filtergen three" onClick={() => this.filterGames("filterGen", "three")}>3</span>
                         <span> | </span>
-                        <span className="filter four" onClick={() => this.filterGames("filterGen", "four")}>4</span>
+                        <span className="filter filtergen four" onClick={() => this.filterGames("filterGen", "four")}>4</span>
                         <span> | </span>
-                        <span className="filter five" onClick={() => this.filterGames("filterGen", "five")}>5</span>
+                        <span className="filter filtergen five" onClick={() => this.filterGames("filterGen", "five")}>5</span>
                         <span> | </span>
-                        <span className="filter six" onClick={() => this.filterGames("filterGen", "six")}>6</span>
+                        <span className="filter filtergen six" onClick={() => this.filterGames("filterGen", "six")}>6</span>
                         <span> | </span>
-                        <span className="filter seven" onClick={() => this.filterGames("filterGen", "seven")}>7</span>
+                        <span className="filter filtergen seven" onClick={() => this.filterGames("filterGen", "seven")}>7</span>
                         <span> | </span>
-                        <span className="filter eight" onClick={() => this.filterGames("filterGen", "eight")}>8</span>
+                        <span className="filter filtergen eight" onClick={() => this.filterGames("filterGen", "eight")}>8</span>
                     </p>
                 </div>
                 <div id="gameContainer">
