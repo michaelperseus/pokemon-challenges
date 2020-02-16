@@ -367,6 +367,10 @@ body {
     margin: 5px auto;
     display: grid;
     grid-template-columns: repeat(5, auto);
+    @media only screen and (min-width: $tablet-landscape) {
+      width: 60%;
+      font-size: 1.3em;
+    }
   }
   #filterGen {
     width: 60%;
@@ -374,8 +378,12 @@ body {
     font-size: 1em;
     display: grid;
     grid-template-columns: repeat(17, auto);
+    @media only screen and (min-width: $tablet-landscape) {
+      width: 50%;
+      font-size: .8em;
+    }
   }
-  .filter, .filterGen {
+  .filtertype, .filtergen {
     cursor: pointer;
   }
   .active {
@@ -384,36 +392,37 @@ body {
 
 }
 
-.game {
-  width: 90%;
-  text-align: center;
-  color: black;
-  margin: 0 auto;
-  padding: 0;
-  img {
-    width: 100%;
-  }
-}
-
-.inactive {
-  display: none;
-}
-
 #gameContainer {
-  h3 {
-    text-align: center;
-    font-size: 2em;
-  }
-}
-
-.gameBox {
   width: 90%;
   margin: 0 auto;
   @media only screen and (min-width: $tablet-portrait) {
+    width: 85%;
+  }
+  @media only screen and (min-width: $tablet-landscape) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
     width: 80%;
   }
-  img {
+  h3 {
+    text-align: center;
+    font-size: 2em;
+    @media only screen and (min-width: $tablet-landscape) {
+      font-size: 1.5em;
+    }
+  }
+  .game {
     width: 100%;
+    text-align: center;
+    color: black;
+    margin: 0 auto;
+    padding: 0;
+    img {
+      width: 100%;
+    }
+  }
+  .inactive {
+    display: none;
   }
 }
 

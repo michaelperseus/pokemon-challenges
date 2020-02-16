@@ -121,42 +121,36 @@ class NewGameList extends Component {
             <div>
                 <div id="filterBox">
                     <p id="filterType">
-                        <span className="filter filtertype all active" onClick={() => this.filterGames("filterType", "all")}>All</span>
+                        <span className="filtertype all active" onClick={() => this.filterGames("filterType", "all")}>All</span>
                         <span> | </span>
-                        <span className="filter filtertype main" onClick={() => this.filterGames("filterType", "main")}>Main Series</span>
+                        <span className="filtertype main" onClick={() => this.filterGames("filterType", "main")}>Main Series</span>
                         <span> | </span>
-                        <span className="filter filtertype hack" onClick={() => this.filterGames("filterType", "hack")}>Hacks</span>
+                        <span className="filtertype hack" onClick={() => this.filterGames("filterType", "hack")}>Hacks</span>
                     </p>
                     <p id="filterGen">
-                        <span className="filter filtergen all active" onClick={() => this.filterGames("filterGen", "all")}>All</span>
+                        <span className="filtergen all active" onClick={() => this.filterGames("filterGen", "all")}>All</span>
                         <span> | </span>
-                        <span className="filter filtergen one" onClick={() => this.filterGames("filterGen", "one")}>1</span>
+                        <span className="filtergen one" onClick={() => this.filterGames("filterGen", "one")}>1</span>
                         <span> | </span>
-                        <span className="filter filtergen two" onClick={() => this.filterGames("filterGen", "two")}>2</span>
+                        <span className="filtergen two" onClick={() => this.filterGames("filterGen", "two")}>2</span>
                         <span> | </span>
-                        <span className="filter filtergen three" onClick={() => this.filterGames("filterGen", "three")}>3</span>
+                        <span className="filtergen three" onClick={() => this.filterGames("filterGen", "three")}>3</span>
                         <span> | </span>
-                        <span className="filter filtergen four" onClick={() => this.filterGames("filterGen", "four")}>4</span>
+                        <span className="filtergen four" onClick={() => this.filterGames("filterGen", "four")}>4</span>
                         <span> | </span>
-                        <span className="filter filtergen five" onClick={() => this.filterGames("filterGen", "five")}>5</span>
+                        <span className="filtergen five" onClick={() => this.filterGames("filterGen", "five")}>5</span>
                         <span> | </span>
-                        <span className="filter filtergen six" onClick={() => this.filterGames("filterGen", "six")}>6</span>
+                        <span className="filtergen six" onClick={() => this.filterGames("filterGen", "six")}>6</span>
                         <span> | </span>
-                        <span className="filter filtergen seven" onClick={() => this.filterGames("filterGen", "seven")}>7</span>
+                        <span className="filtergen seven" onClick={() => this.filterGames("filterGen", "seven")}>7</span>
                         <span> | </span>
-                        <span className="filter filtergen eight" onClick={() => this.filterGames("filterGen", "eight")}>8</span>
+                        <span className="filtergen eight" onClick={() => this.filterGames("filterGen", "eight")}>8</span>
                     </p>
                 </div>
                 <div id="gameContainer">
                     <div id="mainSeries">
                         <h3 className="gameListHeader" data-header="main">Main Series</h3>
                         <div className="gameLinkContainer">
-                            {/* <div className="game" data-type="main" data-gen="one">Red</div>
-                            <div className="game" data-type="main" data-gen="two">Gold</div>
-                            <div className="game" data-type="main" data-gen="three">Emerald</div>
-                            <div className="game" data-type="main" data-gen="four">Pearl</div>
-                            <div className="game" data-type="main" data-gen="five">Black</div>
-                            <div className="game" data-type="main" data-gen="six">Y</div> */}
                             {this.state.main}
                         </div>
                     </div>

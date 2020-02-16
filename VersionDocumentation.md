@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.4.2.7
+# Pokemon Challenges Alpha Build 0.4.2.8
 
 Version numbers are created using the following system
 a.b.c.d
@@ -52,6 +52,10 @@ a.b.c.d
 - Additional visual feedback is needed for when users are making changes
 - Saving a run will sometimes give an error if notes are blank
 
+
+#### February 15, 2020 - 0.4.2.8
+- Fixed visual bug with filter on game list page
+- Updated CSS for Game List page
 
 #### February 12, 2020 - 0.4.2.7
 - Added remaining main series games
