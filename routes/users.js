@@ -10,6 +10,7 @@ const upload = require('../services/file-upload');
 const singleUpload = upload.single('image');
 
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 
 router.get('/info/:username', async (req, res) => {
@@ -28,6 +29,18 @@ router.get('/avatar/:username', async (req, res) => {
     res.status(200).send({avatar: user.avatar});
 })
 
+//Verify Password is correct
+router.post('/passConfirm', async (req, res) => {
+    console.log(req.body);
+    const user = await User.findOne({username: req.body.username});
+    const isMatch = await bcrypt.compare(req.body.password, user.password);
+    if (!isMatch) {
+        res.status(404).send();
+    } else {
+        res.status(200).send();
+    }
+})
+
 router.post('/register', async (req, res) => {
     const user = await new User(req.body);
     try {
@@ -40,7 +53,7 @@ router.post('/register', async (req, res) => {
     }
 })
 
-//Adds a new game to the database
+
 router.post('/newAvatar', withAuth, singleUpload, async (req, res) => {
     const user = await User.findOne({username: req.body.name});
     user.avatar = req.file.location;

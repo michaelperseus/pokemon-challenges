@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.4.2.8
+# Pokemon Challenges Alpha Build 0.4.2.9
 
 Version numbers are created using the following system
 a.b.c.d
@@ -46,12 +46,16 @@ a.b.c.d
 - ~~Clicking save multiple times on the 'Add Pokemon' page can cause the Pokemon to be added several times~~
 - ~~Multiple Pokemon can be selected as a starter for a run~~
 - ~~Fix issue with Game Page filter showing items from unselected options~~
+- ~~Deleting a profile or run does not require confirmation or password entry~~
 - Errors appear in the console for some pages referring to a white space issue. This does not currently effect performance
 - After logging out on all devices from one device, a user will still be apepared logged in on another device despite actually being logged out
-- Deleting a profile or run does not require confirmation or password entry
 - Additional visual feedback is needed for when users are making changes
 - Saving a run will sometimes give an error if notes are blank
 
+
+#### February 18, 2020 - 0.4.2.9
+- Added function to check for password before deleting a profile
+- Additional CSS Updates
 
 #### February 15, 2020 - 0.4.2.8
 - Fixed visual bug with filter on game list page

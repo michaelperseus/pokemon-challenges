@@ -29,6 +29,9 @@ class AddRun extends Component {
         if (this.state.name === '' || this.state.completed === '' || this.state.game === '') {
             alert('You need to complete all the field!');
         } else {
+            const button = document.getElementById('submitRunButton');
+            button.classList.add('submitting');
+            button.innerHTML = 'Submitting...';
             const newRunData = {
                 user: this.state.name,
                 completed: this.state.completed,
@@ -48,7 +51,6 @@ class AddRun extends Component {
             }).then(res => {
                 if (res.status === 201) {
                     res.json().then(data => {
-                        console.log(data);
                         this.props.history.push('/');
                     })
                 } else {
@@ -62,27 +64,37 @@ class AddRun extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit} className="addRunForm">
-                    <label>Name</label>
-                    <input type="text" onChange={this.handleChange} value={this.state.name} name="name" disabled></input>
-                    <label>Game</label>
-                    <input type="text" value={this.props.match.params.id} disabled></input>
-                    <label>Status</label>
-                    <select onChange={this.handleChange} value={this.state.completed} name="completed">
-                        <option name="completed" value="completed">Completed</option>
-                        <option name="completed" value="in progress">In-Progress</option>
-                        <option name="completed" value="failed">Failed</option>
-                    </select>
-                    <label>Variation</label>
-                    <select onChange={this.handleChange} value={this.state.variation} name="variation">
-                        <option name="variation" value="nuzlocke">Nuzlocke</option>
-                        <option name="variation" value="egglocke">Egglocke</option>
-                        <option name="variation" value="wedlocke">Wedlocke</option>
-                        <option name="variation" value="solo-run">Solo Run</option>
-                        <option name="monotype" value="monotype">Monotype</option>
-                        <option name="variation" value="eeveelocke">Eeveelocke</option>
-                        <option name="variation" value="wonderlocke">Wonderlocke</option>
-                    </select>
-                    <button>Submit Run</button>
+                    <div className="formGroup">
+                        <label>Name</label>
+                        <input type="text" onChange={this.handleChange} value={this.state.name} name="name" disabled></input>
+                    </div>
+                    <div className="formGroup">
+                        <label>Game</label>
+                        <input type="text" value={this.props.match.params.id} disabled></input>
+                    </div>
+                    <div className="formGroup">
+                        <label>Status</label>
+                        <select onChange={this.handleChange} value={this.state.completed} name="completed">
+                            <option name="completed" value="completed">Completed</option>
+                            <option name="completed" value="in progress">In-Progress</option>
+                            <option name="completed" value="failed">Failed</option>
+                        </select>
+                    </div>
+                    <div className="formGroup">
+                        <label>Variation</label>
+                        <select onChange={this.handleChange} value={this.state.variation} name="variation">
+                            <option name="variation" value="nuzlocke">Nuzlocke</option>
+                            <option name="variation" value="egglocke">Egglocke</option>
+                            <option name="variation" value="wedlocke">Wedlocke</option>
+                            <option name="variation" value="solo-run">Solo Run</option>
+                            <option name="monotype" value="monotype">Monotype</option>
+                            <option name="variation" value="eeveelocke">Eeveelocke</option>
+                            <option name="variation" value="wonderlocke">Wonderlocke</option>
+                        </select>
+                    </div>
+                    <div className="formGroup">
+                        <button id="submitRunButton">Submit Run</button>
+                    </div>
                 </form>
             </div>
         )

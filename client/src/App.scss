@@ -432,23 +432,42 @@ body {
   p, h3 {
     text-align: center;
   }
+  p {
+    margin: 5px 0;
+  }
+  h3 {
+    margin-bottom: -10px;
+  }
   img {
     width: 90%;
     margin: 10px auto 0 auto;
     display: block;
+    @media only screen and (min-width: $tablet-portrait) {
+      width: 80%;
+    }
+    @media only screen and (min-width: $tablet-landscape) {
+      width: 60%;
+    }
   }
   .addRun {
     text-align: center;
-    margin: 5px auto;
+    margin: 10px auto;
     padding: 5px;
     display: block;
     width: 60%;
     border: none;
     background: $red;
     cursor: pointer;
+    transition: .25s all ease;
+    &:hover {
+      background: $darkRed;
+    }
     @media only screen and (min-width: $tablet-portrait) {
       padding: 10px;
       margin: 10px auto;
+    }
+    @media only screen and (min-width: $tablet-landscape) {
+      width: 40%;
     }
     a {
       text-decoration: none;
@@ -466,6 +485,15 @@ table {
   border-collapse: collapse;
   width: 80%;
   margin: 10px auto;
+  @media only screen and (min-width: $tablet-portrait) {
+    width: 90%;
+  }
+  @media only screen and (min-width: $laptop) {
+    width: 95%;
+  }
+  @media only screen and (min-width: $desktop) {
+    width: 100%;
+  }
   thead {
     background: $red;
     color: $white;
@@ -514,41 +542,58 @@ table {
   margin: 0 auto;
   display: block;
   width: 90%;
+  .formGroup {
+    margin: 10px auto;
+    max-width: 480px;
+  }
   label {
     display: block;
     font-size: 1.5em;
   }
   input {
     width: 96%;
+    max-width: 480px;
     background: #DBD7D7;
     border: none;
     padding: 2%;
-    margin-bottom: 10px;
+    font-size: .8em;
   }
   textarea {
     resize: vertical;
     width: 100%;
-    min-height: 50px;
+    min-height: 100px;
+    font-size: .7em;
+    @media only screen and (min-width: $tablet-landscape) {
+      font-size: .6em;
+      min-height: 100px;
+    }
   }
-  .formRadio {
-    border: none;
-    display: block;
-    input {
-      width: 20%;
+  .smallWarning {
+    font-size: .5em;
+    color: $red;
+    @media only screen and (min-width: $tablet-portrait) {
+      font-size: .4em;
     }
   }
   button {
     display: block;
-    margin: 10px 0;
+    margin: 20px 0;
     border: none;
     background: $red;
     padding: 10px;
     color: $white;
+    font-size: .8em;
+  }
+  .submitting {
+    background: lightgray;
+    color: $black;
   }
   select {
-    width: 50%;
+    width: 100%;
+    max-width: 500px;
     background: $white;
     font-size: .8em;
+    padding: 5px 0;
     &:focus {
       outline: none;
     }
@@ -603,9 +648,16 @@ table {
 .loginPage {
   width: 90%;
   margin: 0 auto;
+  @media only screen and (min-width: $tablet-portrait) {
+    width: 75%;
+  }
+  @media only screen and (min-width: $laptop) {
+    width: 50%;
+  }
   .loginForm {
     h1 {
       text-align: center;
+      margin-bottom: -10px;
     }
     label {
       display: block;
@@ -625,7 +677,7 @@ table {
     .loginButton {
       width: 80%;
       display: block;
-      margin: 0 auto;
+      margin: 10px auto 0 auto;
       border: 0;
       padding: 5px;
       font-size: 1em;
@@ -732,6 +784,7 @@ table {
       color: $red;
       padding: 5px;
       margin-top: 5px;
+      font-size: .8em;
     }
   }
   h5 {

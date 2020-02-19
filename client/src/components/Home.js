@@ -36,7 +36,6 @@ class Home extends Component {
         await fetch('/news/latestPost')
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             this.setState({
                 news: {
                     title: data[0].title,
@@ -95,7 +94,7 @@ class Home extends Component {
                     </div>
                 </div>
                 <div id="gameHighlightContainer">
-                    <img className="highlights" src={Highlights}></img>
+                    <img className="highlights" src={Highlights} alt="Highlight Banner"></img>
                     <div className="gameHighlight">
                         <h1>Most Played Game!</h1>
                         <Link to={`/game/${this.state.top.name}`}>{this.state.top.logo}</Link>

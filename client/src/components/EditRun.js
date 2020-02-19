@@ -80,9 +80,12 @@ class EditRun extends Component {
         e.preventDefault();
         const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\/$ ]+$/i;
         const confirmNotes = this.state.runNotes.match(regex);
-        if (!confirmNotes) {
+        if (!confirmNotes && this.state.runNotes !== '') {
             return alert('invalid notes!')
         }
+        const button = document.getElementById('submitRunButton');
+        button.classList.add('submitting');
+        button.innerHTML = 'Submitting...';
         const data = {
             variation: this.state.variation,
             _id: this.state.id,
@@ -109,29 +112,41 @@ class EditRun extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit} className="editRunForm">
-                    <label>Name</label>
-                    <input type="text" onChange={this.handleChange} value={this.state.user} name="name" disabled></input>
-                    <label>Game</label>
-                    <input type="text" value={this.state.game}   disabled></input>
-                    <label>Status</label>
-                    <select onChange={this.handleChange} value={this.state.completed} name="completed">
-                        <option name="completed" value="completed">Completed</option>
-                        <option name="completed" value="in progress">In-Progress</option>
-                        <option name="completed" value="failed">Failed</option>
-                    </select>
-                    <label>Variation</label>
-                    <select onChange={this.handleChange} value={this.state.variation} name="variation">
-                        <option name="variation" value="nuzlocke">Nuzlocke</option>
-                        <option name="variation" value="egglocke">Egglocke</option>
-                        <option name="variation" value="wedlocke">Wedlocke</option>
-                        <option name="variation" value="solo-run">Solo Run</option>
-                        <option name="variation" value="monotype">Monotype</option>
-                        <option name="variation" value="eeveelocke">Eeveelocke</option>
-                        <option name="variation" value="wonderlocke">Wonderlocke</option>
-                    </select>
-                    <label>Run Notes</label>
-                    <textarea onChange={this.handleChange} value={this.state.runNotes} name='runNotes'></textarea>
-                    <button>Save Run</button>
+                    <div className="formGroup">
+                        <label>Name</label>
+                        <input type="text" onChange={this.handleChange} value={this.state.user} name="name" disabled></input>
+                    </div>
+                    <div className="formGroup">
+                        <label>Game</label>
+                        <input type="text" value={this.state.game}   disabled></input>
+                    </div>
+                    <div className="formGroup">
+                        <label>Status</label>
+                        <select onChange={this.handleChange} value={this.state.completed} name="completed">
+                            <option name="completed" value="completed">Completed</option>
+                            <option name="completed" value="in progress">In-Progress</option>
+                            <option name="completed" value="failed">Failed</option>
+                        </select>
+                    </div>
+                    <div className="formGroup">
+                        <label>Variation</label>
+                        <select onChange={this.handleChange} value={this.state.variation} name="variation">
+                            <option name="variation" value="nuzlocke">Nuzlocke</option>
+                            <option name="variation" value="egglocke">Egglocke</option>
+                            <option name="variation" value="wedlocke">Wedlocke</option>
+                            <option name="variation" value="solo-run">Solo Run</option>
+                            <option name="variation" value="monotype">Monotype</option>
+                            <option name="variation" value="eeveelocke">Eeveelocke</option>
+                            <option name="variation" value="wonderlocke">Wonderlocke</option>
+                        </select>
+                    </div>
+                    <div className="formGroup">
+                        <label>Run Notes <span className="smallWarning">Line breaks currently aren't supported</span></label>
+                        <textarea onChange={this.handleChange} value={this.state.runNotes} name='runNotes'></textarea>
+                    </div>
+                    <div className="formGroup">
+                        <button id="submitRunButton">Save Run</button>
+                    </div>
                 </form>
                 <button className="addPokemon"><Link to={`/add-pokemon/${this.props.match.params.runId}`}>Add Pokemon</Link></button>
                 <div className="runPokemon">
