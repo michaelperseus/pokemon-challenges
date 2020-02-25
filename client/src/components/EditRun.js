@@ -6,6 +6,7 @@ class EditRun extends Component {
         super(props)
         this.state = {
             variation: '',
+            randomized: '',
             user: '',
             game: '',
             pokemon: [],
@@ -26,6 +27,7 @@ class EditRun extends Component {
     matchPropsToState = (run) => {
         this.setState({
             variation: run.variation,
+            randomized: run.randomized,
             user: run.user,
             game: run.game,
             pokemon: run.pokemon,
@@ -56,7 +58,7 @@ class EditRun extends Component {
 
     makeList = (pokemon) => {
         const list = pokemon.map(poke => {
-        return <tr><td>{poke.pokemon}</td><td>{poke.status}</td><td>{poke.nickname}</td><td><Link to={`/edit-pokemon/${this.props.match.params.runId}/${poke._id}`}>Edit</Link></td></tr>
+        return <tr key={poke._id}><td>{poke.pokemon}</td><td>{poke.status}</td><td>{poke.nickname}</td><td><Link to={`/edit-pokemon/${this.props.match.params.runId}/${poke._id}`}>Edit</Link></td></tr>
         })
         this.setState({pokemonLi: this.state.pokemonLi.concat(list)})
     }
@@ -90,7 +92,8 @@ class EditRun extends Component {
             variation: this.state.variation,
             _id: this.state.id,
             completed: this.state.completed,
-            runNotes: this.state.runNotes
+            runNotes: this.state.runNotes,
+            randomized: this.state.randomized
         }
         fetch('/runs/updateRun', {
             method: 'PATCH',
@@ -141,6 +144,13 @@ class EditRun extends Component {
                         </select>
                     </div>
                     <div className="formGroup">
+                        <label>Randomized?</label>
+                        <select onChange={this.handleChange} value={this.state.randomized} name="randomized">
+                            <option name="randomized" value="yes">Yes</option>
+                            <option name="randomized" value="no">No</option>
+                        </select>
+                    </div>
+                    <div className="formGroup">
                         <label>Run Notes <span className="smallWarning">Line breaks currently aren't supported</span></label>
                         <textarea onChange={this.handleChange} value={this.state.runNotes} name='runNotes'></textarea>
                     </div>
@@ -153,10 +163,12 @@ class EditRun extends Component {
                     <p>Current Pokemon</p>
                     <table>
                         <thead>
-                            <td>Pokemon</td>
-                            <td>Status</td>
-                            <td>Nickname</td>
-                            <td>edit</td>
+                            <tr>
+                                <td>Pokemon</td>
+                                <td>Status</td>
+                                <td>Nickname</td>
+                                <td>Edit</td>
+                            </tr>
                         </thead>
                         <tbody>
                             {this.state.pokemonLi}

@@ -41,6 +41,17 @@ router.post('/passConfirm', async (req, res) => {
     }
 })
 
+//Verify if email is active
+router.post('/verifyEmail', async (req, res) => {
+    const user = await User.findOne({email: req.body.email});
+    if (!user) {
+        res.status(404).send({status: 'Email address could not be located'})
+    } else {
+        res.send({status: 'Email has been sent!', user})
+    }
+})
+
+//Register a new user
 router.post('/register', async (req, res) => {
     const user = await new User(req.body);
     try {

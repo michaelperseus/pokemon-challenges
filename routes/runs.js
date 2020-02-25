@@ -168,7 +168,7 @@ router.patch('/editPokemon/:runId/:pokeId', withAuth, async (req, res) => {
 
 //Updating Routes
 router.patch('/updateRun', withAuth, async (req, res) => {
-    const allowedUpdates = ['completed', 'pokemon', 'variation', '_id', 'runNotes'];
+    const allowedUpdates = ['completed', 'pokemon', 'variation', '_id', 'runNotes', 'randomized'];
     const run = await Run.findOne({_id: req.body._id});
     const updates = Object.keys(req.body);
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update));

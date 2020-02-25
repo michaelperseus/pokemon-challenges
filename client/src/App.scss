@@ -183,9 +183,14 @@ body {
   width: 100%;
   background: $white;
   text-align: center;
+  padding: 10px 0;
   span {
     color: $black;
     width: 100%;
+  }
+  a {
+    text-decoration: none;
+    color: $red;
   }
 }
 
@@ -644,6 +649,11 @@ table {
   font-size: 1em;
 }
 
+.disabledButton {
+  background: lightgray !important;
+  color: $black !important;
+}
+
 /*-----Login / Signup Design-----*/
 .loginPage {
   width: 90%;
@@ -689,6 +699,13 @@ table {
     text-align: center;
     margin-top: 20px;
     cursor: pointer;
+  }
+  .forgotPass {
+    text-decoration: none;
+    text-align: center;
+    color: $red;
+    display: block;
+    margin-top: 10px;
   }
 }
 
@@ -835,6 +852,63 @@ table {
   p {
     line-height: 1.5em;
     margin: 10px 0;
+  }
+}
+
+/*-----Feedback Page Design-----*/
+#userFeedback {
+  width: 50%;
+  margin: 0 auto;
+  h3 {
+    text-align: center;
+  }
+  .feedbackBlurb {
+    font-size: .75em;
+    color: $yellow;
+    margin: 10px 0;
+    br {
+      margin: 5px 0;
+    }
+  }
+  form {
+    textarea {
+      display: block;
+      width: 100%;
+      min-height: 100px;
+      resize: vertical;
+    }
+    button {
+      @extend %basic-button;
+      padding: 10px;
+      background: $red;
+      transition: .25s all ease;
+      margin-top: 10px;
+      color: $white;
+      &:hover {
+        background: $darkRed;
+      }
+    }
+    .submitting {
+      background: $white;
+      color: $black;
+    }
+  }
+  #response {
+    margin-top: 10px;
+  }
+
+  .success {
+    color: $white;
+  }
+
+  .failed {
+    color: $red;
+  }
+
+  .refId {
+    display: block;
+    color: $yellow;
+    font-size: .8em;
   }
 }
 

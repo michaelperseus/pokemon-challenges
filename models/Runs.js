@@ -18,6 +18,10 @@ const RunSchema = new mongoose.Schema({
         type: String,
         default: 'nuzlocke'
     },
+    randomized: {
+        type: String,
+        required: true
+    },
     pokemon: [{
         pokemon: {
             type: String

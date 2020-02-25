@@ -17,9 +17,8 @@ export default class News extends Component {
         await fetch('/news/post')
         .then(res => res.json())
         .then(data => {
-            console.log(data);
             const newsLoop = data.map(news => {
-                return <div className="blogPost"><h1>{news.title}</h1><h3>{news.date}</h3><div><Marked source={news.body} escapeHtml={false} /></div></div>
+                return <div key={news.date} className="blogPost"><h1>{news.title}</h1><h3>{news.date}</h3><div><Marked source={news.body} escapeHtml={false} /></div></div>
             })
             this.setState({
                 newsLoop

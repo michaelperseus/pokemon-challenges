@@ -7,7 +7,8 @@ class AddRun extends Component {
             game: this.props.match.params.id,
             completed: 'completed',
             name: localStorage.getItem('user'),
-            variation: 'nuzlocke'
+            variation: 'nuzlocke',
+            randomized: 'no'
         }
     }
 
@@ -36,7 +37,8 @@ class AddRun extends Component {
                 user: this.state.name,
                 completed: this.state.completed,
                 game: this.state.game,
-                variation: this.state.variation
+                variation: this.state.variation,
+                randomized: this.state.randomized
             }
             if (this.state.starter !== '') {
                 newRunData.pokemon = this.state.starter
@@ -90,6 +92,13 @@ class AddRun extends Component {
                             <option name="monotype" value="monotype">Monotype</option>
                             <option name="variation" value="eeveelocke">Eeveelocke</option>
                             <option name="variation" value="wonderlocke">Wonderlocke</option>
+                        </select>
+                    </div>
+                    <div className="formGroup">
+                        <label>Randomized?</label>
+                        <select onChange={this.handleChange} value={this.state.randomized} name="randomized">
+                            <option name="randomized" value="yes">Yes</option>
+                            <option name="randomized" value="no">No</option>
                         </select>
                     </div>
                     <div className="formGroup">

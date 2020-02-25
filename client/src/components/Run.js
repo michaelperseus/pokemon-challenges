@@ -14,10 +14,11 @@ export default class Run extends Component {
             runStatus: '',
             runVariation: '',
             runComments: [],
-            pokemonList: 'loading...',
+            pokemonList: <tr><td>loading...</td></tr>,
             commentText: '',
             comments: [],
-            runNotes: ''
+            runNotes: '',
+            runRandomized: ''
         }
         this.goBack = this.goBack.bind(this);
     }
@@ -30,7 +31,8 @@ export default class Run extends Component {
             runStatus: data.completed,
             runVariation: data.variation,
             runComments: data.comments,
-            runNotes: data.runNotes
+            runNotes: data.runNotes,
+            runRandomized: data.randomized
         })});
         this.listPokemon();
         this.loadComment();
@@ -39,8 +41,8 @@ export default class Run extends Component {
     handleComment = async (e) => {
         e.preventDefault();
         const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\/$ ]+$/i;
-        const confirmNotes = this.state.commentText.match(regex);
-        if (!confirmNotes) {
+        const confirmComment = this.state.commentText.match(regex);
+        if (!confirmComment) {
             return alert('invalid comment!')
         }
 
@@ -124,6 +126,10 @@ export default class Run extends Component {
                         <tr>
                             <td>Mode</td>
                             <td>{this.state.runVariation}</td>
+                        </tr>
+                        <tr>
+                            <td>Randomized</td>
+                            <td>{this.state.runRandomized}</td>
                         </tr>
                         <tr>
                             <td>Status</td>
