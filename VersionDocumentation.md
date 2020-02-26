@@ -52,6 +52,9 @@ a.b.c.d
 - Additional visual feedback is needed for when users are making changes
 
 
+#### February 26, 2020 - 0.4.4.2
+- Added Nodemailer to backend
+
 #### February 25, 2020 - 0.4.4.2
 - Added 'Randomized' option for Runs
 - Added Feedback Page which connects to Database

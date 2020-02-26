@@ -39,7 +39,13 @@ const UserSchema = new mongoose.Schema({
             type: String,
             required: true
         }
-    }]
+    }],
+    resetPasswordToken: {
+        type: String
+    },
+    resetPasswordExpires: {
+        type: Number
+    }
 });
 
 UserSchema.methods.isCorrectPassword = function(password, cb) {
@@ -93,7 +99,7 @@ UserSchema.pre('save', function(next) {
     if (this.isNew || this.isModified('password')) {
         const document = this;
         if (!validator.isAlphanumeric(document.password) || !validator.isLength(document.password, {min: 6, max: 20})) {
-            const err = {message: 'password is invalid'};
+            const err = {response: 'Your password is invalid'};
             next(err);
         }
         bcrypt.hash(document.password, saltRounds, function(err, hashedPassword) {

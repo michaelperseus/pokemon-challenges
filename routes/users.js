@@ -11,6 +11,8 @@ const singleUpload = upload.single('image');
 
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const nodemailer = require('nodemailer');
+const crypto = require('crypto');
 
 
 router.get('/info/:username', async (req, res) => {
@@ -51,6 +53,81 @@ router.post('/verifyEmail', async (req, res) => {
     }
 })
 
+//User Forgot Password
+router.post('/forgotPassword', async (req, res) => {
+    const user = await User.findOne({email: req.body.email});
+    if (!user) {
+        return res.status(404).send({response: 'Email address could not be located'});
+    }
+    const token = crypto.randomBytes(20).toString('hex');
+    user.resetPasswordToken = token;
+    user.resetPasswordExpires = Date.now() + 3600000;
+    await user.save();
+    
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: `${process.env.EMAIL_NAME}`,
+            pass: `${process.env.EMAIL_PASS}`
+        }
+    });
+
+    const mailOptions = {
+        from: 'PokemonChallenges@gmail.com',
+        to: `${req.body.email}`,
+        subject: 'Link to Reset Password',
+        text: 
+            'You are receiving this because you (or some else) have requested to reset the password for your account. \n\n'
+            + 'Please click the link below or paste it into your browser within one hour of this email being sent: \n\n'
+            + `http://localhost:3000/reset/${token}\n\n`
+            + 'If you did not request this, please ifnore this email and your password will remain unchanged.'
+    };
+
+    transporter.sendMail(mailOptions, (err, response) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send({response: 'An error has occured'})
+        } else {
+            res.send({response: 'Your email has been sent!'})
+        }
+    })
+})
+
+//Verify Token is still Valid
+router.get('/verifyToken/:token', async (req, res) => {
+    const user = await User.findOne({resetPasswordToken: req.params.token});
+    if (!user) {
+        return res.status(404).send({response: 'User not found'});
+    }
+
+    if (user.resetPasswordExpires < Date.now()) {
+        return res.status(404).send({response: 'Token has expired'})
+    }
+
+    res.send()
+})
+
+//Reset Password After Token Confirmation
+router.post('/resetPassword', async (req, res) => {
+    const user = await User.findOne({resetPasswordToken: req.body.resetToken});
+    if (!user) {
+        return res.status(404).send({response: 'User not found'});
+    }
+
+    user.password = req.body.password;
+
+    try {
+        await user.save();
+        user.resetPasswordExpires = null;
+        user.resetPasswordToken = null;
+        await user.save();
+        res.status(201).send({response: 'Password has been updated successfully! Please try logging in!'})
+    } catch (e) {
+        console.log(e);
+        res.status(500).send(e);
+    }
+})
+
 //Register a new user
 router.post('/register', async (req, res) => {
     const user = await new User(req.body);
@@ -80,7 +157,6 @@ router.post('/newAvatar', withAuth, singleUpload, async (req, res) => {
 router.post('/logout', withAuth, async (req, res) => {
     try {
         const user = await User.findOne({username: req.body.username});
-        console.log(req.body.token);
         user.tokens = await user.tokens.filter((token) => {
             return token.token !== req.body.token;
         })

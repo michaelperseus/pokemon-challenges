@@ -6,7 +6,7 @@ class ForgotPassword extends Component {
         this.state = {
             email: '',
             res: '',
-            resCode: 0
+            success: false
         }
     }
 
@@ -18,23 +18,28 @@ class ForgotPassword extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
+        if (this.state.email === '') {
+            return this.setState({res: 'Please enter an email address'});
+        }
         const button = document.getElementById('sendEmailButton');
-        button.innerHTML = "sending...";
-        await fetch('/users/verifyEmail', {
+        button.innerHTML = "Sending...";
+        await fetch('/users/forgotPassword', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Content-Type': 'application/json'
               },
               body: JSON.stringify({email: this.state.email})
         })
         .then(res => {
+            if (res.status === 200) {
+                this.setState({success: true})
+            }
             return res.json();
         })
         .then(data => {
                 button.innerHTML = "Send Email";
                 this.setState({
-                    res: data.status,
+                    res: data.response,
                     email: ''
                 })
         })
@@ -43,7 +48,7 @@ class ForgotPassword extends Component {
     render() {
         return (
             <div>
-                <h1>Reset Password does not work yet</h1>
+                <h1>Please enter your email</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input type="email" placeholder="enter your email" value={this.state.email} onChange={this.handleChange}></input>
                     <button id="sendEmailButton">Send Reset Email</button>
