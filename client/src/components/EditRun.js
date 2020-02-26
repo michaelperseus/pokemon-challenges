@@ -6,6 +6,7 @@ class EditRun extends Component {
         super(props)
         this.state = {
             variation: '',
+            randomized: '',
             user: '',
             game: '',
             pokemon: [],
@@ -26,6 +27,7 @@ class EditRun extends Component {
     matchPropsToState = (run) => {
         this.setState({
             variation: run.variation,
+            randomized: run.randomized,
             user: run.user,
             game: run.game,
             pokemon: run.pokemon,
@@ -56,7 +58,7 @@ class EditRun extends Component {
 
     makeList = (pokemon) => {
         const list = pokemon.map(poke => {
-        return <tr><td>{poke.pokemon}</td><td>{poke.status}</td><td>{poke.nickname}</td><td><Link to={`/edit-pokemon/${this.props.match.params.runId}/${poke._id}`}>Edit</Link></td></tr>
+        return <tr key={poke._id}><td>{poke.pokemon}</td><td>{poke.status}</td><td>{poke.nickname}</td><td><Link to={`/edit-pokemon/${this.props.match.params.runId}/${poke._id}`}>Edit</Link></td></tr>
         })
         this.setState({pokemonLi: this.state.pokemonLi.concat(list)})
     }
@@ -80,14 +82,18 @@ class EditRun extends Component {
         e.preventDefault();
         const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\/$ ]+$/i;
         const confirmNotes = this.state.runNotes.match(regex);
-        if (!confirmNotes) {
+        if (!confirmNotes && this.state.runNotes !== '') {
             return alert('invalid notes!')
         }
+        const button = document.getElementById('submitRunButton');
+        button.classList.add('submitting');
+        button.innerHTML = 'Submitting...';
         const data = {
             variation: this.state.variation,
             _id: this.state.id,
             completed: this.state.completed,
-            runNotes: this.state.runNotes
+            runNotes: this.state.runNotes,
+            randomized: this.state.randomized
         }
         fetch('/runs/updateRun', {
             method: 'PATCH',
@@ -109,39 +115,60 @@ class EditRun extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit} className="editRunForm">
-                    <label>Name</label>
-                    <input type="text" onChange={this.handleChange} value={this.state.user} name="name" disabled></input>
-                    <label>Game</label>
-                    <input type="text" value={this.state.game}   disabled></input>
-                    <label>Status</label>
-                    <select onChange={this.handleChange} value={this.state.completed} name="completed">
-                        <option name="completed" value="completed">Completed</option>
-                        <option name="completed" value="in progress">In-Progress</option>
-                        <option name="completed" value="failed">Failed</option>
-                    </select>
-                    <label>Variation</label>
-                    <select onChange={this.handleChange} value={this.state.variation} name="variation">
-                        <option name="variation" value="nuzlocke">Nuzlocke</option>
-                        <option name="variation" value="egglocke">Egglocke</option>
-                        <option name="variation" value="wedlocke">Wedlocke</option>
-                        <option name="variation" value="solo-run">Solo Run</option>
-                        <option name="variation" value="monotype">Monotype</option>
-                        <option name="variation" value="eeveelocke">Eeveelocke</option>
-                        <option name="variation" value="wonderlocke">Wonderlocke</option>
-                    </select>
-                    <label>Run Notes</label>
-                    <textarea onChange={this.handleChange} value={this.state.runNotes} name='runNotes'></textarea>
-                    <button>Save Run</button>
+                    <div className="formGroup">
+                        <label>Name</label>
+                        <input type="text" onChange={this.handleChange} value={this.state.user} name="name" disabled></input>
+                    </div>
+                    <div className="formGroup">
+                        <label>Game</label>
+                        <input type="text" value={this.state.game}   disabled></input>
+                    </div>
+                    <div className="formGroup">
+                        <label>Status</label>
+                        <select onChange={this.handleChange} value={this.state.completed} name="completed">
+                            <option name="completed" value="completed">Completed</option>
+                            <option name="completed" value="in progress">In-Progress</option>
+                            <option name="completed" value="failed">Failed</option>
+                        </select>
+                    </div>
+                    <div className="formGroup">
+                        <label>Variation</label>
+                        <select onChange={this.handleChange} value={this.state.variation} name="variation">
+                            <option name="variation" value="nuzlocke">Nuzlocke</option>
+                            <option name="variation" value="egglocke">Egglocke</option>
+                            <option name="variation" value="wedlocke">Wedlocke</option>
+                            <option name="variation" value="solo-run">Solo Run</option>
+                            <option name="variation" value="monotype">Monotype</option>
+                            <option name="variation" value="eeveelocke">Eeveelocke</option>
+                            <option name="variation" value="wonderlocke">Wonderlocke</option>
+                        </select>
+                    </div>
+                    <div className="formGroup">
+                        <label>Randomized?</label>
+                        <select onChange={this.handleChange} value={this.state.randomized} name="randomized">
+                            <option name="randomized" value="yes">Yes</option>
+                            <option name="randomized" value="no">No</option>
+                        </select>
+                    </div>
+                    <div className="formGroup">
+                        <label>Run Notes <span className="smallWarning">Line breaks currently aren't supported</span></label>
+                        <textarea onChange={this.handleChange} value={this.state.runNotes} name='runNotes'></textarea>
+                    </div>
+                    <div className="formGroup">
+                        <button id="submitRunButton">Save Run</button>
+                    </div>
                 </form>
                 <button className="addPokemon"><Link to={`/add-pokemon/${this.props.match.params.runId}`}>Add Pokemon</Link></button>
                 <div className="runPokemon">
                     <p>Current Pokemon</p>
                     <table>
                         <thead>
-                            <td>Pokemon</td>
-                            <td>Status</td>
-                            <td>Nickname</td>
-                            <td>edit</td>
+                            <tr>
+                                <td>Pokemon</td>
+                                <td>Status</td>
+                                <td>Nickname</td>
+                                <td>Edit</td>
+                            </tr>
                         </thead>
                         <tbody>
                             {this.state.pokemonLi}

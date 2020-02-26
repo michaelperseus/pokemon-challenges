@@ -12,6 +12,7 @@ This is a work-in-progress project where users will be able to create an account
 - aws-sdk
 - multer
 - validator
+- nodemailer
 
 #### Front End
 - ReactJS

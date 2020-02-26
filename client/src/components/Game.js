@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import RunTable from './RunTable';
 
-import {sortRunsByType} from '../utils/common';
+import {sortRunsByType, sortRunsByStatus} from '../utils/common';
 
 class Game extends Component {
     constructor(props) {
@@ -14,9 +14,11 @@ class Game extends Component {
             search: '',
             runs: [],
             runTable: <tr><td>loading...</td></tr>,
-            typeTable: <tr><td>loading...</td></tr>
+            typeTable: <tr><td>loading...</td></tr>,
+            statusTable: <tr><td>loading...</td></tr>
         }
         this.sortRunsByType = sortRunsByType.bind(this);
+        this.sortRunsByStatus = sortRunsByStatus.bind(this);
     }
     async componentDidMount() {
         fetch(`/games/${this.props.match.params.id}`)
@@ -34,6 +36,7 @@ class Game extends Component {
         })
         this.createTable();
         this.sortRunsByType();
+        this.sortRunsByStatus();
     }
 
     async componentDidUpdate() {
@@ -93,6 +96,18 @@ class Game extends Component {
                         </thead>
                         <tbody>
                             {this.state.typeTable}
+                        </tbody>
+                    </table>
+                    <h3>Status of All Runs</h3>
+                    <table className="myRuns">
+                        <thead>
+                            <tr>
+                                <td>Status</td>
+                                <td>Number</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.statusTable}
                         </tbody>
                     </table>
                     <h3>All Runs</h3>

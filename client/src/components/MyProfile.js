@@ -97,7 +97,7 @@ export default class User extends Component {
     }
 
     deleteProfile = async () => {
-        const confirm = window.confirm('Are you sure you want to delete your profile?');
+        const confirm = await this.confirmPassword();
         if (confirm) {
             const deleteData = {
                 username: this.state.user
@@ -122,6 +122,7 @@ export default class User extends Component {
                 }
             })
         } else {
+            alert('Your password is incorrect');
             return
         }
     }
@@ -156,6 +157,32 @@ export default class User extends Component {
         .then(data => {
             window.location.reload(true);
         });
+    }
+
+    confirmPassword = async () => {
+        const pass = prompt('Please enter your password');
+        if (pass === '') {
+            alert('Please enter your password');
+            return false;
+        }
+        const user = localStorage.getItem('user');
+        const correct = await fetch('/users/passConfirm', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: user,
+                password: pass
+            })
+        })
+        .then(res => {
+            if (res.status !== 200) {
+                return false
+            }
+            return true
+        })
+        return correct
     }
 
     render() {

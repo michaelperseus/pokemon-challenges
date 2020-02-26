@@ -68,7 +68,12 @@ export const sortRunsByStatus = async function() {
     const ordered = runs.sort((a, b) => a.runs > b.runs ? -1 : 1);
 
     const statusTable = ordered.map(type => {
-    return <tr><td>{type.status}</td><td>{type.runs}</td></tr>
+    return (
+            <tr key={Math.random()}>
+                <td>{type.status}</td>
+                <td>{type.runs}</td>
+            </tr>
+        )
     })
 
     this.setState({statusTable: statusTable})

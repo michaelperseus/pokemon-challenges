@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Login extends Component {
     constructor(props) {
@@ -123,6 +124,7 @@ export default class Login extends Component {
               <input type="submit" value="Login" className="loginButton"/>
               </form>
               <p className="togglePage" onClick={this.togglePage}>Don't have an account? Sign up!</p>
+              <Link className="forgotPass" to={"/forgot-password"}>Forget your password?</Link>
             </div>
           );
         } else {

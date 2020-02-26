@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.4.2.5
+# Pokemon Challenges Alpha Build 0.4.6.0
 
 Version numbers are created using the following system
 a.b.c.d
@@ -21,13 +21,11 @@ a.b.c.d
 - ~~Add stats to each game page~~
 - ~~Add ability to delete your profile~~
 - ~~Add additional run variations~~
-- Full Styling for Tablet / Desktop versions
-- Add all main series Pokemon Games
-- Add all Drayano hacks
-- Add more featured sections to home page
-- Add User Feedback page
-- Add User ratings for games
-- Add option to make a run randomized
+- ~~Add all main series Pokemon Games~~
+- ~~Add option to make a run randomized~~
+- ~~Add User Feedback page~~
+- ~~Full Styling for Mobile / Tablet / Desktop versions~~
+- ~~Add all Drayano hacks~~
 
 ### Known Bugs/Issues
 - ~~Fix issue with menu not always closing when moving to new page~~
@@ -46,12 +44,42 @@ a.b.c.d
 - ~~Clicking save multiple times on the 'Add Pokemon' page can cause the Pokemon to be added several times~~
 - ~~Multiple Pokemon can be selected as a starter for a run~~
 - ~~Fix issue with Game Page filter showing items from unselected options~~
-- Errors appear in the console for some pages referring to a white space issue. This does not currently effect performance
-- After logging out on all devices from one device, a user will still be apepared logged in on another device despite actually being logged out
-- Deleting a profile or run does not require confirmation or password entry
-- Additional visual feedback is needed for when users are making changes
-- Saving a run will sometimes give an error if notes are blank
+- ~~Deleting a profile or run does not require confirmation or password entry~~
+- ~~Saving a run will sometimes give an error if notes are blank~~
+- ~~Errors appear in the console for some pages referring to a white space issue. This does not currently effect performance~~
+- ~~After logging out on all devices from one device, a user will still be apepared logged in on another device despite actually being logged out~~
+- ~~Additional visual feedback is needed for when users are making changes~~
 
+
+#### February 26, 2020 - 0.4.6.0
+- Added Nodemailer to backend
+- Completed Password Reset option
+
+#### February 25, 2020 - 0.4.4.2
+- Added 'Randomized' option for Runs
+- Added Feedback Page which connects to Database
+- Added additional feedback to various pages after user input (Ie: changing button text to say 'saving' after pressed')
+- Added remaining 'Drayano' Hacks
+
+#### February 21, 2020 - 0.4.4.0
+- Fixed issue with console errors regarding white space
+- Fixed issue with the site saying the user is still logged in after logging out on a seperate device
+- Added front-end for password resetting, currently doesn't work on backend
+
+#### February 18, 2020 - 0.4.2.9
+- Added function to check for password before deleting a profile
+- Additional CSS Updates
+
+#### February 15, 2020 - 0.4.2.8
+- Fixed visual bug with filter on game list page
+- Updated CSS for Game List page
+
+#### February 12, 2020 - 0.4.2.7
+- Added remaining main series games
+
+#### February 11, 2020 - 0.4.2.6
+- Rewrote the CSS for the Home Page design
+- Added the most recent news post to homepage for Landscape Tablet and Higher resolutions
 
 #### February 10, 2020 - 0.4.2.5
 - Fixed issue with game filter not working properly
