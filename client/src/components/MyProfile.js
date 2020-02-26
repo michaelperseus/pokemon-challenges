@@ -214,7 +214,6 @@ export default class User extends Component {
                     <button onClick={this.logoutAll}>Logout Everywhere</button>
                 </div>
                 <button id="deleteProfile" onClick={this.deleteProfile}>Delete Profile</button>
-                <button id="passwordTest" onClick={this.testPass2}>Test Password</button>
             </div>
         )
     }
