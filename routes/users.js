@@ -79,7 +79,7 @@ router.post('/forgotPassword', async (req, res) => {
         text: 
             'You are receiving this because you (or some else) have requested to reset the password for your account. \n\n'
             + 'Please click the link below or paste it into your browser within one hour of this email being sent: \n\n'
-            + `http://localhost:3000/reset/${token}\n\n`
+            + `https://hardy-pokemon-challenge.herokuapp.com//reset/${token}\n\n`
             + 'If you did not request this, please ifnore this email and your password will remain unchanged.'
     };
 
