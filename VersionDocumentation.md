@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.4.5.0
+# Pokemon Challenges Alpha Build 0.4.6.0
 
 Version numbers are created using the following system
 a.b.c.d
@@ -24,9 +24,8 @@ a.b.c.d
 - ~~Add all main series Pokemon Games~~
 - ~~Add option to make a run randomized~~
 - ~~Add User Feedback page~~
-- Full Styling for Mobile / Tablet / Desktop versions
-- Add all Drayano hacks
-- Add User ratings for games
+- ~~Full Styling for Mobile / Tablet / Desktop versions~~
+- ~~Add all Drayano hacks~~
 
 ### Known Bugs/Issues
 - ~~Fix issue with menu not always closing when moving to new page~~
@@ -49,11 +48,12 @@ a.b.c.d
 - ~~Saving a run will sometimes give an error if notes are blank~~
 - ~~Errors appear in the console for some pages referring to a white space issue. This does not currently effect performance~~
 - ~~After logging out on all devices from one device, a user will still be apepared logged in on another device despite actually being logged out~~
-- Additional visual feedback is needed for when users are making changes
+- ~~Additional visual feedback is needed for when users are making changes~~
 
 
-#### February 26, 2020 - 0.4.4.2
+#### February 26, 2020 - 0.4.6.0
 - Added Nodemailer to backend
+- Completed Password Reset option
 
 #### February 25, 2020 - 0.4.4.2
 - Added 'Randomized' option for Runs
