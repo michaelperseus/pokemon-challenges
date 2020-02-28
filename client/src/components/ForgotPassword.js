@@ -23,6 +23,8 @@ class ForgotPassword extends Component {
         }
         const button = document.getElementById('sendEmailButton');
         button.innerHTML = "Sending...";
+        button.disabled = true;
+        button.classList.add('disabledButton');
         await fetch('/users/forgotPassword', {
             method: 'POST',
             headers: {
@@ -38,6 +40,8 @@ class ForgotPassword extends Component {
         })
         .then(data => {
                 button.innerHTML = "Send Email";
+                button.disabled = false;
+                button.classList.remove('disabledButton');
                 this.setState({
                     res: data.response,
                     email: ''
@@ -47,11 +51,11 @@ class ForgotPassword extends Component {
 
     render() {
         return (
-            <div>
-                <h1>Please enter your email</h1>
+            <div id="forgotPasswordPage">
+                <p>Please enter the email you used to sign up!</p>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="email" placeholder="enter your email" value={this.state.email} onChange={this.handleChange}></input>
-                    <button id="sendEmailButton">Send Reset Email</button>
+                    <input type="email" placeholder="Enter your email" value={this.state.email} onChange={this.handleChange}></input>
+                    <button id="sendEmailButton">Send Email</button>
                 </form>
                 <h3>{this.state.res}</h3>
             </div>

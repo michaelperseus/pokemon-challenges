@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.4.6.0
+# Pokemon Challenges Alpha Build 0.4.6.1
 
 Version numbers are created using the following system
 a.b.c.d
@@ -50,6 +50,9 @@ a.b.c.d
 - ~~After logging out on all devices from one device, a user will still be apepared logged in on another device despite actually being logged out~~
 - ~~Additional visual feedback is needed for when users are making changes~~
 
+
+#### February 27, 2020 - 0.4.6.1
+- Additional Style Updates to News, Forgot Password and Reset Password pages
 
 #### February 26, 2020 - 0.4.6.0
 - Added Nodemailer to backend
