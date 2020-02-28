@@ -13,7 +13,7 @@ $yellow: #FFF68E;
 
 /*--Breakpoints--*/
 $mobile: 480px;
-$tablet-portrait: 768px;
+$tablet-portrait: 768px; 
 $tablet-landscape: 980px;
 $laptop: 1366px;
 $desktop: 1690px;
@@ -840,8 +840,22 @@ table {
 }
 
 .blogPost {
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(249,249,249,0.5);
+  padding-bottom: 15px;
+  @media only screen and (min-width: $tablet-portrait) {
+    width: 90%;
+    margin: 0 auto 30px auto;
+  }
+  @media only screen and (min-width: $tablet-landscape) {
+    width: 80%;
+    margin: 0 auto 30px auto;
+  }
   h1 {
     text-align: center;
+    @media only screen and (min-width: $tablet-portrait) {
+      font-size: 1.6em;
+    }
   }
   
   h3 {
@@ -852,6 +866,32 @@ table {
   p {
     line-height: 1.5em;
     margin: 10px 0;
+    @media only screen and (min-width: $tablet-portrait) {
+      font-size: .9em;
+      line-height: 1.4em;
+    }
+    @media only screen and (min-width: $tablet-landscape) {
+      font-size: .8em;
+    }
+  }
+  ul {
+    list-style-type: none;
+    @media only screen and (min-width: $tablet-portrait) {
+      font-size: .9em;
+    }
+    @media only screen and (min-width: $tablet-landscape) {
+      font-size: .8em;
+    }
+    li {
+      list-style-type: none;
+      &:before {
+          content: "\2022";
+          color: $yellow;
+          font-weight: bold;
+          display: inline-block;
+          width: 1em;
+      }
+    } 
   }
 }
 
@@ -911,5 +951,150 @@ table {
     font-size: .8em;
   }
 }
+
+/*-----Forgot Password Design-----*/
+#forgotPasswordPage {
+  width: 90%;
+  margin: 10px auto;
+  p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  form {
+    width: 100%;
+    margin-bottom: 15px;
+    input {
+      width: 96%;
+      max-width: 480px;
+      background: #DBD7D7;
+      border: none;
+      padding: 2%;
+      font-size: .8em;
+      margin: 0 auto 10px auto;
+      display: block;
+      @media only screen and (min-width: $tablet-portrait) {
+        font-size: .8em;
+        padding: 10px;
+      }
+    }
+    button {
+      @extend %basic-button;
+      padding: 5px;
+      background: $red;
+      color: $white;
+      font-size: 1em;
+      display: block;
+      margin: 0 auto;
+      transition: all .25s ease;
+      &:hover {
+        background: $darkRed;
+      }
+      @media only screen and (min-width: $tablet-landscape) {
+        font-size: .8em;
+      }
+    }
+    .disabledButton {
+      background: $lightGray;
+      color: black;
+    }
+  }
+  h3 {
+    text-align: center;
+    color: $yellow;
+  }
+}
+
+
+/*-----Reset Password Design-----*/
+#resetPassword {
+  width: 90%;
+  margin: 0 auto;
+  @media only screen and (min-width: $tablet-landscape) {
+    width: 80%;
+  }
+  p {
+    font-size: 1.1em;
+    margin: 10px 0;
+    text-align: center;
+    @media only screen and (min-width: $tablet-landscape) {
+      font-size: .9em;
+    }
+  }
+  a {
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    color: $yellow;
+  }
+  .badResponse {
+    color: $red;
+    text-align: center;
+    @media only screen and (min-width: $tablet-landscape) {
+      font-size: .9em;
+    }
+  }
+  .goodResponse {
+    color: $yellow;
+    text-align: center;
+    @media only screen and (min-width: $tablet-landscape) {
+      font-size: .9em;
+    }
+  }
+  form {
+    width: 100%;
+    margin-bottom: 15px;
+    label {
+      text-align: center;
+      display: block;
+    }
+    .smallWarning {
+      font-size: .75em;
+      color: $red;
+      @media only screen and (min-width: $tablet-portrait) {
+        font-size: .5em;
+      }
+    }
+    input {
+      width: 96%;
+      max-width: 480px;
+      background: #DBD7D7;
+      border: none;
+      padding: 2%;
+      font-size: .8em;
+      margin: 0 auto 5px auto;
+      display: block;
+      @media only screen and (min-width: $tablet-portrait) {
+        font-size: .8em;
+        padding: 10px;
+      }
+    }
+    .formGroup {
+      margin-bottom: 20px;
+    }
+    button {
+      @extend %basic-button;
+      padding: 5px;
+      background: $red;
+      color: $white;
+      font-size: 1em;
+      display: block;
+      margin: 0 auto;
+      transition: all .25s ease;
+      &:hover {
+        background: $darkRed;
+      }
+      @media only screen and (min-width: $tablet-landscape) {
+        font-size: .8em;
+      }
+    }
+    .disabledButton {
+      background: $lightGray;
+      color: black;
+    }
+  }
+}
+
+
 
 /*-----Test Area-----*/

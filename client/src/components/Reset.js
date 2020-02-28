@@ -8,7 +8,8 @@ class Reset extends Component {
             pass1: '',
             pass2: '',
             tokenCheck: '',
-            response: '',
+            goodResponse: '',
+            badResponse: '',
             success: null
         }
     }
@@ -17,7 +18,7 @@ class Reset extends Component {
         await fetch(`/users/verifyToken/${this.props.match.params.token}`)
         .then(res => {
             if (res.status !== 200) {
-                this.setState({tokenCheck: 'Reset Password token is invalid or has expired. Please try again'})
+                this.setState({tokenCheck: 'Reset Password token is invalid or has expired. Please try again by clicking the link below!'})
             }
         })
     }
@@ -32,11 +33,12 @@ class Reset extends Component {
         e.preventDefault();
 
         if (this.state.pass1 !== this.state.pass2 || this.state.pass1 === '') {
-            console.error('Passwords do not match')
+            return this.setState({badResponse: 'Your passwords do not match'})
         } 
 
         const button = document.getElementById('resetButton');
         button.disabled = true;
+        button.classList.add('disabledButton');
         button.innerHTML = "Please Wait...";
 
         const newData = {
@@ -60,12 +62,17 @@ class Reset extends Component {
             return res.json()
         })
         .then(data => {
-            this.setState({response: data.response})
             if (this.state.success === false) {
+                this.setState({badResponse: data.response})
                 button.disabled = false;
+                button.classList.remove('disabledButton');
                 button.innerHTML = 'Save Password';
             } else {
-                button.innerHTML = 'Save Password';
+                this.setState({
+                    goodResponse: data.response,
+                    badResponse: ''
+                });
+                button.innerHTML = 'Password Updated';
             }
         })
 
@@ -82,15 +89,20 @@ class Reset extends Component {
         } else {
             return (
                 <div id="resetPassword">
-                    <h1>Please enter your new password below</h1>
+                    <p>Please enter your new password below</p>
                     <form onSubmit={this.handleSubmit}>
-                        <label>New Password</label><br></br>
-                        <input type='password' name='pass1' onChange={this.handleChange} value={this.state.pass1}/><br></br>
-                        <label>Repeat New Password</label><br></br>
+                        <div className="formGroup">
+                        <label>New Password <span className="smallWarning">Length: 6 - 20 characters, only AlphaNumeric</span></label>
+                        <input type='password' name='pass1' onChange={this.handleChange} value={this.state.pass1}/>
+                        </div>
+                        <div className="formGroup">
+                        <label>Repeat New Password</label>
                         <input type='password' name='pass2' onChange={this.handleChange} value={this.state.pass2}/>
+                        </div>
                         <button id="resetButton">Save Password</button>
                     </form>
-                    <h3>{this.state.response}</h3>
+                    <h3 className="goodResponse">{this.state.goodResponse}</h3>
+                    <h3 className="badResponse">{this.state.badResponse}</h3>
                 </div>
             )
         }
