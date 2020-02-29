@@ -544,7 +544,7 @@ table {
 
 /*-----Add / Edit Run Design-----*/
 .addRunForm, .editRunForm {
-  margin: 0 auto;
+  margin: 0 auto 30px auto;
   display: block;
   width: 90%;
   .formGroup {
@@ -554,6 +554,9 @@ table {
   label {
     display: block;
     font-size: 1.5em;
+    @media only screen and (min-width: $tablet-landscape) {
+      font-size: 1em;
+    }
   }
   input {
     width: 96%;
@@ -588,6 +591,11 @@ table {
     padding: 10px;
     color: $white;
     font-size: .8em;
+    cursor: pointer;
+    transition: .25s all ease;
+    &:hover {
+      background: $darkRed;
+    }
   }
   .submitting {
     background: lightgray;
@@ -602,10 +610,6 @@ table {
     &:focus {
       outline: none;
     }
-  }
-  .save {
-    background: $white;
-    color: $black;
   }
 }
 
@@ -640,13 +644,18 @@ table {
 }
 
 .delete {
-  color: $white;
+  color: $red;
   border: none;
-  background: $red;
+  background: #222;
   padding: 5px;
   display: block;
-  margin: 0 auto;
+  margin: 20px auto 0 auto;
   font-size: 1em;
+  cursor: pointer;
+  transition: .25s all ease;
+  &:hover {
+    background: #333;
+  }
 }
 
 .disabledButton {
