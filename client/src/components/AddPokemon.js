@@ -41,13 +41,21 @@ export default class EditPokemon extends Component {
         saveButton.classList.add('disabledButton');
         const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\/$ ]+$/i;
         const confirmNotes = this.state.nickname.match(regex);
-        if (!confirmNotes) {
-            return alert('invalid nickname!')
-        }
-        
+
         if (this.state.species === '') {
+            saveButton.classList.remove('disabledButton');
+            saveButton.innerHTML = "Save";
+            this.setState({disabledButton: false});
             return alert('Please enter a Pokemon');
         }
+
+        if (!confirmNotes) {
+            saveButton.classList.remove('disabledButton');
+            saveButton.innerHTML = "Save";
+            this.setState({disabledButton: false});
+            return alert('invalid nickname!')
+        }
+    
         const update = {
             pokemon: this.state.species.toLowerCase(),
             starter: this.state.starter,
@@ -86,21 +94,31 @@ export default class EditPokemon extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit} className="editRunForm">
-                    <label>Species</label>
-                    <input type="text" value={this.state.species} name="species" onChange={this.handleChange} />
-                    <label>Nickname</label>
-                    <input type="text" value={this.state.nickname} name="nickname" onChange={this.handleChange} />
-                    <label>Starter?</label>
-                    <select onChange={this.handleChange} value={this.state.starterValue} name="starter">
-                        <option name="starter" value="yes">Yes</option>
-                        <option name="starter" value="no">No</option>
-                    </select>
-                    <label>Status</label>
-                    <select onChange={this.handleChange} value={this.state.status} name="status">
-                        <option name="status" value="alive">Alive</option>
-                        <option name="status" value="fainted">Fainted</option>
-                    </select>
-                    <button id="addingPokemon" disabled={this.state.disabledButton}>Save</button>
+                    <div className="formGroup">
+                        <label>Species</label>
+                        <input type="text" value={this.state.species} name="species" onChange={this.handleChange} />
+                    </div>
+                    <div className="formGroup">
+                        <label>Nickname</label>
+                        <input type="text" value={this.state.nickname} name="nickname" onChange={this.handleChange} />
+                    </div>
+                    <div className="formGroup">
+                        <label>Starter?</label>
+                        <select onChange={this.handleChange} value={this.state.starterValue} name="starter">
+                            <option name="starter" value="yes">Yes</option>
+                            <option name="starter" value="no">No</option>
+                        </select>
+                    </div>
+                    <div className="formGroup">
+                        <label>Status</label>
+                        <select onChange={this.handleChange} value={this.state.status} name="status">
+                            <option name="status" value="alive">Alive</option>
+                            <option name="status" value="fainted">Fainted</option>
+                        </select>
+                    </div>
+                    <div className="formGroup">
+                        <button id="addingPokemon" disabled={this.state.disabledButton}>Save</button>
+                    </div>
                 </form>
             </div>
         )

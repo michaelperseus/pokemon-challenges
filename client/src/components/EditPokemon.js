@@ -62,9 +62,18 @@ export default class EditPokemon extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
+
+        const button = document.getElementById('saveButton');
+        button.classList.add('disabledButton');
+        button.disabled = true;
+        button.innerHTML = "Saving...";
+
         const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\/$ ]+$/i;
         const confirmNotes = this.state.nickname.match(regex);
         if (!confirmNotes) {
+            button.classList.remove('disabledButton');
+            button.disabled = false;
+            button.innerHTML = "Save";
             return alert('invalid nickname!')
         }
 
@@ -79,7 +88,7 @@ export default class EditPokemon extends Component {
         await fetch(`https://pokeapi.co/api/v2/pokemon/${update.pokemon}/`)
         .then(async res => {
             if (res.status !== 200) {
-                return console.log('invalid pokemon')
+                return alert('invalid pokemon');
             }
             await fetch(`/runs/editPokemon/${this.props.match.params.runId}/${this.props.match.params.pokemonId}`, {
                 method: 'PATCH',
@@ -104,21 +113,31 @@ export default class EditPokemon extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit} className="editRunForm">
-                    <label>Species</label>
-                    <input type="text" value={this.state.species} name="species" onChange={this.handleChange} />
-                    <label>Nickname</label>
-                    <input type="text" value={this.state.nickname} name="nickname" onChange={this.handleChange} />
-                    <label>Starter?</label>
-                    <select onChange={this.handleChange} value={this.state.starterValue} name="starter">
-                        <option name="starter" value="yes">Yes</option>
-                        <option name="starter" value="no">No</option>
-                    </select>
-                    <label>Status</label>
-                    <select onChange={this.handleChange} value={this.state.status} name="status">
-                        <option name="status" value="alive">Alive</option>
-                        <option name="status" value="fainted">Fainted</option>
-                    </select>
-                    <button className="save">Save</button>
+                    <div className="formGroup">
+                        <label>Species</label>
+                        <input type="text" value={this.state.species} name="species" onChange={this.handleChange} />
+                    </div>
+                    <div className="formGroup">
+                        <label>Nickname</label>
+                        <input type="text" value={this.state.nickname} name="nickname" onChange={this.handleChange} />
+                    </div>
+                    <div className="formGroup">
+                        <label>Starter?</label>
+                        <select onChange={this.handleChange} value={this.state.starterValue} name="starter">
+                            <option name="starter" value="yes">Yes</option>
+                            <option name="starter" value="no">No</option>
+                        </select>
+                    </div>
+                    <div className="formGroup">
+                        <label>Status</label>
+                        <select onChange={this.handleChange} value={this.state.status} name="status">
+                            <option name="status" value="alive">Alive</option>
+                            <option name="status" value="fainted">Fainted</option>
+                        </select>
+                    </div>
+                    <div className="formGroup">
+                        <button className="save" id="saveButton">Save</button>
+                    </div>
                 </form>
                 <button className="delete" onClick={this.deletePokemon}>DELETE POKEMON</button>
             </div>
