@@ -126,7 +126,7 @@ body {
   background: $white;
   border-radius: 50%;
   position: fixed;
-  bottom: 15px;
+  bottom: 25px;
   right: 15px;
   display: grid;
   .innerButton {
@@ -535,6 +535,23 @@ table {
 .userEdit {
   a {
     margin: 0 5px;
+    button {
+      background: $red;
+      color: $white;
+      transition: .25s ease all;
+      &:hover {
+        background: $darkRed;
+      }
+    }
+  }
+}
+
+.userDeleteRun {
+  background: $red;
+  color: $white;
+  transition: .25s ease all;
+  &:hover {
+    background: $darkRed;
   }
 }
 
@@ -634,12 +651,7 @@ table {
   }
   p {
     font-size: 1.1em;
-  }
-  ul {
-    margin-left: 5px;
-    li {
-      list-style-type: none;
-    }
+    text-align: center;
   }
 }
 
@@ -723,18 +735,42 @@ table {
   h1, h3 {
     text-align: center;
   }
+  .countedRuns {
+    margin-top: 10px;
+  }
   img {
-    margin: 0 auto;
+    margin: 15px auto 0 auto;
     display: block;
     height: 250px;
     width: 250px;
     object-fit: cover;
   }
+  .myRuns {
+    width: 90%;
+    @media only screen and (min-width: $tablet-landscape) {
+      width: 80%;
+    }
+    @media only screen and (min-width: $laptop) {
+      width: 70%;
+    }
+  }
   #newAvatar {
-    width: 80%;
+    width: 90%;
     margin: 10px auto;
+    @media only screen and (min-width: $tablet-landscape) {
+      width: 80%;
+    }
+    @media only screen and (min-width: $laptop) {
+      width: 70%;
+    }
     label {
       display: block;
+    }
+    input {
+      font-size: .8em;
+      @media only screen and (min-width: $tablet-portrait) {
+        font-size: .6em;
+      }
     }
     button {
       display: block;
@@ -745,14 +781,14 @@ table {
       cursor: pointer;
       @media only screen and (min-width: $tablet-portrait) {
         width: 20%;
-        font-size: .8em;
+        font-size: .7em;
       }
     }
   }
 }
 
 #logoutGroup {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   button {
     border: none;
@@ -760,9 +796,21 @@ table {
     margin: 5%;
     padding: 5px 0;
     background: $red;
+    font-size: .9em;
     cursor: pointer;
+    transition: .25s all ease;
+    &:hover {
+      background: $darkRed;
+    }
     @media only screen and (min-width: $tablet-portrait) {
       font-size: .8em;
+      width: 30%;
+      margin: 5% 10%;
+    }
+    @media only screen and (min-width: $tablet-landscape) {
+      font-size: .8em;
+      width: 25%;
+      margin: 5% 12.5%;
     }
   }
 }
@@ -775,6 +823,7 @@ table {
   padding: 10px;
   font-weight: bold;
   color: $red;
+  font-size: .9em;
   cursor: pointer;
   @media only screen and (min-width: $tablet-portrait) {
     font-size: .8em;
@@ -835,6 +884,40 @@ table {
   }
 }
 
+
+/*-----Community Page Design-----*/
+#communityPage {
+  h1, h3 {
+    text-align: center;
+  }
+  #commRunCount {
+    color: $yellow;
+    background: rgba(255,255,255,0.3);
+    width: 75%;
+    padding: 10px;
+    margin: 0 auto;
+    @media only screen and (min-width: $tablet-portrait) {
+      font-size: 1em;
+      width: 60%;
+      padding: 8px;
+    }
+    @media only screen and (min-width: $tablet-landscape) {
+      width: 50%;
+      font-size: .9em;
+      padding: 8px 0;
+    }
+  }
+  #commStats {
+    margin-top: 10px;
+  }
+  .tableTitle {
+    color: $white;
+    margin-bottom: 0;
+  }
+  .commRuns {
+    margin-top: 0;
+  }
+}
 
 /*-----News Area-----*/
 #blogContainer {

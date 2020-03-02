@@ -8,6 +8,14 @@ export const sortRunsByType = async function() {
             runs: 0
         },
         {
+            type: 'egglocke',
+            runs: 0
+        },
+        {
+            type: 'eeveelocke',
+            runs: 0
+        },
+        {
             type: 'solo-run',
             runs: 0
         },

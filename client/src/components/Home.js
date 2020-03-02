@@ -28,7 +28,6 @@ class Home extends Component {
 
     componentDidMount = async () => {
         await this.fetchTopGame();
-        await this.fetchRecentGame();
         await this.fetchLatestNews();
     }
 
@@ -52,17 +51,6 @@ class Home extends Component {
                 .then(res => res.json());
         this.setState({
             top: {
-                logo: <img src={game[0].logo} alt="game logo"></img>,
-                name: game[0].gameCode
-            }
-        })
-    }
-
-    fetchRecentGame = async () => {
-        const game = await fetch('/games/mostRecentGame')
-                .then(res => res.json());
-        this.setState({
-            recent: {
                 logo: <img src={game[0].logo} alt="game logo"></img>,
                 name: game[0].gameCode
             }

@@ -41,45 +41,47 @@ class Community extends Component {
 
     render() {
         return (
-            <div id="userPage">
-                <h1> Community Page!</h1>
-                <h3>{this.state.runs.length} have been submitted by users!</h3>
-                <h3>Most Common Variations</h3>
-                    <table className="myRuns">
+            <div id="communityPage">
+                <h1>P.C. Community!</h1>
+                <h3 id="commRunCount">{this.state.runs.length} runs have been submitted!</h3>
+                <section id="commStats">
+                    <h3 className="tableTitle">Most Common Variations</h3>
+                        <table className="myRuns commRuns">
+                            <thead>
+                                <tr>
+                                    <td>Type</td>
+                                    <td>Runs</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.typeTable}
+                            </tbody>
+                    </table>
+                    <h3 className="tableTitle">Status of All Runs</h3>
+                        <table className="myRuns commRuns">
+                            <thead>
+                                <tr>
+                                    <td>Status</td>
+                                    <td>Runs</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.statusTable}
+                            </tbody>
+                    </table>
+                    <h3 className="tableTitle">All Runs</h3>
+                    <table className="myRuns commRuns">
                         <thead>
                             <tr>
-                                <td>Type</td>
-                                <td>Runs</td>
+                                <td>Game</td>
+                                <td className="nonMobile">Status</td>
+                                <td className="nonMobile">Pokemon</td>
+                                <td>User</td>
                             </tr>
                         </thead>
-                        <tbody>
-                            {this.state.typeTable}
-                        </tbody>
-                </table>
-                <h3>Status of All Runs</h3>
-                    <table className="myRuns">
-                        <thead>
-                            <tr>
-                                <td>Status</td>
-                                <td>Runs</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.statusTable}
-                        </tbody>
-                </table>
-                <h3>All Runs</h3>
-                <table className="myRuns">
-                    <thead>
-                        <tr>
-                            <td>Game</td>
-                            <td className="nonMobile">Status</td>
-                            <td className="nonMobile">Pokemon</td>
-                            <td>User</td>
-                        </tr>
-                    </thead>
-                    <tbody>{this.state.runTable}</tbody>
-                </table>
+                        <tbody>{this.state.runTable}</tbody>
+                    </table>
+                </section>
             </div>
         )
     }
