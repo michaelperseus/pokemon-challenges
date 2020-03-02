@@ -14,7 +14,11 @@ class Home extends Component {
                 name: '',
                 logo: ''
             },
-            recent: {
+            completed: {
+                name: '',
+                logo: ''
+            },
+            failed: {
                 name: '',
                 logo: ''
             },
@@ -29,6 +33,8 @@ class Home extends Component {
     componentDidMount = async () => {
         await this.fetchTopGame();
         await this.fetchLatestNews();
+        await this.fetchFinishedGame('completed');
+        await this.fetchFinishedGame('failed');
     }
 
     fetchLatestNews = async () => {
@@ -51,6 +57,17 @@ class Home extends Component {
                 .then(res => res.json());
         this.setState({
             top: {
+                logo: <img src={game[0].logo} alt="game logo"></img>,
+                name: game[0].gameCode
+            }
+        })
+    }
+
+    fetchFinishedGame = async (type) => {
+        const game = await fetch(`/games/mostFinished/${type}`)
+            .then(res => res.json());
+        this.setState({
+            [type]: {
                 logo: <img src={game[0].logo} alt="game logo"></img>,
                 name: game[0].gameCode
             }
@@ -88,15 +105,15 @@ class Home extends Component {
                         <Link to={`/game/${this.state.top.name}`}>{this.state.top.logo}</Link>
                     </div>
                     <div className="gameHighlight">
-                        <h1>Highest Rated Game!</h1>
-                        <Link to={`/`}><img src={PlaceHolder} alt="Placeholder"></img></Link>
-                    </div>
-                    <div className="gameHighlight">
                         <h1>Most Completed Game!</h1>
-                        <Link to={`/`}><img src={PlaceHolder} alt="Placeholder"></img></Link>
+                        <Link to={`/game/${this.state.completed.name}`}>{this.state.completed.logo}</Link>
                     </div>
                     <div className="gameHighlight">
                         <h1>Most Failed Game!</h1>
+                        <Link to={`/game/${this.state.failed.name}`}>{this.state.failed.logo}</Link>
+                    </div>
+                    <div className="gameHighlight">
+                        <h1>Highest Rated Game!</h1>
                         <Link to={`/`}><img src={PlaceHolder} alt="Placeholder"></img></Link>
                     </div>
                 </div>

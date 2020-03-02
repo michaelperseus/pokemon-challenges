@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.4.6.2
+# Pokemon Challenges Alpha Build 0.4.7.0
 
 Version numbers are created using the following system
 a.b.c.d
@@ -25,7 +25,7 @@ a.b.c.d
 - ~~Add option to make a run randomized~~
 - ~~Add User Feedback page~~
 - ~~Add all Drayano hacks~~
-- Full Styling for Mobile / Tablet / Desktop versions
+- ~~Full Styling for Mobile / Tablet / Desktop versions~~
 
 ### Known Bugs/Issues
 - ~~Fix issue with menu not always closing when moving to new page~~
@@ -50,6 +50,11 @@ a.b.c.d
 - ~~After logging out on all devices from one device, a user will still be apepared logged in on another device despite actually being logged out~~
 - ~~Additional visual feedback is needed for when users are making changes~~
 
+
+#### February 2, 2020 - 0.4.7.0
+- Style updates to 'My Profile' and Community pages
+- Removed old code from 'Home' page
+- Added 'Most Completed' and 'Most Failed' to Home page
 
 #### February 28, 2020 - 0.4.6.2
 - Style updates to Add Pokemon and Edit Pokemon pages

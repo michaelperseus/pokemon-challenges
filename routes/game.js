@@ -1,5 +1,6 @@
 const express = require('express');
 const Game = require('../models/Game');
+const Run = require('../models/Runs');
 
 const router = express.Router();
 
@@ -27,6 +28,24 @@ router.get('/mostPlayedGame', async (req, res) => {
 router.get('/mostRecentGame', async (req, res) => {
     const runs = await Game.find({}).sort('-_id').limit(1);
     res.send(runs)
+})
+
+//Return the most completed/failed game
+router.get('/mostFinished/:type', async (req, res) => {
+    const runs = await Run.find({completed: req.params.type});
+    const runGames = runs.map(run => run.game);
+
+    function findMostCommon(arr){
+        return arr.sort((a,b) =>
+              arr.filter(v => v===a).length
+            - arr.filter(v => v===b).length
+        ).pop()
+    }
+
+    const result = findMostCommon(runGames);
+    const game = await Game.find({gameCode: result})
+
+    res.send(game);
 })
 
 //Return the requested game
