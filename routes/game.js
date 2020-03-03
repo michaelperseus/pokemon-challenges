@@ -19,6 +19,16 @@ router.get('/all', async (req, res) => {
     res.send(game);
 })
 
+//Return game name via gameCode
+router.get('/gameName/:name', async (req, res) => {
+    const game = await Game.findOne({gameCode: req.params.name});
+    if (!game) {
+        return res.status(404).send({game: 'Could not locate game'})
+    }
+
+    res.send({game: game.name});
+})
+
 //Returns a list of games ordered by Most Runs
 router.get('/mostPlayedGame', async (req, res) => {
     const runs = await Game.find({}).sort('-runs').limit(1);
