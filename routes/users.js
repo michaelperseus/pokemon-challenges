@@ -4,7 +4,17 @@ const router = express.Router();
 const User = require('../models/User');
 const withAuth = require('../middleware/middleware');
 
+const aws = require('aws-sdk');
 const multer = require('multer');
+
+//Configures the AWS connection
+aws.config.update({
+    secretAccessKey: process.env.AWS_SECRET,
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    region: 'us-east-1'
+});
+
+const s3 = new aws.S3();
 
 const upload = require('../services/file-upload');
 const singleUpload = upload.single('image');

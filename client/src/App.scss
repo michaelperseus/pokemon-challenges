@@ -26,8 +26,22 @@ $desktop: 1690px;
 }
 
 %blogPost {
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(249,249,249,0.5);
+  padding-bottom: 15px;
+  @media only screen and (min-width: $tablet-portrait) {
+    width: 90%;
+    margin: 0 auto 30px auto;
+  }
+  @media only screen and (min-width: $tablet-landscape) {
+    width: 80%;
+    margin: 0 auto 30px auto;
+  }
   h1 {
     text-align: center;
+    @media only screen and (min-width: $tablet-portrait) {
+      font-size: 1.6em;
+    }
   }
   
   h3 {
@@ -38,6 +52,32 @@ $desktop: 1690px;
   p {
     line-height: 1.5em;
     margin: 10px 0;
+    @media only screen and (min-width: $tablet-portrait) {
+      font-size: .9em;
+      line-height: 1.4em;
+    }
+    @media only screen and (min-width: $tablet-landscape) {
+      font-size: .8em;
+    }
+  }
+  ul {
+    list-style-type: none;
+    @media only screen and (min-width: $tablet-portrait) {
+      font-size: .9em;
+    }
+    @media only screen and (min-width: $tablet-landscape) {
+      font-size: .8em;
+    }
+    li {
+      list-style-type: none;
+      &:before {
+          content: "\2022";
+          color: $yellow;
+          font-weight: bold;
+          display: inline-block;
+          width: 1em;
+      }
+    } 
   }
 }
 
@@ -300,12 +340,6 @@ body {
     display: none;
     width: 90%;
     margin: 15px auto;
-    h1 {
-      font-size: 1.5em;
-    }
-    ul {
-      font-size: .75em;
-    }
     @media only screen and (min-width: $tablet-landscape) {
       display: block;
     }

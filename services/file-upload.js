@@ -20,6 +20,7 @@ const fileFilter = (req, file, cb) => {
     }
 }
 
+
 //Creates the upload function
 const upload = multer({
     fileFilter,
@@ -35,7 +36,8 @@ const upload = multer({
         },
         key: function(req, file, cb) {
             const fileType = file.mimetype === 'image/jpeg' ? 'jpeg' : 'png';
-            cb(null, `${req.body.name}.${fileType}`);
+            const numModifier = Math.floor((Math.random() * 151) +1);
+            cb(null, `${req.body.name}${numModifier}.${fileType}`);
         }
     })
 })
