@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import RunTable from './RunTable';
+import TableGenerator from '../utils/TableGenerator';
 
 import {sortRunsByType, sortRunsByStatus} from '../utils/common';
 
@@ -34,7 +34,8 @@ class Community extends Component {
 
     createTable = async () => {
         const runTable = await this.state.runs.map(run => {
-            return <RunTable run={run} owned={false} key={run._id}></RunTable>
+            // return <RunTable run={run} owned={false} key={run._id}></RunTable>
+            return <TableGenerator type='community' run={run} key={run._id}/>
         })
         this.setState({runTable})
     }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-
-import RunTable from './RunTable';
+import TableGenerator from '../utils/TableGenerator';
 
 export default class User extends Component {
     constructor(props) {
@@ -85,7 +84,7 @@ export default class User extends Component {
 
     createTable = async () => {
         const runTable = await this.state.runs.map(run => {
-            return <RunTable run={run} owned={true} key={run._id}></RunTable>
+            return <TableGenerator type='myRuns' run={run} key={run._id}/>
         })
         this.setState({runTable: runTable});
     }

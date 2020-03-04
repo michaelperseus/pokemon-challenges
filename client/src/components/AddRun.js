@@ -53,7 +53,7 @@ class AddRun extends Component {
             }).then(res => {
                 if (res.status === 201) {
                     res.json().then(data => {
-                        this.props.history.push('/');
+                        this.props.history.push('/my-profile');
                     })
                 } else {
                     alert('an error has occured, please try again')

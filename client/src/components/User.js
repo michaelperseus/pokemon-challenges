@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import RunTable from './RunTable';
+import TableGenerator from '../utils/TableGenerator';
 
 export default class User extends Component {
 
@@ -45,7 +45,7 @@ export default class User extends Component {
 
     createTable = async () => {
         const runTables = this.state.userRuns.map(run => {
-            return <RunTable run={run} owned={false} key={run._id}></RunTable>
+            return <TableGenerator type='user' run={run} key={run._id}/>
         })
         this.setState({runTable: runTables})
     }
@@ -69,7 +69,7 @@ export default class User extends Component {
                                 <td>Game</td>
                                 <td className="nonMobile">Status</td>
                                 <td className="nonMobile">Pokemon</td>
-                                <td>User</td>
+                                <td>Type</td>
                             </tr>
                         </thead>
                         <tbody>

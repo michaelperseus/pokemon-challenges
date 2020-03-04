@@ -38,7 +38,7 @@ router.get('/:game/all', async (req, res) => {
 
 
 router.get('/:username', async (req, res) => {
-    const runs = await Run.find({user: {$regex: new RegExp("^" + req.params.username + "$", "i")}});
+    const runs = await Run.find({user: {$regex: new RegExp("^" + req.params.username + "$", "i")}}).sort('-_id');
     res.send(runs);
 })
 

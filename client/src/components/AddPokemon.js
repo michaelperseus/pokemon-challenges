@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class EditPokemon extends Component {
+export default class AddPokemon extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,10 +12,6 @@ export default class EditPokemon extends Component {
             disabledButton: false
         }
     }
-
-    // async componentDidMount() {
-
-    // }
 
     handleChange = (e) => {
         if (e.target.name === "starter") {
@@ -39,6 +35,8 @@ export default class EditPokemon extends Component {
         const saveButton = document.getElementById('addingPokemon');
         saveButton.innerHTML = 'Adding...';
         saveButton.classList.add('disabledButton');
+
+
         const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\/$ ]+$/i;
         const confirmNotes = this.state.nickname.match(regex);
 
@@ -49,7 +47,7 @@ export default class EditPokemon extends Component {
             return alert('Please enter a Pokemon');
         }
 
-        if (!confirmNotes) {
+        if (!confirmNotes & this.state.nickname !== '') {
             saveButton.classList.remove('disabledButton');
             saveButton.innerHTML = "Save";
             this.setState({disabledButton: false});

@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.4.7.0
+# Pokemon Challenges Alpha Build 0.4.8.0
 
 Version numbers are created using the following system
 a.b.c.d
@@ -51,10 +51,21 @@ a.b.c.d
 - ~~Additional visual feedback is needed for when users are making changes~~
 
 
-#### February 2, 2020 - 0.4.7.0
+#### March 4, 2020 - 0.4.8.0
+- Finished remaining tables
+- Changed page reload location from home page to user page after adding a new run
+- Added a confirmation prompt when deleteing a Pokemon from a run
+- Added a confirmation prompt when deleting a Run
+- Fixed error where user could not add a Pokemon without adding a nickname
+
+#### March 3, 2020 - 0.4.7.1
+- Updates Table for Community Page
+
+#### March 2, 2020 - 0.4.7.0
 - Style updates to 'My Profile' and Community pages
 - Removed old code from 'Home' page
 - Added 'Most Completed' and 'Most Failed' to Home page
+- Fixed issue with avatar images not updating
 
 #### February 28, 2020 - 0.4.6.2
 - Style updates to Add Pokemon and Edit Pokemon pages
