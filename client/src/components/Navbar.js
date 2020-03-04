@@ -65,6 +65,8 @@ class Navbar extends Component {
                             <li className="navLine"> | </li>
                             <li><Link to={'/news'}>News</Link></li>
                             <li className="navLine"> | </li>
+                            <li><Link to={'/feedback'}>Feedback</Link></li>
+                            <li className="navLine"> | </li>
                             <li>{this.returnLoginStatus()}</li>
                         </ul>
                     </nav>
@@ -81,6 +83,7 @@ class Navbar extends Component {
                             <li><Link to={'/game-list'} onClick={this.toggleNav}>Games</Link></li>
                             <li><Link to={'/community'} onClick={this.toggleNav}>Community</Link></li>
                             <li><Link to={'/news'} onClick={this.toggleNav}>News</Link></li>
+                            <li><Link to={'/feedback'}>Feedback</Link></li>
                             <li>{this.returnLoginStatus()}</li>
                         </ul>
                         <span onClick={this.toggleNav}>X</span>
