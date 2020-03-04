@@ -1028,13 +1028,28 @@ table {
 
 /*-----Feedback Page Design-----*/
 #userFeedback {
-  width: 50%;
+  width: 80%;
+  @media only screen and (min-width: $tablet-portrait) {
+    width: 70%;
+  }
+  @media only screen and (min-width: $tablet-landscape) {
+    width: 60%;
+  }
+  @media only screen and (min-width: $laptop) {
+    width: 50%;
+  }
   margin: 0 auto;
   h3 {
     text-align: center;
   }
   .feedbackBlurb {
-    font-size: .75em;
+    font-size: 1em;
+    @media only screen and (min-width: $tablet-portrait) {
+      font-size: .8em;
+    }
+    @media only screen and (min-width: $tablet-portrait) {
+      font-size: .75em;
+    }
     color: $yellow;
     margin: 10px 0;
     br {
