@@ -24,7 +24,9 @@ export default class Run extends Component {
     }
 
     async componentDidMount() {
-        await fetch(`/runs/view/${this.state.runId}`).then(res => res.json()).then(data => {this.setState({
+        await fetch(`/runs/view/${this.state.runId}`)
+        .then(res => res.json())
+        .then(data => {this.setState({
             runPokemon: data.pokemon,
             runGame: data.game,
             runUser: data.user,
@@ -34,15 +36,25 @@ export default class Run extends Component {
             runNotes: data.runNotes,
             runRandomized: data.randomized
         })});
+        await fetch(`/games/gameName/${this.state.runGame}`)
+        .then(res => res.json())
+        .then(data => this.setState({runGame: data.game}));
         this.listPokemon();
         this.loadComment();
     }
 
     handleComment = async (e) => {
         e.preventDefault();
+
+        const submitButton = document.getElementById('submitComment');
+        submitButton.disabled = true;
+        submitButton.innerHTML = 'Submitting...';
+
         const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\/$ ]+$/i;
         const confirmComment = this.state.commentText.match(regex);
         if (!confirmComment) {
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Submit';
             return alert('invalid comment!')
         }
 
@@ -95,7 +107,7 @@ export default class Run extends Component {
                 <form id="newcomment" onSubmit={this.handleComment}>
                         <label>Leave a Comment!</label>
                         <textarea onChange={this.handleCommentText} value={this.state.commentText} placeholder="Write a comment"></textarea>
-                        <button>Submit</button>
+                        <button id="submitComment">Submit</button>
                     </form>
             )
         } else {

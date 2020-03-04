@@ -26,6 +26,10 @@ export default class EditPokemon extends Component {
     }
 
     deletePokemon = () => {
+        const confirmDelete = window.confirm(`Are you sure you want to delete ${this.state.species}`);
+        if (!confirmDelete) {
+            return
+        }
         fetch(`/runs/${this.props.match.params.runId}/pokemon/${this.props.match.params.pokemonId}`, {
             method: 'DELETE',
             headers: {

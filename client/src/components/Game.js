@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import RunTable from './RunTable';
+import TableGenerator from '../utils/TableGenerator';
 
 import {sortRunsByType, sortRunsByStatus} from '../utils/common';
 
@@ -61,7 +61,7 @@ class Game extends Component {
 
     createTable = async () => {
         const runTables = this.state.runs.map(run => {
-            return <RunTable run={run} owned={false} key={run._id}></RunTable>
+            return <TableGenerator type='game' run={run} key={run._id}/>
         })
         this.setState({
             runTable: runTables
@@ -114,7 +114,7 @@ class Game extends Component {
                     <table className="myRuns">
                         <thead>
                             <tr>
-                                <td>Game</td>
+                                <td>Type</td>
                                 <td className="nonMobile">Status</td>
                                 <td className="nonMobile">Pokemon</td>
                                 <td>User</td>

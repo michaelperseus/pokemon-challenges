@@ -543,8 +543,7 @@ table {
     color: $black;
   }
   tr {
-    width: 25%;
-    height: 50px;
+    // width: 25%;
     td {
       padding: 10px;
       margin: 5px;
@@ -565,6 +564,11 @@ table {
   @media only screen and (min-width: $tablet-portrait) {
     display: table-cell;
   }
+}
+.tableOverflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .userEdit {
