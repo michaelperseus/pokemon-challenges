@@ -29,7 +29,7 @@ const RunSchema = new mongoose.Schema({
         nickname: {
             type: String,
             validate(value) {
-                if (!validator.isLength(value, {min: 1, max: 20})) {
+                if (!validator.isLength(value, {min: 1, max: 12})) {
                     throw new Error('Nickname is invalid length');
                 }
             }

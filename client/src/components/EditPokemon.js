@@ -72,6 +72,13 @@ export default class EditPokemon extends Component {
         button.disabled = true;
         button.innerHTML = "Saving...";
 
+        if (this.state.nickname.length > 12) {
+            button.classList.remove('disabledButton');
+            button.innerHTML = "Save";
+            this.setState({disabledButton: false});
+            return alert('Max characters for a nickname is 12');
+        }
+
         const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\/$ ]+$/i;
         const confirmNotes = this.state.nickname.match(regex);
         if (!confirmNotes) {
@@ -92,6 +99,8 @@ export default class EditPokemon extends Component {
         await fetch(`https://pokeapi.co/api/v2/pokemon/${update.pokemon}/`)
         .then(async res => {
             if (res.status !== 200) {
+                button.classList.remove('disabledButton');
+                button.innerHTML = "Save";
                 return alert('invalid pokemon');
             }
             await fetch(`/runs/editPokemon/${this.props.match.params.runId}/${this.props.match.params.pokemonId}`, {

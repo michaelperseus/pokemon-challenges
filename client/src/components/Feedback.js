@@ -25,6 +25,30 @@ class Feedback extends Component {
         button.disabled = true;
         button.classList.add('submitting');
 
+
+        const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\/$ ]+$/i;
+        const confirmNotes = this.state.comment.match(regex);
+        if (!confirmNotes  && this.state.comment !== '') {
+            button.classList.remove('submitting');
+            button.innerHTML = 'Save Run';
+            button.disabled = false;
+            return alert('Your comment contains unsupported characters!')
+        }
+
+        if (this.state.comment === '') {
+            button.classList.remove('submitting');
+            button.innerHTML = 'Save Run';
+            button.disabled = false;
+            return alert('Please enter something into the text field')
+        }
+
+        if (this.state.comment.length > 1000) {
+            button.classList.remove('submitting');
+            button.innerHTML = 'Save Run';
+            button.disabled = false;
+            return alert('Comment is longer than the 1000 character limit');
+        }
+
         const token = localStorage.getItem('token');
         const username = localStorage.getItem('user');
 

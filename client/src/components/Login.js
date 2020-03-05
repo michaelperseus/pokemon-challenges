@@ -123,8 +123,8 @@ export default class Login extends Component {
                 />
               <input type="submit" value="Login" className="loginButton"/>
               </form>
-              <p className="togglePage" onClick={this.togglePage}>Don't have an account? Sign up!</p>
-              <Link className="forgotPass" to={"/forgot-password"}>Forget your password?</Link>
+              <p className="togglePage"><span onClick={this.togglePage}>Don't have an account? Sign up!</span></p>
+              <p className="forgotPass"><Link to={"/forgot-password"}>Forget your password?</Link></p>
             </div>
           );
         } else {
@@ -174,7 +174,7 @@ export default class Login extends Component {
                 />
               <input type="submit" value="Sign Up" className="loginButton"/>
               </form>
-              <p className="togglePage" onClick={this.togglePage}>Already have an account? Log in!</p>
+              <p className="togglePage"><span onClick={this.togglePage}>Already have an account? Log in!</span></p>
             </div>
           );
         }
