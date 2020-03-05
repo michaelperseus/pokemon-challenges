@@ -45,6 +45,10 @@ const UserSchema = new mongoose.Schema({
     },
     resetPasswordExpires: {
         type: Number
+    },
+    badges: {
+        type: Array,
+        default: ['Beta Tester']
     }
 });
 

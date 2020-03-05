@@ -79,8 +79,8 @@ class Home extends Component {
         return (
             <div id="home">
                 <div className="announcement">
-                    <h3>Hello Alpha Testers!</h3>
-                    <p>There is now an official Trello Board for this project! You can go here to see all known issues/bugs as well as upcoming features for the Alpha build! Thank you!</p>
+                    <h3>Hello Beta Testers!</h3>
+                    <p>There is an official Trello Board for this project! You can go here to see all known issues/bugs as well as upcoming features for the Beta build! Thank you!</p>
                     <button><a href="https://trello.com/b/Tp15Sn0e/pokemon-challenges">Visit the Trello Board!</a></button>
                 </div>
                 <div id="homeSplash">

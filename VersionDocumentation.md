@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.4.9.5
+# Pokemon Challenges Alpha Build 0.5.0.0
 
 Version numbers are created using the following system
 a.b.c.d
@@ -8,48 +8,9 @@ a.b.c.d
 - c = Build Number (Smaller changes to the site, nothing ground breaking)
 - d = Revision Number (bug fixes or very minor changes)
 
-### Goals for Beta Version (More updates coming soon)
-- ~~Create News Page to post about updates~~
-- ~~Add Nicknames to Pokemon~~
-- ~~Add option to mark Pokemon as starter~~
-- ~~Add statuses to Pokemon (ie: dead, alive)~~
-- ~~Add Profile Images for users~~
-- ~~Add Comment section to runs~~
-- ~~Add User notes section to Run~~
-- ~~Update mobile menu icon~~
-- ~~Add filter ability to game list (ie: only hacks, main games, side games)~~
-- ~~Add stats to each game page~~
-- ~~Add ability to delete your profile~~
-- ~~Add additional run variations~~
-- ~~Add all main series Pokemon Games~~
-- ~~Add option to make a run randomized~~
-- ~~Add User Feedback page~~
-- ~~Add all Drayano hacks~~
-- ~~Full Styling for Mobile / Tablet / Desktop versions~~
 
-### Known Bugs/Issues
-- ~~Fix issue with menu not always closing when moving to new page~~
-- ~~News page isn't loading all posts~~
-- ~~Users are being logged out after uploading a new avatar (the image is still uploaded)~~
-- ~~Some buttons were clickable outside of their visual border~~
-- ~~Unintended characters can be entered in various text inputs by users including usernames and passwords~~
-- ~~Images uploaded by users do not currently have a size restriction~~
-- ~~Profile Pictures have no maximum height when being displayed~~
-- ~~Status for a Pokemon is missing after initially adding them~~
-- ~~'Save' button isn't working on 'Add Pokemon' page~~
-- ~~Some games appear out of release order on the Game Select page~~
-- ~~Nicknames and Statuses for Pokemon don't appear on public run page~~
-- ~~Viewport doesn't always scroll to the top when moving to a new page~~
-- ~~Some tables cause a horizontal scroll bar for mobile users~~
-- ~~Clicking save multiple times on the 'Add Pokemon' page can cause the Pokemon to be added several times~~
-- ~~Multiple Pokemon can be selected as a starter for a run~~
-- ~~Fix issue with Game Page filter showing items from unselected options~~
-- ~~Deleting a profile or run does not require confirmation or password entry~~
-- ~~Saving a run will sometimes give an error if notes are blank~~
-- ~~Errors appear in the console for some pages referring to a white space issue. This does not currently effect performance~~
-- ~~After logging out on all devices from one device, a user will still be apepared logged in on another device despite actually being logged out~~
-- ~~Additional visual feedback is needed for when users are making changes~~
-
+#### March 5, 2020 - 0.5.0.0
+- Added 'Badges' to the model of the User
 
 #### March 4, 2020 - 0.4.9.5
 - Finished remaining tables
