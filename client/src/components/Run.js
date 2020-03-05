@@ -55,7 +55,7 @@ export default class Run extends Component {
         if (!confirmComment) {
             submitButton.disabled = false;
             submitButton.innerHTML = 'Submit';
-            return alert('invalid comment!')
+            return alert('Your comment contains unsupported characters!')
         }
 
         const data = {

@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.4.9.0
+# Pokemon Challenges Alpha Build 0.4.9.5
 
 Version numbers are created using the following system
 a.b.c.d
@@ -51,7 +51,7 @@ a.b.c.d
 - ~~Additional visual feedback is needed for when users are making changes~~
 
 
-#### March 4, 2020 - 0.4.9.0
+#### March 4, 2020 - 0.4.9.5
 - Finished remaining tables
 - Changed page reload location from home page to user page after adding a new run
 - Added a confirmation prompt when deleteing a Pokemon from a run
@@ -59,6 +59,9 @@ a.b.c.d
 - Fixed error where user could not add a Pokemon without adding a nickname
 - Moved 'Feedback' link to Navbar
 - Adjusted Feedback page styling
+- Changed Pokemon Nickname limit to 12 characters and added better error handling
+- Fixed error where button stayed disabled after entering an invalid pokemon species
+- Fixed issues with buttons being clickable outside of visible boundary
 
 #### March 3, 2020 - 0.4.7.1
 - Updates Table for Community Page

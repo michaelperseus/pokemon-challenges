@@ -80,14 +80,26 @@ class EditRun extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
+
+        const button = document.getElementById('submitRunButton');
+        button.classList.add('submitting');
+        button.innerHTML = 'Saving...';
+        button.disabled = true;
+
         const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\/$ ]+$/i;
         const confirmNotes = this.state.runNotes.match(regex);
         if (!confirmNotes && this.state.runNotes !== '') {
+            button.classList.remove('submitting');
+            button.innerHTML = 'Save Run';
+            button.disabled = false;
             return alert('invalid notes!')
         }
-        const button = document.getElementById('submitRunButton');
-        button.classList.add('submitting');
-        button.innerHTML = 'Submitting...';
+        if (this.state.runNotes.length > 500) {
+            button.classList.remove('submitting');
+            button.innerHTML = 'Save Run';
+            button.disabled = false;
+            return alert('Notes are longer than character limit of 500');
+        }
         const data = {
             variation: this.state.variation,
             _id: this.state.id,
@@ -105,9 +117,13 @@ class EditRun extends Component {
         }).then(res => {
             if (res.status === 200) {
                 this.props.history.push('/my-profile');
+            } else {
+                button.classList.remove('submitting');
+                button.innerHTML = 'Save Run';
+                button.disabled = false;
+                return alert('There was an error updating your run. Please try again')
             }
-            res.json();
-        }).then(data => console.log(data))
+        })
     }
 
 

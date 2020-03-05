@@ -47,6 +47,13 @@ export default class AddPokemon extends Component {
             return alert('Please enter a Pokemon');
         }
 
+        if (this.state.nickname.length > 12) {
+            saveButton.classList.remove('disabledButton');
+            saveButton.innerHTML = "Save";
+            this.setState({disabledButton: false});
+            return alert('Max characters for a nickname is 12');
+        }
+
         if (!confirmNotes & this.state.nickname !== '') {
             saveButton.classList.remove('disabledButton');
             saveButton.innerHTML = "Save";
@@ -66,7 +73,8 @@ export default class AddPokemon extends Component {
         await fetch(fetchurl)
         .then(async res => {
             if (res.status !== 200) {
-                // const data = await res.json();
+                saveButton.classList.remove('disabledButton');
+                saveButton.innerHTML = "Save";
                 return alert('invalid pokemon')
             }
             await fetch(`/runs/addPokemon/${this.props.match.params.runId}`, {
@@ -82,7 +90,10 @@ export default class AddPokemon extends Component {
                 if (res.status === 201) {
                     this.props.history.push(`/edit-run/${this.props.match.params.runId}`);
                 } else {
-                    alert('an error occured while updating')
+                    alert('an error occured while updating');
+                    saveButton.classList.remove('disabledButton');
+                    saveButton.innerHTML = "Save";
+                    this.setState({disabledButton: false});
                 }
             })
         })
