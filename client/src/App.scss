@@ -413,13 +413,13 @@ body {
     }
   }
   #filterGen {
-    width: 60%;
+    width: 80%;
     margin: 5px auto;
     font-size: 1em;
     display: grid;
-    grid-template-columns: repeat(17, auto);
+    grid-template-columns: repeat(18, auto);
     @media only screen and (min-width: $tablet-landscape) {
-      width: 50%;
+      width: 60%;
       font-size: .8em;
     }
   }

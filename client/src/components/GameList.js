@@ -128,6 +128,7 @@ class NewGameList extends Component {
                         <span className="filtertype hack" onClick={() => this.filterGames("filterType", "hack")}>Hacks</span>
                     </p>
                     <p id="filterGen">
+                        <span>Generation: </span>
                         <span className="filtergen all active" onClick={() => this.filterGames("filterGen", "all")}>All</span>
                         <span> | </span>
                         <span className="filtergen one" onClick={() => this.filterGames("filterGen", "one")}>1</span>
