@@ -75,6 +75,7 @@ export default class AddPokemon extends Component {
             if (res.status !== 200) {
                 saveButton.classList.remove('disabledButton');
                 saveButton.innerHTML = "Save";
+                this.setState({disabledButton: false});
                 return alert('invalid pokemon')
             }
             await fetch(`/runs/addPokemon/${this.props.match.params.runId}`, {

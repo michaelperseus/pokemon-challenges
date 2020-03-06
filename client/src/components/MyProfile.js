@@ -189,7 +189,7 @@ export default class User extends Component {
             <div id="userPage">
                 <h1>Welcome, {this.state.user}</h1>
                 <img src={this.state.userAvatar} alt={this.state.user}></img>
-                <h3 className='countedRuns'>You have completed {this.state.runs.length} run(s)!</h3>
+                <h3 className='countedRuns'>You have submitted {this.state.runs.length} run(s)!</h3>
                 <table className="myRuns">
                     <thead>
                         <tr>

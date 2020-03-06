@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.5.0.0
+# Pokemon Challenges Alpha Build 0.5.0.1
 
 Version numbers are created using the following system
 a.b.c.d
@@ -8,6 +8,12 @@ a.b.c.d
 - c = Build Number (Smaller changes to the site, nothing ground breaking)
 - d = Revision Number (bug fixes or very minor changes)
 
+
+#### March 6, 2020 - 0.5.0.1
+- Fixed error with 'Save' button staying disabled after misspelling a Pokemon name
+- Changed text on 'My Profile' from 'x runs completed' to 'x runs submitted'
+
+### Beta Begins - March 5th, 2020
 
 #### March 5, 2020 - 0.5.0.0
 - Added 'Badges' to the model of the User

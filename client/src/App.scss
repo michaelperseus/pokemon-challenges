@@ -432,6 +432,13 @@ body {
 
 }
 
+.oneGameContainer {
+  @media only screen and (min-width: $tablet-landscape) {
+    grid-template-columns: 1fr !important;
+    width: 40% !important;
+  }
+}
+
 #gameContainer {
   width: 90%;
   margin: 0 auto;
