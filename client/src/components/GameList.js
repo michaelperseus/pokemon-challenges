@@ -50,6 +50,7 @@ class NewGameList extends Component {
 
         //Filters for if 'Type' is 'all'
         if (this.state.filterType === "all") {
+            document.getElementById('gameContainer').classList.remove('oneGameContainer');
             if (this.state.filterGen === 'all') {
                 return gameList.forEach(game => {
                     game.classList.remove('inactive')
@@ -67,6 +68,7 @@ class NewGameList extends Component {
         
         //Filters for if 'Type' is 'main'
         gameList.forEach(game => {
+            document.getElementById('gameContainer').classList.add('oneGameContainer');
             if (this.state.filterGen === 'all') {
                 if (game.dataset.type === this.state.filterType) {
                     game.classList.remove('inactive')

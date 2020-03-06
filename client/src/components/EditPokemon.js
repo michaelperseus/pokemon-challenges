@@ -101,6 +101,7 @@ export default class EditPokemon extends Component {
             if (res.status !== 200) {
                 button.classList.remove('disabledButton');
                 button.innerHTML = "Save";
+                button.disabled = false;
                 return alert('invalid pokemon');
             }
             await fetch(`/runs/editPokemon/${this.props.match.params.runId}/${this.props.match.params.pokemonId}`, {
