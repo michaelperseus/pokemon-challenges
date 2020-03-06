@@ -10,8 +10,9 @@ a.b.c.d
 
 
 #### March 6, 2020 - 0.5.0.1
-- Fixed error with 'Save' button staying disabled after misspelling a Pokemon name
+- Fixed error with 'Save' button staying disabled after misspelling a Pokemon name or going over nickname limit
 - Changed text on 'My Profile' from 'x runs completed' to 'x runs submitted'
+- Changed 'Game List' page design to center the column when only one option is selected
 
 ### Beta Begins - March 5th, 2020
 

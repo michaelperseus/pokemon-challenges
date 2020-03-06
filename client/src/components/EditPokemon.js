@@ -75,7 +75,7 @@ export default class EditPokemon extends Component {
         if (this.state.nickname.length > 12) {
             button.classList.remove('disabledButton');
             button.innerHTML = "Save";
-            this.setState({disabledButton: false});
+            button.disabled = false;
             return alert('Max characters for a nickname is 12');
         }
 
@@ -85,7 +85,7 @@ export default class EditPokemon extends Component {
             button.classList.remove('disabledButton');
             button.disabled = false;
             button.innerHTML = "Save";
-            return alert('invalid nickname!')
+            return alert('invalid nickname!');
         }
 
         const update = {
