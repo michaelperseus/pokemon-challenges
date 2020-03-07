@@ -621,6 +621,16 @@ table {
     @media only screen and (min-width: $tablet-landscape) {
       font-size: 1em;
     }
+    #pokeWarning {
+      font-size: .5em;
+      color: $red;
+      @media only screen and (min-width: $tablet-portrait) {
+        font-size: .4em;
+      }
+      @media only screen and (min-width: $tablet-landscape) {
+        font-size: .6em;
+      }
+    }
   }
   input {
     width: 96%;
@@ -795,6 +805,43 @@ table {
     height: 250px;
     width: 250px;
     object-fit: cover;
+  }
+  #userBadges {
+    border-top: 1px solid rgba(255,255,255,0.5);
+    width: 80%;
+    margin: 10px auto;
+    h2 {
+      text-align: center;
+      display: block;
+      margin-bottom: 10px;
+    }
+    #badgeBox {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      row-gap: 10px;
+      .badge {
+        color: black;
+        display: inline-block;
+        margin: 0 10px;
+        padding: 8px;
+        border-radius: 8px;
+        font-size: .75em;
+        justify-self: center;
+        width: 80%;
+        text-align: center;
+      }
+      .Admin {
+        background: #BADA55;
+      }
+      .Alpha.Tester {
+        background: $red;
+        color: white;
+      }
+      .Beta.Tester {
+        background: #47f5ef;
+      }
+    }
+    
   }
   .myRuns {
     width: 90%;

@@ -157,6 +157,8 @@ class EditRun extends Component {
                             <option name="variation" value="monotype">Monotype</option>
                             <option name="variation" value="eeveelocke">Eeveelocke</option>
                             <option name="variation" value="wonderlocke">Wonderlocke</option>
+                            <option name="variation" value="shinylocke">Shinylocke</option>
+                            <option name="variation" value="eliminationlocke">Eliminationlocke</option>
                         </select>
                     </div>
                     <div className="formGroup">

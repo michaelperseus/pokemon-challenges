@@ -30,6 +30,14 @@ export const sortRunsByType = async function() {
         {
             type: 'monotype',
             runs: 0
+        },
+        {
+            type: 'shinylocke',
+            runs: 0
+        },
+        {
+            type: 'eliminationlocke',
+            runs: 0
         }
     ]
 

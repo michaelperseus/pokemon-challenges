@@ -105,7 +105,7 @@ export default class AddPokemon extends Component {
             <div>
                 <form onSubmit={this.handleSubmit} className="editRunForm">
                     <div className="formGroup">
-                        <label>Species</label>
+                        <label>Species<span id="pokeWarning"> Gen 8 Pokemon aren't currently supported</span></label>
                         <input type="text" value={this.state.species} name="species" onChange={this.handleChange} />
                     </div>
                     <div className="formGroup">

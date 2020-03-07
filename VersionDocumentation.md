@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.5.0.1
+# Pokemon Challenges Alpha Build 0.5.1.0
 
 Version numbers are created using the following system
 a.b.c.d
@@ -8,6 +8,11 @@ a.b.c.d
 - c = Build Number (Smaller changes to the site, nothing ground breaking)
 - d = Revision Number (bug fixes or very minor changes)
 
+
+#### March 7, 2020 - 0.5.1.0
+- Added Badge display to User Page
+- Added warning to 'Add/Edit Pokemon' page about Gen 8 Pokemon not being supported yet
+- Added Shinylocke and Eliminationlocke as run variations
 
 #### March 6, 2020 - 0.5.0.1
 - Fixed error with 'Save' button staying disabled after misspelling a Pokemon name or going over nickname limit

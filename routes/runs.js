@@ -10,7 +10,7 @@ const router = express.Router();
 
 //Fetching Routes
 router.get('/all', async (req, res) => {
-    const runs = await Run.find({});
+    const runs = await Run.find({}).sort('-_id');
     res.send(runs);
 })
 
