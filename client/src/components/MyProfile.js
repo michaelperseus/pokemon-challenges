@@ -10,13 +10,15 @@ export default class User extends Component {
             runs: [],
             runTable: <tr><td>loading...</td></tr>,
             newAvatar: null,
-            userAvatar: ''
+            userAvatar: '',
+            badges: ''
         }
     }
 
     componentDidMount = async () => {
         await this.fetchUserPic();
         await this.fetchUserRuns();
+        await this.fetchBadges();
         await this.createTable();
     }
 
@@ -26,6 +28,17 @@ export default class User extends Component {
             .then(data => {
                 this.setState({userAvatar: data.avatar})
             })
+    }
+
+    fetchBadges = async () => {
+        await fetch(`/users/badges/${this.state.user}`)
+        .then(res => res.json())
+        .then(data => {
+            const badgeBox = data.badges.map(badge => {
+                return <span className={`badge ${badge}`}>{badge}</span>
+            });
+            this.setState({badges: badgeBox})
+        })
     }
 
     fetchUserRuns = async () => {
@@ -190,6 +203,12 @@ export default class User extends Component {
                 <h1>Welcome, {this.state.user}</h1>
                 <img src={this.state.userAvatar} alt={this.state.user}></img>
                 <h3 className='countedRuns'>You have submitted {this.state.runs.length} run(s)!</h3>
+                <div id="userBadges">
+                        <h2>Badges</h2>
+                        <div id="badgeBox">
+                            {this.state.badges}
+                        </div>
+                    </div>
                 <table className="myRuns">
                     <thead>
                         <tr>

@@ -41,6 +41,14 @@ router.get('/avatar/:username', async (req, res) => {
     res.status(200).send({avatar: user.avatar});
 })
 
+router.get('/badges/:username', async (req, res) => {
+    const user = await User.findOne({username: {$regex: new RegExp("^" + req.params.username + "$", "i")}});
+    if (!user) {
+        return res.status(404).send({error: 'User not found'})
+    }
+    res.status(200).send({badges: user.badges});
+})
+
 //Verify Password is correct
 router.post('/passConfirm', async (req, res) => {
     console.log(req.body);
