@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { checkFilter } from '../utils/common';
 
 class EditRun extends Component {
     constructor(props) {
@@ -86,7 +87,15 @@ class EditRun extends Component {
         button.innerHTML = 'Saving...';
         button.disabled = true;
 
-        const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\/$ ]+$/i;
+        const commentCheck = await checkFilter(this.state.runNotes);
+        if (commentCheck.check) {
+            button.classList.remove('submitting');
+            button.innerHTML = "Save Run";
+            button.disabled = false;
+            return alert(`Notes contains banned word: ${commentCheck.value}`);
+        }
+
+        const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\\r\n/$ ]+$/i;
         const confirmNotes = this.state.runNotes.match(regex);
         if (!confirmNotes && this.state.runNotes !== '') {
             button.classList.remove('submitting');
@@ -94,11 +103,11 @@ class EditRun extends Component {
             button.disabled = false;
             return alert('invalid notes!')
         }
-        if (this.state.runNotes.length > 500) {
+        if (this.state.runNotes.length > 2000) {
             button.classList.remove('submitting');
             button.innerHTML = 'Save Run';
             button.disabled = false;
-            return alert('Notes are longer than character limit of 500');
+            return alert('Notes are longer than character limit of 2000');
         }
         const data = {
             variation: this.state.variation,
@@ -169,7 +178,7 @@ class EditRun extends Component {
                         </select>
                     </div>
                     <div className="formGroup">
-                        <label>Run Notes <span className="smallWarning">Line breaks currently aren't supported</span></label>
+                        <label>Run Notes</label>
                         <textarea onChange={this.handleChange} value={this.state.runNotes} name='runNotes'></textarea>
                     </div>
                     <div className="formGroup">

@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { checkFilter } from '../utils/common';
 
 export default class EditPokemon extends Component {
     constructor(props) {
@@ -71,6 +72,14 @@ export default class EditPokemon extends Component {
         button.classList.add('disabledButton');
         button.disabled = true;
         button.innerHTML = "Saving...";
+
+        const nameCheck = await checkFilter(this.state.nickname);
+        if (nameCheck.check) {
+            button.classList.remove('disabledButton');
+            button.innerHTML = "Save";
+            button.disabled = false;
+            return alert(`Nickname contains banned word: ${nameCheck.value}`);
+        }
 
         if (this.state.nickname.length > 12) {
             button.classList.remove('disabledButton');

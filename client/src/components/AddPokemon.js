@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+
+import { checkFilter } from '../utils/common';
 
 export default class AddPokemon extends Component {
     constructor(props) {
@@ -35,6 +37,14 @@ export default class AddPokemon extends Component {
         const saveButton = document.getElementById('addingPokemon');
         saveButton.innerHTML = 'Adding...';
         saveButton.classList.add('disabledButton');
+
+        const nameCheck = await checkFilter(this.state.nickname);
+        if (nameCheck.check) {
+            saveButton.classList.remove('disabledButton');
+            saveButton.innerHTML = "Save";
+            this.setState({disabledButton: false});
+            return alert(`Nickname contains banned word: ${nameCheck.value}`);
+        }
 
 
         const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\/$ ]+$/i;

@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.5.1.0
+# Pokemon Challenges Alpha Build 0.5.3.0
 
 Version numbers are created using the following system
 a.b.c.d
@@ -8,6 +8,13 @@ a.b.c.d
 - c = Build Number (Smaller changes to the site, nothing ground breaking)
 - d = Revision Number (bug fixes or very minor changes)
 
+
+#### March 8, 2020 - 0.5.3.0
+- Added censorship filter to input fields
+- Increased 'Notes' character limit to 2000
+- Added 1000 character limit to Comments
+- Fixed issue with line breaks not being usable in comments and run notes
+- Added 'Show More' option for comments and notes that go beyond a certain height
 
 #### March 7, 2020 - 0.5.1.0
 - Added Badge display to User Page

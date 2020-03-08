@@ -932,8 +932,30 @@ table {
 #runNotes {
   width: 80%;
   margin: 10px auto;
+  max-height: 2000px;
+  overflow: hidden;
   p {
     margin-bottom: 10px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    overflow: hidden;
+  }
+  .max-height {
+    max-height: 300px;
+  }
+  .showMore {
+     text-align: center;
+     padding: 5px;
+     font-size: .8em;
+     cursor: pointer;
+     display: block;
+     margin: 0 auto;
+     border: none;
+     background: none;
+     color: rgba(255,255,255,0.7);
+  }
+  .hideButton {
+    display: none;
   }
 }
 
@@ -967,18 +989,39 @@ table {
 
 .comment {
   border-bottom: 1px solid white;
-  margin: 5px 0;
+  margin: 5px 0 15px 0;
   .commentUser {
     color: $yellow;
     text-decoration: none;
   }
   .commentMessage {
     font-size: .9em;
+    line-height: 1.5em;
     margin-bottom: 5px;
+    white-space: pre-wrap;
+    max-width: 100%;
+    overflow: hidden;
+    word-break: break-word;
+  }
+  .max-height {
+    max-height: 150px;
   }
   .commentTime {
     font-size: .8em;
     margin-left: 10px;
+  }
+  .showMoreComment {
+    text-align: left;
+    padding: 5px;
+    font-size: .8em;
+    cursor: pointer;
+    margin: 0 auto;
+    border: none;
+    background: none;
+    color: rgba(255,255,255,0.7);
+  }
+  .hideButton {
+    display: none;
   }
 }
 
