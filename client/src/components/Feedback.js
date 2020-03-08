@@ -26,7 +26,7 @@ class Feedback extends Component {
         button.classList.add('submitting');
 
 
-        const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\/$ ]+$/i;
+        const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\\r\n/$ ]+$/i;
         const confirmNotes = this.state.comment.match(regex);
         if (!confirmNotes  && this.state.comment !== '') {
             button.classList.remove('submitting');

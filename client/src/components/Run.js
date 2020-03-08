@@ -35,15 +35,17 @@ export default class Run extends Component {
             runVariation: data.variation,
             runComments: data.comments,
             runNotes: data.runNotes,
-            runRandomized: data.randomized
+            runRandomized: data.randomized,
         })});
         await fetch(`/games/gameName/${this.state.runGame}`)
         .then(res => res.json())
         .then(data => this.setState({runGame: data.game}));
         this.listPokemon();
         this.loadComment();
+        if (document.getElementById('runNote').offsetHeight < 300) {
+            document.getElementById('showMoreButton').classList.add('hideButton');
+        }
     }
-
     handleComment = async (e) => {
         e.preventDefault();
 
@@ -58,12 +60,18 @@ export default class Run extends Component {
             return alert(`Comment contains banned word: ${commentCheck.value}`);
         }
 
-        const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\/$ ]+$/i;
+        const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\\r\n/$ ]+$/i;
         const confirmComment = this.state.commentText.match(regex);
         if (!confirmComment) {
             submitButton.disabled = false;
             submitButton.innerHTML = 'Submit';
             return alert('Your comment contains unsupported characters!')
+        }
+
+        if (this.state.commentText.length > 1000) {
+            submitButton.innerHTML = 'Submit';
+            submitButton.disabled = false;
+            return alert('Notes are longer than character limit of 500');
         }
 
         const data = {
@@ -103,6 +111,15 @@ export default class Run extends Component {
             return <Comment key={com.posted} user={com.user} time={com.posted} message={com.message} />
         })
         this.setState({comments: comments})
+    }
+
+    toggleMore = (e) => {
+        document.getElementById('runNote').classList.toggle('max-height');
+        if (e.target.innerHTML === 'Show More') {
+            e.target.innerHTML = "Show Less"
+        } else {
+            e.target.innerHTML = "Show More"
+        }
     }
 
     goBack() {
@@ -176,7 +193,8 @@ export default class Run extends Component {
                 </table>
                 <div id="runNotes">
                     <h3>User Notes:</h3>
-                    <p>{this.state.runNotes}</p>
+                    <p id="runNote" className="max-height">{this.state.runNotes}</p>
+                    <button id="showMoreButton" className="showMore" onClick={this.toggleMore}>Show More</button>
                     <hr></hr>
                 </div>
                 <div id="commentContainer">
