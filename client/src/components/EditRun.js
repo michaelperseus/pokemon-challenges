@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { checkFilter } from '../utils/common';
 
 class EditRun extends Component {
     constructor(props) {
@@ -85,6 +86,14 @@ class EditRun extends Component {
         button.classList.add('submitting');
         button.innerHTML = 'Saving...';
         button.disabled = true;
+
+        const commentCheck = await checkFilter(this.state.runNotes);
+        if (commentCheck.check) {
+            button.classList.remove('submitting');
+            button.innerHTML = "Save Run";
+            button.disabled = false;
+            return alert(`Notes contains banned word: ${commentCheck.value}`);
+        }
 
         const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\/$ ]+$/i;
         const confirmNotes = this.state.runNotes.match(regex);

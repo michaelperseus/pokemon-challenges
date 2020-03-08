@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { checkFilter } from '../utils/common';
 
 import Pokemon from './Pokemon';
 import Comment from './Comment';
@@ -49,6 +50,13 @@ export default class Run extends Component {
         const submitButton = document.getElementById('submitComment');
         submitButton.disabled = true;
         submitButton.innerHTML = 'Submitting...';
+
+        const commentCheck = await checkFilter(this.state.commentText);
+        if (commentCheck.check) {
+            submitButton.disabled = false;
+            submitButton.innerHTML = "Submit";
+            return alert(`Comment contains banned word: ${commentCheck.value}`);
+        }
 
         const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\/$ ]+$/i;
         const confirmComment = this.state.commentText.match(regex);
