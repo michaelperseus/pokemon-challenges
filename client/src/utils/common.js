@@ -1,5 +1,16 @@
 import React from 'react';
 
+//Takes in a string and returns is capitalized
+export const capitalizeString = function(string) {
+    const lowercase = string.toLowerCase();
+  
+    let firstLetter = lowercase.slice(0, 1).toUpperCase();
+    let remaining = lowercase.slice(1);
+   
+    let final = firstLetter.concat(remaining);
+    return final
+}
+
 //Sorts all submitted runs by Variation
 export const sortRunsByType = async function() {
     const runs = [{
@@ -50,7 +61,7 @@ export const sortRunsByType = async function() {
     const ordered = runs.sort((a, b) => a.runs > b.runs ? -1 : 1);
 
     const typeTable = ordered.map(type => {
-    return <tr key={type.type}><td>{type.type}</td><td>{type.runs}</td></tr>
+    return <tr key={type.type}><td>{capitalizeString(type.type)}</td><td>{type.runs}</td></tr>
     })
 
     this.setState({typeTable: typeTable})
@@ -86,7 +97,7 @@ export const sortRunsByStatus = async function() {
     const statusTable = ordered.map(type => {
     return (
             <tr key={Math.random()}>
-                <td>{type.status}</td>
+                <td>{capitalizeString(type.status)}</td>
                 <td>{type.runs}</td>
             </tr>
         )

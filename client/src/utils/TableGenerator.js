@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
+import {capitalizeString} from './common';
+
 class TableGenerator extends Component {
 
     constructor(props) {
@@ -57,7 +59,7 @@ class TableGenerator extends Component {
             return (
                 <tr>
                     <td className='tableOverflow'><Link to={`/run/${this.props.run._id}`}>{this.state.gameName}</Link></td>
-                    <td className="tableOverflow nonMobile">{this.props.run.completed}</td>
+                    <td className="tableOverflow nonMobile">{capitalizeString(this.props.run.completed)}</td>
                     <td className="tableOverflow nonMobile">{this.state.pokemon.length}</td>
                     <td className='tableOverflow'><Link to={`/user/${this.props.run.user}`}>{this.props.run.user}</Link></td>
                 </tr>
@@ -66,7 +68,7 @@ class TableGenerator extends Component {
             return (
                 <tr>
                     <td className='tableOverflow'><Link to={`/run/${this.props.run._id}`}>{this.props.run.variation}</Link></td>
-                    <td className="tableOverflow nonMobile">{this.props.run.completed}</td>
+                    <td className="tableOverflow nonMobile">{capitalizeString(this.props.run.completed)}</td>
                     <td className="tableOverflow nonMobile">{this.state.pokemon.length}</td>
                     <td className='tableOverflow'><Link to={`/user/${this.props.run.user}`}>{this.props.run.user}</Link></td>
                 </tr>
@@ -75,16 +77,16 @@ class TableGenerator extends Component {
             return (
                 <tr>
                     <td className='tableOverflow'><Link to={`/run/${this.props.run._id}`}>{this.state.gameName}</Link></td>
-                    <td className="tableOverflow nonMobile">{this.props.run.completed}</td>
+                    <td className="tableOverflow nonMobile">{capitalizeString(this.props.run.completed)}</td>
                     <td className="tableOverflow nonMobile">{this.state.pokemon.length}</td>
-                    <td className='tableOverflow'>{this.props.run.variation}</td>
+                    <td className='tableOverflow'>{capitalizeString(this.props.run.variation)}</td>
                 </tr>
             )
         } else if (this.props.type === 'myRuns') {
             return (
                 <tr>
                     <td className='tableOverflow'><Link to={`/run/${this.props.run._id}`}>{this.state.gameName}</Link></td>
-                    <td className="tableOverflow nonMobile">{this.props.run.completed}</td>
+                    <td className="tableOverflow nonMobile">{capitalizeString(this.props.run.completed)}</td>
                     <td className="tableOverflow nonMobile">{this.state.pokemon.length}</td>
                     <td className="tableOverflow userEdit"><Link to={{pathname: `/edit-run/${this.props.run._id}`, state: {run: this.props.run}}}><button>Edit</button></Link><button onClick={() => this.deleteRun(this.props.run._id)} className="userDeleteRun">Delete</button></td>
                 </tr>
