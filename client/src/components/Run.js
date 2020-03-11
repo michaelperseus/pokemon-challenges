@@ -60,7 +60,7 @@ export default class Run extends Component {
             return alert(`Comment contains banned word: ${commentCheck.value}`);
         }
 
-        const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\\r\n/$ ]+$/i;
+        const regex = /^[\w\s.,&!"'#&{}%€$^()-_@\\\r\n/$ ]+$/i;
         const confirmComment = this.state.commentText.match(regex);
         if (!confirmComment) {
             submitButton.disabled = false;

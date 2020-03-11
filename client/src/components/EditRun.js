@@ -95,7 +95,9 @@ class EditRun extends Component {
             return alert(`Notes contains banned word: ${commentCheck.value}`);
         }
 
-        const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\\r\n/$ ]+$/i;
+        //Old Regex, saving for now in case new version is broken
+        // const regex = /^(?=.*[A-Z0-9])[\w.,&!"'#^()-_@\\\r\n/$ ]+$/i;
+        const regex = /^[\w\s.,&!"'#&{}%€$^()-_@\\\r\n/$ ]+$/i;
         const confirmNotes = this.state.runNotes.match(regex);
         if (!confirmNotes && this.state.runNotes !== '') {
             button.classList.remove('submitting');
