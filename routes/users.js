@@ -49,6 +49,17 @@ router.get('/badges/:username', async (req, res) => {
     res.status(200).send({badges: user.badges});
 })
 
+//Check is user is an Admin
+router.get('/adminCheck', withAuth, async (req, res) => {
+        const token = req.header('Authorization').split(' ')[1];
+        const decoded = jwt.verify(token, process.env.SECRET);
+        const user = await User.findOne({username: decoded._id, 'tokens.token': token});
+        if (!user.badges.includes('Admin')) {
+            return res.status(401).send();
+        }
+        res.send();
+})
+
 //Verify Password is correct
 router.post('/passConfirm', async (req, res) => {
     console.log(req.body);

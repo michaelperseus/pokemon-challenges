@@ -3,11 +3,8 @@ import React from 'react';
 //Takes in a string and returns is capitalized
 export const capitalizeString = function(string) {
     const lowercase = string.toLowerCase();
-  
-    let firstLetter = lowercase.slice(0, 1).toUpperCase();
-    let remaining = lowercase.slice(1);
-   
-    let final = firstLetter.concat(remaining);
+ 
+    let final = lowercase[0].toUpperCase().concat(lowercase.slice(1));
     return final
 }
 
