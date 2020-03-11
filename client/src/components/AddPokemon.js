@@ -47,7 +47,7 @@ export default class AddPokemon extends Component {
         }
 
 
-        const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\/$ ]+$/i;
+        const regex = /^[\w\s.,&!"'#&{}%€$^()-_@\\\r\n/$ ]+$/i;
         const confirmNotes = this.state.nickname.match(regex);
 
         if (this.state.species === '') {

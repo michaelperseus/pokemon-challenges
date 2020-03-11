@@ -18,5 +18,14 @@ router.post('/newComment', withAuth, (req, res) => {
     }
 })
 
+router.get('/all', async (req, res) => {
+    const posts = await Feedback.find()
+    if (!posts) {
+        return res.status(404).send();
+    }
+
+    res.send(posts)
+})
+
 
 module.exports = router;

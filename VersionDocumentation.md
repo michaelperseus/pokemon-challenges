@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.5.3.0
+# Pokemon Challenges Alpha Build 0.5.3.3
 
 Version numbers are created using the following system
 a.b.c.d
@@ -8,6 +8,12 @@ a.b.c.d
 - c = Build Number (Smaller changes to the site, nothing ground breaking)
 - d = Revision Number (bug fixes or very minor changes)
 
+
+#### March 11, 2020 - 0.5.3.3
+- All punctuation marks should now be allowed in text inputs, except alphanumber only fields (ie: usernames)
+- Fixed formatting for certain text, including capitalizing words in tables for better presentation
+- Added Admin portal page for better tracking of issues and users
+- Added new security checks to backend for accessing admin content
 
 #### March 8, 2020 - 0.5.3.0
 - Added censorship filter to input fields

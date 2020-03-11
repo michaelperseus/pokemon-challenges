@@ -88,7 +88,7 @@ export default class EditPokemon extends Component {
             return alert('Max characters for a nickname is 12');
         }
 
-        const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\/$ ]+$/i;
+        const regex = /^[\w\s.,&!"'#&{}%€$^()-_@\\\r\n/$ ]+$/i;
         const confirmNotes = this.state.nickname.match(regex);
         if (!confirmNotes) {
             button.classList.remove('disabledButton');

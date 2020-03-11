@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { checkFilter } from '../utils/common';
+import { checkFilter, capitalizeString } from '../utils/common';
 
 import Pokemon from './Pokemon';
 import Comment from './Comment';
@@ -60,7 +60,7 @@ export default class Run extends Component {
             return alert(`Comment contains banned word: ${commentCheck.value}`);
         }
 
-        const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\\r\n/$ ]+$/i;
+        const regex = /^[\w\s.,&!"'#&{}%€$^()-_@\\\r\n/$ ]+$/i;
         const confirmComment = this.state.commentText.match(regex);
         if (!confirmComment) {
             submitButton.disabled = false;
@@ -162,15 +162,15 @@ export default class Run extends Component {
                         </tr>
                         <tr>
                             <td>Mode</td>
-                            <td>{this.state.runVariation}</td>
+                            <td>{capitalizeString(this.state.runVariation)}</td>
                         </tr>
                         <tr>
                             <td>Randomized</td>
-                            <td>{this.state.runRandomized}</td>
+                            <td>{capitalizeString(this.state.runRandomized)}</td>
                         </tr>
                         <tr>
                             <td>Status</td>
-                            <td>{this.state.runStatus}</td>
+                            <td>{capitalizeString(this.state.runStatus)}</td>
                         </tr>
                         <tr>
                             <td>Pokemon Caught</td>

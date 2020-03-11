@@ -22,11 +22,13 @@ import GameList from './components/GameList';
 import ForgotPassword from './components/ForgotPassword';
 import Feedback from './components/Feedback';
 import Reset from './components/Reset';
+import Admin from './components/Admin';
 
 import ScrollToTop from './components/ScrollToTop';
 import CheckLogin from './components/CheckLogin';
 import withAuth from './components/withAuth';
 import withoutAuth from './components/withoutAuth';
+import withAdminAuth from './components/withAdminAuth';
 
 function App() {
   return (
@@ -53,6 +55,7 @@ function App() {
             <Route path='/add-pokemon/:runId' component={withAuth(runAuth(AddPokemon))} />
             <Route path='/forgot-password' component={withoutAuth(ForgotPassword)} />
             <Route path='/feedback' component={withAuth(Feedback)} />
+            <Route path='/admin' component={withAdminAuth(Admin)} />
             <Route component={NotFound} />
           </Switch>
         </main>
