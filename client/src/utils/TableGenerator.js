@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import {capitalizeString} from './common';
+import { capitalizeString } from './common';
 
 class TableGenerator extends Component {
 
@@ -18,7 +18,7 @@ class TableGenerator extends Component {
         if (!confirmDelete) {
             return
         }
-        
+
         const deleteData = {
             id: id
         }
@@ -30,27 +30,27 @@ class TableGenerator extends Component {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         })
-        .then(res => {
-            if (res.status === 200) {
-                window.location.reload(true);
-            } else {
-                alert('Error deleting')
-            }
-        })
+            .then(res => {
+                if (res.status === 200) {
+                    window.location.reload(true);
+                } else {
+                    alert('Error deleting')
+                }
+            })
     }
 
     async componentDidMount() {
         if (this.props.run.pokemon === undefined) {
-            this.setState({pokemon: []})
+            this.setState({ pokemon: [] })
         } else {
-            this.setState({pokemon: this.props.run.pokemon})
+            this.setState({ pokemon: this.props.run.pokemon })
         }
         if (this.props.type === 'community' || this.props.type === 'user' || this.props.type === 'myRuns') {
             await fetch(`/games/gameName/${this.props.run.game}`)
-            .then(res => res.json())
-            .then(data => {
-                this.setState({gameName: data.game})
-            })
+                .then(res => res.json())
+                .then(data => {
+                    this.setState({ gameName: data.game })
+                })
         }
     }
 
@@ -88,7 +88,7 @@ class TableGenerator extends Component {
                     <td className='tableOverflow'><Link to={`/run/${this.props.run._id}`}>{this.state.gameName}</Link></td>
                     <td className="tableOverflow nonMobile">{capitalizeString(this.props.run.completed)}</td>
                     <td className="tableOverflow nonMobile">{this.state.pokemon.length}</td>
-                    <td className="tableOverflow userEdit"><Link to={{pathname: `/edit-run/${this.props.run._id}`, state: {run: this.props.run}}}><button>Edit</button></Link><button onClick={() => this.deleteRun(this.props.run._id)} className="userDeleteRun">Delete</button></td>
+                    <td className="tableOverflow userEdit"><Link to={{ pathname: `/edit-run/${this.props.run._id}`, state: { run: this.props.run } }}><button>Edit</button></Link><button onClick={() => this.deleteRun(this.props.run._id)} className="userDeleteRun">Delete</button></td>
                 </tr>
             )
         } else {
@@ -98,7 +98,7 @@ class TableGenerator extends Component {
                 </div>
             )
         }
-        
+
     }
 }
 

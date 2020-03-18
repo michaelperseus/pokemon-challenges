@@ -26,20 +26,22 @@ export default class Run extends Component {
 
     async componentDidMount() {
         await fetch(`/runs/view/${this.state.runId}`)
-        .then(res => res.json())
-        .then(data => {this.setState({
-            runPokemon: data.pokemon,
-            runGame: data.game,
-            runUser: data.user,
-            runStatus: data.completed,
-            runVariation: data.variation,
-            runComments: data.comments,
-            runNotes: data.runNotes,
-            runRandomized: data.randomized,
-        })});
+            .then(res => res.json())
+            .then(data => {
+                this.setState({
+                    runPokemon: data.pokemon,
+                    runGame: data.game,
+                    runUser: data.user,
+                    runStatus: capitalizeString(data.completed),
+                    runVariation: capitalizeString(data.variation),
+                    runComments: data.comments,
+                    runNotes: data.runNotes,
+                    runRandomized: capitalizeString(data.randomized),
+                })
+            });
         await fetch(`/games/gameName/${this.state.runGame}`)
-        .then(res => res.json())
-        .then(data => this.setState({runGame: data.game}));
+            .then(res => res.json())
+            .then(data => this.setState({ runGame: data.game }));
         this.listPokemon();
         this.loadComment();
         if (document.getElementById('runNote').offsetHeight < 300) {
@@ -89,15 +91,15 @@ export default class Run extends Component {
             },
             body: JSON.stringify(data)
         })
-        .then(res => res.json())
-        .then(data => window.location.reload(true))
+            .then(res => res.json())
+            .then(data => window.location.reload(true))
     }
 
     listPokemon = async () => {
         const list = this.state.runPokemon.map(poke => {
-        return <Pokemon key={poke.pokemon} data={poke} />
+            return <Pokemon key={poke.pokemon} data={poke} />
         })
-        this.setState({pokemonList: list})
+        this.setState({ pokemonList: list })
     }
 
     handleCommentText = (e) => {
@@ -110,7 +112,7 @@ export default class Run extends Component {
         const comments = this.state.runComments.map(com => {
             return <Comment key={com.posted} user={com.user} time={com.posted} message={com.message} />
         })
-        this.setState({comments: comments})
+        this.setState({ comments: comments })
     }
 
     toggleMore = (e) => {
@@ -130,10 +132,10 @@ export default class Run extends Component {
         if (localStorage.getItem('user') !== null && localStorage.getItem('token') !== null) {
             return (
                 <form id="newcomment" onSubmit={this.handleComment}>
-                        <label>Leave a Comment!</label>
-                        <textarea onChange={this.handleCommentText} value={this.state.commentText} placeholder="Write a comment"></textarea>
-                        <button id="submitComment">Submit</button>
-                    </form>
+                    <label>Leave a Comment!</label>
+                    <textarea onChange={this.handleCommentText} value={this.state.commentText} placeholder="Write a comment"></textarea>
+                    <button id="submitComment">Submit</button>
+                </form>
             )
         } else {
             return ('')
@@ -162,15 +164,15 @@ export default class Run extends Component {
                         </tr>
                         <tr>
                             <td>Mode</td>
-                            <td>{capitalizeString(this.state.runVariation)}</td>
+                            <td>{this.state.runVariation}</td>
                         </tr>
                         <tr>
                             <td>Randomized</td>
-                            <td>{capitalizeString(this.state.runRandomized)}</td>
+                            <td>{this.state.runRandomized}</td>
                         </tr>
                         <tr>
                             <td>Status</td>
-                            <td>{capitalizeString(this.state.runStatus)}</td>
+                            <td>{this.state.runStatus}</td>
                         </tr>
                         <tr>
                             <td>Pokemon Caught</td>
