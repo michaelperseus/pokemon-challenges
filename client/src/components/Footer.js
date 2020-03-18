@@ -4,7 +4,7 @@ export default class Footer extends Component {
     render() {
         return (
             <div id="footer">
-                <span>Pokemon Challenges - v.0.5.3.3</span>
+                <span>Pokemon Challenges - v.0.5.4.0</span>
             </div>
         )
     }
