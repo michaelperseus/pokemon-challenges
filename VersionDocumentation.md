@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.5.3.3
+# Pokemon Challenges Alpha Build 0.5.4.0
 
 Version numbers are created using the following system
 a.b.c.d
@@ -8,6 +8,10 @@ a.b.c.d
 - c = Build Number (Smaller changes to the site, nothing ground breaking)
 - d = Revision Number (bug fixes or very minor changes)
 
+
+#### March 18, 2020 - 0.5.4.0
+- Fixed Site-Breaking bug where page would crash when user tries to look at a run
+- Added a delete button for comments user adds to runs
 
 #### March 11, 2020 - 0.5.3.3
 - All punctuation marks should now be allowed in text inputs, except alphanumber only fields (ie: usernames)

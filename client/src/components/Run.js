@@ -110,7 +110,7 @@ export default class Run extends Component {
 
     loadComment = () => {
         const comments = this.state.runComments.map(com => {
-            return <Comment key={com.posted} user={com.user} time={com.posted} message={com.message} />
+            return <Comment key={com._id} user={com.user} time={com.posted} message={com.message} runId={this.state.runId} commentId={com._id} />
         })
         this.setState({ comments: comments })
     }

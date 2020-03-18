@@ -1010,6 +1010,18 @@ table {
     font-size: .8em;
     margin-left: 10px;
   }
+  .commentDelete {
+    color: $red;
+    font-size: .8em;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: .25s all ease;
+    border: none;
+    background: none;
+    &:hover {
+      color: $darkRed;
+    }
+  }
   .showMoreComment {
     text-align: left;
     padding: 5px;
