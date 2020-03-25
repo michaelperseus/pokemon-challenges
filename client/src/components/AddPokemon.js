@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { checkFilter } from '../utils/common';
+import { checkFilter, checkGalar } from '../utils/common';
 
 export default class AddPokemon extends Component {
     constructor(props) {
@@ -27,13 +27,13 @@ export default class AddPokemon extends Component {
             this.setState({
                 [text]: e.target.value
             })
-        } 
-        
+        }
+
     }
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        this.setState({disabledButton: true});
+        this.setState({ disabledButton: true });
         const saveButton = document.getElementById('addingPokemon');
         saveButton.innerHTML = 'Adding...';
         saveButton.classList.add('disabledButton');
@@ -42,7 +42,7 @@ export default class AddPokemon extends Component {
         if (nameCheck.check) {
             saveButton.classList.remove('disabledButton');
             saveButton.innerHTML = "Save";
-            this.setState({disabledButton: false});
+            this.setState({ disabledButton: false });
             return alert(`Nickname contains banned word: ${nameCheck.value}`);
         }
 
@@ -53,24 +53,24 @@ export default class AddPokemon extends Component {
         if (this.state.species === '') {
             saveButton.classList.remove('disabledButton');
             saveButton.innerHTML = "Save";
-            this.setState({disabledButton: false});
+            this.setState({ disabledButton: false });
             return alert('Please enter a Pokemon');
         }
 
         if (this.state.nickname.length > 12) {
             saveButton.classList.remove('disabledButton');
             saveButton.innerHTML = "Save";
-            this.setState({disabledButton: false});
+            this.setState({ disabledButton: false });
             return alert('Max characters for a nickname is 12');
         }
 
         if (!confirmNotes & this.state.nickname !== '') {
             saveButton.classList.remove('disabledButton');
             saveButton.innerHTML = "Save";
-            this.setState({disabledButton: false});
+            this.setState({ disabledButton: false });
             return alert('invalid nickname!')
         }
-    
+
         const update = {
             pokemon: this.state.species.toLowerCase(),
             starter: this.state.starter,
@@ -81,33 +81,36 @@ export default class AddPokemon extends Component {
         const fetchurl = `https://pokeapi.co/api/v2/pokemon/${update.pokemon}/`
         //Checks to make sure it is a valid pokemon
         await fetch(fetchurl)
-        .then(async res => {
-            if (res.status !== 200) {
-                saveButton.classList.remove('disabledButton');
-                saveButton.innerHTML = "Save";
-                this.setState({disabledButton: false});
-                return alert('invalid pokemon')
-            }
-            await fetch(`/runs/addPokemon/${this.props.match.params.runId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                  },
-                body: JSON.stringify(update)
-
-            })
-            .then(res => {
-                if (res.status === 201) {
-                    this.props.history.push(`/edit-run/${this.props.match.params.runId}`);
-                } else {
-                    alert('an error occured while updating');
-                    saveButton.classList.remove('disabledButton');
-                    saveButton.innerHTML = "Save";
-                    this.setState({disabledButton: false});
+            .then(async res => {
+                if (res.status !== 200) {
+                    const galar = await checkGalar(update.pokemon);
+                    if (!galar) {
+                        saveButton.classList.remove('disabledButton');
+                        saveButton.innerHTML = "Save";
+                        this.setState({ disabledButton: false });
+                        return alert('invalid pokemon')
+                    }
                 }
+                await fetch(`/runs/addPokemon/${this.props.match.params.runId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify(update)
+
+                })
+                    .then(res => {
+                        if (res.status === 201) {
+                            this.props.history.push(`/edit-run/${this.props.match.params.runId}`);
+                        } else {
+                            alert('an error occured while updating');
+                            saveButton.classList.remove('disabledButton');
+                            saveButton.innerHTML = "Save";
+                            this.setState({ disabledButton: false });
+                        }
+                    })
             })
-        })
     }
 
     render() {
