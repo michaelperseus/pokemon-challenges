@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { checkFilter } from '../utils/common';
+import { checkFilter, checkGalar } from '../utils/common';
 
 export default class EditPokemon extends Component {
     constructor(props) {
@@ -14,16 +14,15 @@ export default class EditPokemon extends Component {
 
     async componentDidMount() {
         await fetch(`/runs/runPokemon/${this.props.match.params.runId}/${this.props.match.params.pokemonId}`)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data.pokemon[0]);
-            this.setState({
-                species: data.pokemon[0].pokemon,
-                starter: data.pokemon[0].starter,
-                nickname: data.pokemon[0].nickname || data.pokemon[0].pokemon,
-                status: data.pokemon[0].status || 'fainted'
+            .then(res => res.json())
+            .then(data => {
+                this.setState({
+                    species: data.pokemon[0].pokemon,
+                    starter: data.pokemon[0].starter,
+                    nickname: data.pokemon[0].nickname || data.pokemon[0].pokemon,
+                    status: data.pokemon[0].status || 'fainted'
+                })
             })
-        })
     }
 
     deletePokemon = () => {
@@ -38,15 +37,13 @@ export default class EditPokemon extends Component {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         })
-        .then(res => {
-            console.log(res);
-            if (res.status === 200) {
-                console.log('deleted');
-                this.props.history.push(`/edit-run/${this.props.match.params.runId}`);
-            } else {
-                console.log("error deleting")
-            }
-        })
+            .then(res => {
+                if (res.status === 200) {
+                    this.props.history.push(`/edit-run/${this.props.match.params.runId}`);
+                } else {
+                    alert('An error has occured while deleting')
+                }
+            })
     }
 
     handleChange = (e) => {
@@ -61,8 +58,8 @@ export default class EditPokemon extends Component {
             this.setState({
                 [text]: e.target.value
             })
-        } 
-        
+        }
+
     }
 
     handleSubmit = async (e) => {
@@ -106,30 +103,33 @@ export default class EditPokemon extends Component {
         }
         //Checks to make sure it is a valid pokemon
         await fetch(`https://pokeapi.co/api/v2/pokemon/${update.pokemon}/`)
-        .then(async res => {
-            if (res.status !== 200) {
-                button.classList.remove('disabledButton');
-                button.innerHTML = "Save";
-                button.disabled = false;
-                return alert('invalid pokemon');
-            }
-            await fetch(`/runs/editPokemon/${this.props.match.params.runId}/${this.props.match.params.pokemonId}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                  },
-                body: JSON.stringify(update)
-
-            })
-            .then(res => {
-                if (res.status === 201) {
-                    this.props.history.push(`/edit-run/${this.props.match.params.runId}`);
-                } else {
-                    alert('an error occured while updating')
+            .then(async res => {
+                if (res.status !== 200) {
+                    const galar = await checkGalar(update.pokemon);
+                    if (!galar) {
+                        button.classList.remove('disabledButton');
+                        button.innerHTML = "Save";
+                        button.disabled = false;
+                        return alert('invalid pokemon');
+                    }
                 }
+                await fetch(`/runs/editPokemon/${this.props.match.params.runId}/${this.props.match.params.pokemonId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify(update)
+
+                })
+                    .then(res => {
+                        if (res.status === 201) {
+                            this.props.history.push(`/edit-run/${this.props.match.params.runId}`);
+                        } else {
+                            alert('an error occured while updating')
+                        }
+                    })
             })
-        })
     }
 
     render() {

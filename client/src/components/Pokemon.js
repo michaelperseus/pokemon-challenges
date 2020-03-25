@@ -18,11 +18,24 @@ export default class Pokemon extends Component {
         if (!this.props.data) {
             return
         }
+        let galarcheck = false;
         await fetch(`https://pokeapi.co/api/v2/pokemon/${this.props.data.pokemon}`)
-        .then(res => res.json())
-        .then(data => {
-            this.setState({pokemon: capitalizeString(data.name), sprite: data.sprites.front_default})
-        })
+            .then(res => {
+                if (res.status === 200) {
+                    return res.json();
+                } else {
+                    galarcheck = true;
+                    return
+                }
+            }
+            )
+            .then(data => {
+                console.log(galarcheck);
+                if (galarcheck) {
+                    return this.setState({ pokemon: capitalizeString(this.props.data.pokemon), sprite: 'https://cdn.bulbagarden.net/upload/6/60/Question_Mark.png' })
+                }
+                this.setState({ pokemon: capitalizeString(this.props.data.pokemon), sprite: data.sprites.front_default })
+            })
     }
 
 

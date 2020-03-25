@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.5.4.0
+# Pokemon Challenges Alpha Build 0.5.4.5
 
 Version numbers are created using the following system
 a.b.c.d
@@ -8,6 +8,10 @@ a.b.c.d
 - c = Build Number (Smaller changes to the site, nothing ground breaking)
 - d = Revision Number (bug fixes or very minor changes)
 
+
+#### March 25, 2020 - 0.5.4.5
+- Added ability to add Galar Pokemon to runs, however no sprites are available
+- Update file size for all images, making a 14MB reduction
 
 #### March 18, 2020 - 0.5.4.0
 - Fixed Site-Breaking bug where page would crash when user tries to look at a run

@@ -104,6 +104,20 @@ export const sortRunsByStatus = async function () {
 }
 
 
+//Check if Pokemon is in Galar Pokedex
+export const checkGalar = async function (poke) {
+
+    const galarList = ['grookey', 'thwackey', 'rillaboom', 'scorbunny', 'raboot', 'cinderace', 'sobble', 'drizzile', 'inteleon', 'blipbug', 'dottler', 'orbeetle', 'rookidee', 'corvisquire', 'corviknight', 'skwovet', 'greedent', 'nickit', 'thievul', 'obstagoon', 'wooloo', 'dubwool', 'chewtle', 'drednaw', 'yamper', 'boltund', 'gossifleur', 'eldegoss', 'sizzlipede', 'centiskorch', 'rolycoly', 'carkol', 'coalossal', 'arrokuda', 'barraskewda', 'perrserker', 'milcery', 'alcremie', 'applin', 'flapple', 'appletun', 'sirfetchd', 'cursola', 'impdimp', 'morgrem', 'grimmsnarl', 'hatenna', 'hattrem', 'hatterene', 'cufant', 'copperajah', 'cramorant', 'toxel', 'toxtricity', 'silicobra', 'sandaconda', 'runerigus', 'sinistea', 'polteageist', 'morpeko', 'falinks', 'snom', 'frosmoth', 'clobbopus', 'grapploct', 'pincurchin', 'mr.rime', 'stonjourner', 'eiscue', 'duraludon', 'dracozolt', 'arctozolt', 'dracovish', 'arctovish', 'dreepy', 'drakloak', 'dragapult', 'zacian', 'zamazenta', 'eternatus'];
+
+    let check = false
+
+    if (galarList.includes(poke)) {
+        check = true
+    } else {
+        check = false
+    }
+    return check
+}
 
 //Check is text contains filtered words
 export const checkFilter = async function (word) {
