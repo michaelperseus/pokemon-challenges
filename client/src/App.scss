@@ -131,6 +131,7 @@ body {
   ul {
     align-self: center;
     justify-self: end;
+    margin-right: 5px;
     li {
       display: inline;
       padding: 0 5px;
@@ -854,7 +855,7 @@ table {
   }
   #newAvatar {
     width: 90%;
-    margin: 10px auto;
+    margin: 0px auto;
     @media only screen and (min-width: $tablet-landscape) {
       width: 80%;
     }
@@ -880,6 +881,31 @@ table {
       @media only screen and (min-width: $tablet-portrait) {
         width: 20%;
         font-size: .7em;
+      }
+    }
+  }
+}
+
+#changePasswordGroup {
+  width: 90%;
+  margin: 20px auto;
+  button {
+    border: none;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    background: $white;
+    a {
+      text-decoration: none;
+      padding: 10px;
+      display: block;
+      font-size: 1.5em;
+      color: $black;
+      transition: .25s all ease;
+    }
+    &:hover {
+      a {
+        color: black;
       }
     }
   }
@@ -1273,6 +1299,13 @@ table {
   @media only screen and (min-width: $tablet-landscape) {
     width: 80%;
   }
+  h1 {
+    text-align: center;
+    font-size: 1.7em;
+    // @media only screen and (min-width: $tablet-portrait) {
+    //   font-size: 2em;
+    // }
+  }
   p {
     font-size: 1.1em;
     margin: 10px 0;
@@ -1307,6 +1340,7 @@ table {
     label {
       text-align: center;
       display: block;
+      margin-bottom: 5px;
     }
     .smallWarning {
       font-size: .75em;
@@ -1322,7 +1356,7 @@ table {
       border: none;
       padding: 2%;
       font-size: .8em;
-      margin: 0 auto 5px auto;
+      margin: 0 auto 10px auto;
       display: block;
       @media only screen and (min-width: $tablet-portrait) {
         font-size: .8em;
@@ -1334,18 +1368,22 @@ table {
     }
     button {
       @extend %basic-button;
-      padding: 5px;
+      padding: 10px;
       background: $red;
       color: $white;
       font-size: 1em;
       display: block;
-      margin: 0 auto;
+      margin: 15px auto;
       transition: all .25s ease;
       &:hover {
         background: $darkRed;
       }
+      @media only screen and (min-width: $tablet-portrait) {
+        font-size: .8em;
+      }
       @media only screen and (min-width: $tablet-landscape) {
         font-size: .8em;
+        padding: 5px;
       }
     }
     .disabledButton {

@@ -26,44 +26,44 @@ const crypto = require('crypto');
 
 
 router.get('/info/:username', async (req, res) => {
-    const user = await User.findOne({username: {$regex: new RegExp("^" + req.params.username + "$", "i")}});
+    const user = await User.findOne({ username: { $regex: new RegExp("^" + req.params.username + "$", "i") } });
     if (!user) {
-        return res.status(404).send({error: 'User not found'})
-    } 
+        return res.status(404).send({ error: 'User not found' })
+    }
     res.status(200).send(user);
 })
 
 router.get('/avatar/:username', async (req, res) => {
-    const user = await User.findOne({username: {$regex: new RegExp("^" + req.params.username + "$", "i")}});
+    const user = await User.findOne({ username: { $regex: new RegExp("^" + req.params.username + "$", "i") } });
     if (!user) {
-        return res.status(404).send({error: 'User not found'})
-    } 
-    res.status(200).send({avatar: user.avatar});
+        return res.status(404).send({ error: 'User not found' })
+    }
+    res.status(200).send({ avatar: user.avatar });
 })
 
 router.get('/badges/:username', async (req, res) => {
-    const user = await User.findOne({username: {$regex: new RegExp("^" + req.params.username + "$", "i")}});
+    const user = await User.findOne({ username: { $regex: new RegExp("^" + req.params.username + "$", "i") } });
     if (!user) {
-        return res.status(404).send({error: 'User not found'})
+        return res.status(404).send({ error: 'User not found' })
     }
-    res.status(200).send({badges: user.badges});
+    res.status(200).send({ badges: user.badges });
 })
 
 //Check is user is an Admin
 router.get('/adminCheck', withAuth, async (req, res) => {
-        const token = req.header('Authorization').split(' ')[1];
-        const decoded = jwt.verify(token, process.env.SECRET);
-        const user = await User.findOne({username: decoded._id, 'tokens.token': token});
-        if (!user.badges.includes('Admin')) {
-            return res.status(401).send();
-        }
-        res.send();
+    const token = req.header('Authorization').split(' ')[1];
+    const decoded = jwt.verify(token, process.env.SECRET);
+    const user = await User.findOne({ username: decoded._id, 'tokens.token': token });
+    if (!user.badges.includes('Admin')) {
+        return res.status(401).send();
+    }
+    res.send();
 })
 
 //Verify Password is correct
 router.post('/passConfirm', async (req, res) => {
     console.log(req.body);
-    const user = await User.findOne({username: req.body.username});
+    const user = await User.findOne({ username: req.body.username });
     const isMatch = await bcrypt.compare(req.body.password, user.password);
     if (!isMatch) {
         res.status(404).send();
@@ -74,25 +74,25 @@ router.post('/passConfirm', async (req, res) => {
 
 //Verify if email is active
 router.post('/verifyEmail', async (req, res) => {
-    const user = await User.findOne({email: req.body.email});
+    const user = await User.findOne({ email: req.body.email });
     if (!user) {
-        res.status(404).send({status: 'Email address could not be located'})
+        res.status(404).send({ status: 'Email address could not be located' })
     } else {
-        res.send({status: 'Email has been sent!', user})
+        res.send({ status: 'Email has been sent!', user })
     }
 })
 
 //User Forgot Password
 router.post('/forgotPassword', async (req, res) => {
-    const user = await User.findOne({email: req.body.email});
+    const user = await User.findOne({ email: req.body.email });
     if (!user) {
-        return res.status(404).send({response: 'Email address could not be located'});
+        return res.status(404).send({ response: 'Email address could not be located' });
     }
     const token = crypto.randomBytes(20).toString('hex');
     user.resetPasswordToken = token;
     user.resetPasswordExpires = Date.now() + 3600000;
     await user.save();
-    
+
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -105,7 +105,7 @@ router.post('/forgotPassword', async (req, res) => {
         from: 'PokemonChallenges@gmail.com',
         to: `${req.body.email}`,
         subject: 'Link to Reset Password',
-        text: 
+        text:
             'You are receiving this because you (or some else) have requested to reset the password for your account. \n\n'
             + 'Please click the link below or paste it into your browser within one hour of this email being sent: \n\n'
             + `https://hardy-pokemon-challenge.herokuapp.com/reset/${token}\n\n`
@@ -115,22 +115,22 @@ router.post('/forgotPassword', async (req, res) => {
     transporter.sendMail(mailOptions, (err, response) => {
         if (err) {
             console.log(err);
-            res.status(500).send({response: 'An error has occured'})
+            res.status(500).send({ response: 'An error has occured' })
         } else {
-            res.send({response: 'Your email has been sent!'})
+            res.send({ response: 'Your email has been sent!' })
         }
     })
 })
 
 //Verify Token is still Valid
 router.get('/verifyToken/:token', async (req, res) => {
-    const user = await User.findOne({resetPasswordToken: req.params.token});
+    const user = await User.findOne({ resetPasswordToken: req.params.token });
     if (!user) {
-        return res.status(404).send({response: 'User not found'});
+        return res.status(404).send({ response: 'User not found' });
     }
 
     if (user.resetPasswordExpires < Date.now()) {
-        return res.status(404).send({response: 'Token has expired'})
+        return res.status(404).send({ response: 'Token has expired' })
     }
 
     res.send()
@@ -138,9 +138,9 @@ router.get('/verifyToken/:token', async (req, res) => {
 
 //Reset Password After Token Confirmation
 router.post('/resetPassword', async (req, res) => {
-    const user = await User.findOne({resetPasswordToken: req.body.resetToken});
+    const user = await User.findOne({ resetPasswordToken: req.body.resetToken });
     if (!user) {
-        return res.status(404).send({response: 'User not found'});
+        return res.status(404).send({ response: 'User not found' });
     }
 
     user.password = req.body.password;
@@ -150,12 +150,32 @@ router.post('/resetPassword', async (req, res) => {
         user.resetPasswordExpires = null;
         user.resetPasswordToken = null;
         await user.save();
-        res.status(201).send({response: 'Password has been updated successfully! Please try logging in!'})
+        res.status(201).send({ response: 'Password has been updated successfully! Please try logging in!' })
     } catch (e) {
         console.log(e);
         res.status(500).send(e);
     }
 })
+
+//Update user password while logged in
+router.post('/updatePassword', withAuth, async (req, res) => {
+    const user = await User.findOne({ username: req.body.username });
+    const isMatch = await bcrypt.compare(req.body.currentPassword, user.password);
+    if (!isMatch) {
+        return res.status(404).send();
+    }
+
+    user.password = req.body.newPassword;
+
+    try {
+        await user.save();
+        res.status(201).send({ response: 'Password has been updated successfully!' })
+    } catch (e) {
+        console.log(e);
+        res.status(500).send(e);
+    }
+})
+
 
 //Register a new user
 router.post('/register', async (req, res) => {
@@ -163,7 +183,7 @@ router.post('/register', async (req, res) => {
     try {
         await user.save();
         const token = await user.generateAuthTokens();
-        res.status(201).send({user, token});
+        res.status(201).send({ user, token });
     } catch (e) {
         console.log(e);
         res.status(500).send(e);
@@ -172,7 +192,7 @@ router.post('/register', async (req, res) => {
 
 
 router.post('/newAvatar', withAuth, singleUpload, async (req, res) => {
-    const user = await User.findOne({username: req.body.name});
+    const user = await User.findOne({ username: req.body.name });
     user.avatar = req.file.location;
     try {
         await user.save();
@@ -185,7 +205,7 @@ router.post('/newAvatar', withAuth, singleUpload, async (req, res) => {
 
 router.post('/logout', withAuth, async (req, res) => {
     try {
-        const user = await User.findOne({username: req.body.username});
+        const user = await User.findOne({ username: req.body.username });
         user.tokens = await user.tokens.filter((token) => {
             return token.token !== req.body.token;
         })
@@ -200,7 +220,7 @@ router.post('/logout', withAuth, async (req, res) => {
 
 router.post('/logoutAll', withAuth, async (req, res) => {
     try {
-        const user = await User.findOne({username: req.body.username});
+        const user = await User.findOne({ username: req.body.username });
         user.tokens = [];
         await user.save();
         res.send(user);
@@ -208,14 +228,14 @@ router.post('/logoutAll', withAuth, async (req, res) => {
         console.log(e);
         res.status(500).send(e);
     }
-    
+
 })
 
 router.post('/authenticate', async (req, res) => {
     try {
         const user = await User.findByCredentials(req.body.username, req.body.password);
         const token = await user.generateAuthTokens();
-        res.send({user, token});
+        res.send({ user, token });
     } catch (e) {
         console.log(e);
         res.status(400).send(e);
@@ -225,7 +245,7 @@ router.post('/authenticate', async (req, res) => {
 
 router.delete('/deleteProfile', withAuth, async (req, res) => {
     try {
-        const user = await User.findOne({username: req.body.username});
+        const user = await User.findOne({ username: req.body.username });
         await user.remove();
         res.send(user);
     } catch (e) {

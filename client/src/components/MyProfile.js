@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import TableGenerator from '../utils/TableGenerator';
 
 export default class User extends Component {
@@ -26,25 +28,25 @@ export default class User extends Component {
         await fetch(`/users/avatar/${this.state.user}`)
             .then(res => res.json())
             .then(data => {
-                this.setState({userAvatar: data.avatar})
+                this.setState({ userAvatar: data.avatar })
             })
     }
 
     fetchBadges = async () => {
         await fetch(`/users/badges/${this.state.user}`)
-        .then(res => res.json())
-        .then(data => {
-            const badgeBox = data.badges.map(badge => {
-                return <span className={`badge ${badge}`}>{badge}</span>
-            });
-            this.setState({badges: badgeBox})
-        })
+            .then(res => res.json())
+            .then(data => {
+                const badgeBox = data.badges.map(badge => {
+                    return <span key={badge} className={`badge ${badge}`}>{badge}</span>
+                });
+                this.setState({ badges: badgeBox })
+            })
     }
 
     fetchUserRuns = async () => {
         await fetch(`/runs/${this.state.user}`)
-        .then(res => res.json())
-        .then(data => this.setState({runs: data}))
+            .then(res => res.json())
+            .then(data => this.setState({ runs: data }))
     }
 
     logoutUser = async () => {
@@ -97,9 +99,9 @@ export default class User extends Component {
 
     createTable = async () => {
         const runTable = await this.state.runs.map(run => {
-            return <TableGenerator type='myRuns' run={run} key={run._id}/>
+            return <TableGenerator type='myRuns' run={run} key={run._id} />
         })
-        this.setState({runTable: runTable});
+        this.setState({ runTable: runTable });
     }
 
     handleImage = (e) => {
@@ -114,7 +116,7 @@ export default class User extends Component {
             const deleteData = {
                 username: this.state.user
             }
-    
+
             await fetch('/users/deleteProfile', {
                 method: 'DELETE',
                 headers: {
@@ -123,16 +125,16 @@ export default class User extends Component {
                 },
                 body: JSON.stringify(deleteData)
             })
-            .then(res => {
-                if (res.status === 200) {
-                    localStorage.removeItem('user');
-                    localStorage.removeItem('token');
-                    this.props.history.push('/');
-                    window.location.reload(true);
-                } else {
-                    console.log('error deleting profile');
-                }
-            })
+                .then(res => {
+                    if (res.status === 200) {
+                        localStorage.removeItem('user');
+                        localStorage.removeItem('token');
+                        this.props.history.push('/');
+                        window.location.reload(true);
+                    } else {
+                        console.log('error deleting profile');
+                    }
+                })
         } else {
             alert('Your password is incorrect');
             return
@@ -141,7 +143,7 @@ export default class User extends Component {
 
     testUpload = async (e) => {
         e.preventDefault();
-        
+
         if (this.state.newAvatar === null) {
             return alert('Please select a file!');
         }
@@ -160,15 +162,15 @@ export default class User extends Component {
         fd.append('image', this.state.newAvatar, 'avatar.png');
         await fetch('/users/newAvatar', {
             method: 'POST',
-            headers: { 
+            headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: fd
         })
-        .then(res => res.json())
-        .then(data => {
-            window.location.reload(true);
-        });
+            .then(res => res.json())
+            .then(data => {
+                window.location.reload(true);
+            });
     }
 
     confirmPassword = async () => {
@@ -188,12 +190,12 @@ export default class User extends Component {
                 password: pass
             })
         })
-        .then(res => {
-            if (res.status !== 200) {
-                return false
-            }
-            return true
-        })
+            .then(res => {
+                if (res.status !== 200) {
+                    return false
+                }
+                return true
+            })
         return correct
     }
 
@@ -204,11 +206,11 @@ export default class User extends Component {
                 <img src={this.state.userAvatar} alt={this.state.user}></img>
                 <h3 className='countedRuns'>You have submitted {this.state.runs.length} run(s)!</h3>
                 <div id="userBadges">
-                        <h2>Badges</h2>
-                        <div id="badgeBox">
-                            {this.state.badges}
-                        </div>
+                    <h2>Badges</h2>
+                    <div id="badgeBox">
+                        {this.state.badges}
                     </div>
+                </div>
                 <table className="myRuns">
                     <thead>
                         <tr>
@@ -227,6 +229,9 @@ export default class User extends Component {
                     <input type="file" id="avatarUpload" name="upload" onChange={this.handleImage}></input>
                     <button>Upload</button>
                 </form>
+                <div id="changePasswordGroup">
+                    <button><Link to='/change-password'>Change Password</Link></button>
+                </div>
                 <div id="logoutGroup">
                     <button onClick={this.logoutUser}>Logout</button>
                     <button onClick={this.logoutAll}>Logout Everywhere</button>

@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.5.4.5
+# Pokemon Challenges Alpha Build 0.5.5.0
 
 Version numbers are created using the following system
 a.b.c.d
@@ -8,6 +8,10 @@ a.b.c.d
 - c = Build Number (Smaller changes to the site, nothing ground breaking)
 - d = Revision Number (bug fixes or very minor changes)
 
+
+#### March 26, 2020 - 0.5.5.0
+- Added confirmation prompt when deleting a comment
+- Added ability to update password while logged in
 
 #### March 25, 2020 - 0.5.4.5
 - Added ability to add Galar Pokemon to runs, however no sprites are available
