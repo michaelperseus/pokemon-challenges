@@ -23,6 +23,10 @@ export default class Comment extends Component {
     }
 
     deleteComment = async (e) => {
+        const confirmDelete = window.confirm('Are you sure you want to delete this comment?');
+        if (!confirmDelete) {
+            return
+        }
         const commentData = {
             runId: this.props.runId,
             commentId: this.props.commentId

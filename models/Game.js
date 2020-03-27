@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
 
 const GameSchema = new mongoose.Schema({
     name: {
@@ -29,6 +30,17 @@ const GameSchema = new mongoose.Schema({
     release: {
         type: Number,
         required: true
+    },
+    rating: [{
+        user: {
+            type: String
+        },
+        rating: {
+            type: Number
+        }
+    }],
+    average: {
+        type: Number
     }
 })
 

@@ -144,4 +144,22 @@ export const checkFilter = async function (word) {
 }
 
 
+//Returns class for average rating
+export const returnRatingClass = function (rating) {
+    if (rating < 3) {
+        return 'badRating'
+    }
+    if (rating < 5) {
+        return "okRating"
+    }
+    return "goodRating"
+}
 
+
+//Returns users rating for a game
+export const returnUserRating = async function (game, user) {
+    const userRating = await fetch(`/games/rating/${game}/${user}`)
+        .then(res => res.json())
+
+    return userRating
+}
