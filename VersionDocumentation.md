@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.5.5.0
+# Pokemon Challenges Alpha Build 0.5.6.0
 
 Version numbers are created using the following system
 a.b.c.d
@@ -9,9 +9,14 @@ a.b.c.d
 - d = Revision Number (bug fixes or very minor changes)
 
 
-#### March 26, 2020 - 0.5.5.0
+#### March 27, 2020 - 0.5.6.0
+- Added Average Rating to Game Page
+- Added Ability for users to Rate Games
+
+#### March 26, 2020 - 0.5.5.5
 - Added confirmation prompt when deleting a comment
 - Added ability to update password while logged in
+- Added Game Ratings to the database
 
 #### March 25, 2020 - 0.5.4.5
 - Added ability to add Galar Pokemon to runs, however no sprites are available

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Marked from 'react-markdown';
 
 import HomeBanner from '../img/Logos2.png';
-import PlaceHolder from '../img/Placeholder.png';
 import Highlights from '../img/Highlights.png';
 
 class Home extends Component {
@@ -15,6 +14,10 @@ class Home extends Component {
                 logo: ''
             },
             completed: {
+                name: '',
+                logo: ''
+            },
+            highest: {
                 name: '',
                 logo: ''
             },
@@ -35,28 +38,40 @@ class Home extends Component {
         await this.fetchLatestNews();
         await this.fetchFinishedGame('completed');
         await this.fetchFinishedGame('failed');
+        await this.fetchHighestRated();
     }
 
     fetchLatestNews = async () => {
         await fetch('/news/latestPost')
-        .then(res => res.json())
-        .then(data => {
-            this.setState({
-                news: {
-                    title: data[0].title,
-                    date: data[0].date,
-                    body: data[0].body
+            .then(res => res.json())
+            .then(data => {
+                this.setState({
+                    news: {
+                        title: data[0].title,
+                        date: data[0].date,
+                        body: data[0].body
 
-                }
+                    }
+                })
             })
-        })
     }
 
     fetchTopGame = async () => {
         const game = await fetch('/games/mostPlayedGame')
-                .then(res => res.json());
+            .then(res => res.json());
         this.setState({
             top: {
+                logo: <img src={game[0].logo} alt="game logo"></img>,
+                name: game[0].gameCode
+            }
+        })
+    }
+
+    fetchHighestRated = async () => {
+        const game = await fetch('/games/highestRated')
+            .then(res => res.json());
+        this.setState({
+            highest: {
                 logo: <img src={game[0].logo} alt="game logo"></img>,
                 name: game[0].gameCode
             }
@@ -114,7 +129,7 @@ class Home extends Component {
                     </div>
                     <div className="gameHighlight">
                         <h1>Highest Rated Game!</h1>
-                        <Link to={`/`}><img src={PlaceHolder} alt="Placeholder"></img></Link>
+                        <Link to={`/game/${this.state.highest.name}`}>{this.state.highest.logo}</Link>
                     </div>
                 </div>
             </div>
