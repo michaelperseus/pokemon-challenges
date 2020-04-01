@@ -33,7 +33,8 @@ export default function ChangePassword(props) {
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Username': `${localStorage.getItem('user')}`
             }
         }).then(res => {
             if (res.status !== 201) {

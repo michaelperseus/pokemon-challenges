@@ -20,7 +20,7 @@ class EditRun extends Component {
 
     async componentDidMount() {
         const runData = await fetch(`/runs/view/${this.props.match.params.runId}`)
-        .then(res => res.json());
+            .then(res => res.json());
         this.matchPropsToState(runData);
         this.makeList(this.state.pokemon);
     }
@@ -43,31 +43,32 @@ class EditRun extends Component {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Username': `${localStorage.getItem('user')}`
             }
         })
-        .then(res => {
-            console.log(res);
-            if (res.status === 200) {
-                console.log('deleted');
-                window.location.reload(true);
-            } else {
-                console.log("error deleting")
-            }
-        })
+            .then(res => {
+                console.log(res);
+                if (res.status === 200) {
+                    console.log('deleted');
+                    window.location.reload(true);
+                } else {
+                    console.log("error deleting")
+                }
+            })
     }
 
     makeList = (pokemon) => {
         const list = pokemon.map(poke => {
-        return <tr key={poke._id}><td>{poke.pokemon}</td><td>{poke.status}</td><td>{poke.nickname}</td><td><Link to={`/edit-pokemon/${this.props.match.params.runId}/${poke._id}`}>Edit</Link></td></tr>
+            return <tr key={poke._id}><td>{poke.pokemon}</td><td>{poke.status}</td><td>{poke.nickname}</td><td><Link to={`/edit-pokemon/${this.props.match.params.runId}/${poke._id}`}>Edit</Link></td></tr>
         })
-        this.setState({pokemonLi: this.state.pokemonLi.concat(list)})
+        this.setState({ pokemonLi: this.state.pokemonLi.concat(list) })
     }
 
 
     handleChange = (e) => {
         console.log(e.target.type);
-        if(e.target.type === "select-one") {
+        if (e.target.type === "select-one") {
             this.setState({
                 [e.target.name]: e.target.value
             })
@@ -95,8 +96,6 @@ class EditRun extends Component {
             return alert(`Notes contains banned word: ${commentCheck.value}`);
         }
 
-        //Old Regex, saving for now in case new version is broken
-        // const regex = /^(?=.*[A-Z0-9])[\w.,&!"'#^()-_@\\\r\n/$ ]+$/i;
         const regex = /^[\w\s.,&!"'#&{}%€$^()-_@\\\r\n/$ ]+$/i;
         const confirmNotes = this.state.runNotes.match(regex);
         if (!confirmNotes && this.state.runNotes !== '') {
@@ -120,14 +119,15 @@ class EditRun extends Component {
         }
         fetch('/runs/updateRun', {
             method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                  },
-                body: JSON.stringify(data)
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Username': `${localStorage.getItem('user')}`
+            },
+            body: JSON.stringify(data)
         }).then(res => {
             if (res.status === 200) {
-                this.props.history.push('/my-profile');
+                this.props.history.push(`/run/${this.state.id}`);
             } else {
                 button.classList.remove('submitting');
                 button.innerHTML = 'Save Run';
@@ -148,7 +148,7 @@ class EditRun extends Component {
                     </div>
                     <div className="formGroup">
                         <label>Game</label>
-                        <input type="text" value={this.state.game}   disabled></input>
+                        <input type="text" value={this.state.game} disabled></input>
                     </div>
                     <div className="formGroup">
                         <label>Status</label>

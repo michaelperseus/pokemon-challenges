@@ -1,66 +1,62 @@
 import React, { Component } from 'react'
 
 import TableGenerator from '../utils/TableGenerator';
+import { fetchUserFeatRun, fetchUserPic, fetchBadges } from '../utils/userFunction';
+import { capitalizeString } from '../utils/common';
+
+import Loading from '../img/Loading.png';
 
 export default class User extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             userRuns: [],
             validUser: true,
             runTable: <tr><td>loading...</td></tr>,
-            avatar: '',
-            badges: 'Loading...'
+            userAvatar: '',
+            badges: 'Loading...',
+            featuredRun: {
+                img: <img src={Loading} alt='Placeholder' />,
+                variation: 'Loading',
+                name: 'Loading',
+                id: '',
+                completed: 'Loading'
+            }
         }
+        this.fetchUserFeatRun = fetchUserFeatRun.bind(this);
+        this.fetchUserPic = fetchUserPic.bind(this);
+        this.fetchBadges = fetchBadges.bind(this);
     }
 
     async componentDidMount() {
         await fetch(`/users/info/${this.props.match.params.username}`)
             .then(async res => {
                 if (res.status === 200) {
-                    await this.fetchAvatar();
-                    await this.fetchBadges();
+                    await this.fetchUserPic(this.props.match.params.username);
+                    await this.fetchBadges(this.props.match.params.username);
                     await this.fetchRuns();
                     await this.createTable();
+                    await this.fetchUserFeatRun(this.props.match.params.username);
                 } else {
-                    this.setState({validUser: false})
+                    this.setState({ validUser: false })
                 }
             });
-    }
-
-    fetchBadges = async () => {
-        await fetch(`/users/badges/${this.props.match.params.username}`)
-        .then(res => res.json())
-        .then(data => {
-            const badgeBox = data.badges.map(badge => {
-                return <span className={`badge ${badge}`}>{badge}</span>
-            });
-            this.setState({badges: badgeBox})
-        })
-    }
-
-    fetchAvatar = async () => {
-        await fetch(`/users/avatar/${this.props.match.params.username}`)
-            .then(res => res.json())
-            .then(data => {
-                this.setState({avatar: data.avatar})
-            })
     }
 
     fetchRuns = async () => {
         await fetch(`/runs/${this.props.match.params.username}`)
             .then(res => res.json())
             .then(data => {
-                this.setState({userRuns: data})
+                this.setState({ userRuns: data })
             })
     }
 
     createTable = async () => {
         const runTables = this.state.userRuns.map(run => {
-            return <TableGenerator type='user' run={run} key={run._id}/>
+            return <TableGenerator type='user' run={run} key={run._id} />
         })
-        this.setState({runTable: runTables})
+        this.setState({ runTable: runTables })
     }
 
     render() {
@@ -73,7 +69,7 @@ export default class User extends Component {
         } else {
             return (
                 <div id="userPage">
-                    <img src={this.state.avatar} alt={this.props.match.params.username}></img>
+                    <img src={this.state.userAvatar} alt={this.props.match.params.username}></img>
                     <h1>{this.props.match.params.username}</h1>
                     <h3>has submitted {this.state.userRuns.length} runs!</h3>
                     <div id="userBadges">
@@ -81,6 +77,11 @@ export default class User extends Component {
                         <div id="badgeBox">
                             {this.state.badges}
                         </div>
+                    </div>
+                    <div id="featGame">
+                        <h2>Featured Run!</h2>
+                        {this.state.featuredRun.img}
+                        <h3>{capitalizeString(this.state.featuredRun.variation)}<span>{capitalizeString(this.state.featuredRun.completed)}</span></h3>
                     </div>
                     <table className="myRuns">
                         <thead>
@@ -98,6 +99,6 @@ export default class User extends Component {
                 </div>
             )
         }
-        
+
     }
 }

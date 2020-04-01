@@ -27,7 +27,8 @@ class TableGenerator extends Component {
             body: JSON.stringify(deleteData),
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Username': `${localStorage.getItem('user')}`
             }
         })
             .then(res => {

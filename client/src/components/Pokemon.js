@@ -30,7 +30,6 @@ export default class Pokemon extends Component {
             }
             )
             .then(data => {
-                console.log(galarcheck);
                 if (galarcheck) {
                     return this.setState({ pokemon: capitalizeString(this.props.data.pokemon), sprite: 'https://cdn.bulbagarden.net/upload/6/60/Question_Mark.png' })
                 }

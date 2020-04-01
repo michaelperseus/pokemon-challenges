@@ -72,6 +72,7 @@ class Game extends Component {
         const ratings = document.querySelectorAll('[data-rating]');
         ratings.forEach(rat => {
             rat.classList.remove('active');
+            // eslint-disable-next-line
             if (rat.dataset.rating == this.state.userRating) {
                 rat.classList.add('active')
             }
@@ -83,6 +84,7 @@ class Game extends Component {
         const ratings = document.querySelectorAll('[data-rating]');
         ratings.forEach(rat => {
             rat.classList.remove('active');
+            // eslint-disable-next-line
             if (rat.dataset.rating == this.state.userRating) {
                 rat.classList.add('active')
             }
@@ -105,7 +107,8 @@ class Game extends Component {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Username': `${localStorage.getItem('user')}`
             },
             body: JSON.stringify(data)
         })

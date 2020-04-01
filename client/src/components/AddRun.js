@@ -13,7 +13,7 @@ class AddRun extends Component {
     }
 
     handleChange = (e) => {
-        if(e.target.type === "radio" || e.target.type === "select-one") {
+        if (e.target.type === "radio" || e.target.type === "select-one") {
             this.setState({
                 [e.target.name]: e.target.value
             })
@@ -47,8 +47,9 @@ class AddRun extends Component {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                  },
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    'Username': `${localStorage.getItem('user')}`
+                },
                 body: JSON.stringify(newRunData)
             }).then(res => {
                 if (res.status === 201) {

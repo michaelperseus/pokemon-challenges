@@ -29,7 +29,7 @@ const RunSchema = new mongoose.Schema({
         nickname: {
             type: String,
             validate(value) {
-                if (!validator.isLength(value, {min: 1, max: 12})) {
+                if (!validator.isLength(value, { min: 1, max: 12 })) {
                     throw new Error('Nickname is invalid length');
                 }
             }
@@ -59,8 +59,14 @@ const RunSchema = new mongoose.Schema({
         }
     }]
 },
-{
-    timestamps: true
+    {
+        timestamps: true
+    })
+
+RunSchema.virtual('username', {
+    ref: 'User',
+    localField: '_id',
+    foreignField: 'featuredRun'
 })
 
 module.exports = mongoose.model('Run', RunSchema);

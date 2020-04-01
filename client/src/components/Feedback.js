@@ -28,7 +28,7 @@ class Feedback extends Component {
 
         const regex = /^(?=.*[A-Z0-9])[\w.,!"'#^()-_@\\\r\n/$ ]+$/i;
         const confirmNotes = this.state.comment.match(regex);
-        if (!confirmNotes  && this.state.comment !== '') {
+        if (!confirmNotes && this.state.comment !== '') {
             button.classList.remove('submitting');
             button.innerHTML = 'Save Run';
             button.disabled = false;
@@ -60,24 +60,25 @@ class Feedback extends Component {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token}`,
+                'Username': `${localStorage.getItem('user')}`
             },
             body: JSON.stringify(comment)
         })
-        .then(res => {
-            if (res.status !== 201) {
-                return this.setState({
-                    success: 'failed',
-                    response: 'An error has occured, please try again!'
-                })
-            }
-            return res.json()
-        })
-        .then(data => this.setState({
-            success: 'success',
-            response: 'Feedback recieved! Your reference number is: ',
-            refId: data.refId
-        }))
+            .then(res => {
+                if (res.status !== 201) {
+                    return this.setState({
+                        success: 'failed',
+                        response: 'An error has occured, please try again!'
+                    })
+                }
+                return res.json()
+            })
+            .then(data => this.setState({
+                success: 'success',
+                response: 'Feedback recieved! Your reference number is: ',
+                refId: data.refId
+            }))
         button.innerHTML = "Send Feedback";
         button.disabled = false;
         button.classList.remove('submitting');
