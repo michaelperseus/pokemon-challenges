@@ -127,7 +127,7 @@ class EditRun extends Component {
             body: JSON.stringify(data)
         }).then(res => {
             if (res.status === 200) {
-                this.props.history.goBack();
+                this.props.history.push(`/run/${this.state.id}`);
             } else {
                 button.classList.remove('submitting');
                 button.innerHTML = 'Save Run';
