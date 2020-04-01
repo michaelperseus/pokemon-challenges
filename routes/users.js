@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../models/User');
+const Game = require('../models/Game');
+const Run = require('../models/Runs');
 const withAuth = require('../middleware/middleware');
 
 const aws = require('aws-sdk');
@@ -25,6 +27,20 @@ const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 
 
+//Saving a featured run
+router.post('/saveFeaturedRun', withAuth, async (req, res) => {
+    const user = await User.findOne({ username: req.body.username });
+    user.featuredRun = req.body.runId;
+    try {
+        await user.save();
+        res.send(user);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send(e);
+    }
+})
+
+
 router.get('/info/:username', async (req, res) => {
     const user = await User.findOne({ username: { $regex: new RegExp("^" + req.params.username + "$", "i") } });
     if (!user) {
@@ -32,6 +48,40 @@ router.get('/info/:username', async (req, res) => {
     }
     res.status(200).send(user);
 })
+
+
+router.get('/featuredRun/:username', async (req, res) => {
+    const user = await User.findOne({ username: { $regex: new RegExp("^" + req.params.username + "$", "i") } });
+    if (!user) {
+        return res.status(404).send()
+    }
+    await user.populate('featuredRun', 'game _id variation completed').execPopulate();
+
+    //Returns users most recent run if none is set
+    if (!user.featuredRun) {
+        const userRun = await Run.findOne({ user: user.username });
+        if (!userRun) {
+            return res.status(404).send(user.featuredRun)
+        }
+        const gamepic = await Game.findOne({ gameCode: userRun.game });
+        return res.status(200).send({ variation: userRun.variation, _id: userRun._id, game: gamepic.name, logo: gamepic.logo, completed: userRun.completed })
+    }
+    //Returns set game
+    const gamepic = await Game.findOne({ gameCode: user.featuredRun.game });
+    return res.status(200).send({ variation: user.featuredRun.variation, _id: user.featuredRun._id, completed: user.featuredRun.completed, game: gamepic.name, logo: gamepic.logo })
+}
+)
+
+router.get('/verifyFeatRun/:run/:user', async (req, res) => {
+    const user = await User.findOne({ username: { $regex: new RegExp("^" + req.params.user + "$", "i") } });
+    await user.populate('featuredRun', 'game _id variation completed').execPopulate();
+    if (user.featuredRun._id == req.params.run) {
+        return res.send({ check: true })
+    } else {
+        return res.send({ check: false })
+    }
+})
+
 
 router.get('/avatar/:username', async (req, res) => {
     const user = await User.findOne({ username: { $regex: new RegExp("^" + req.params.username + "$", "i") } });
@@ -62,7 +112,6 @@ router.get('/adminCheck', withAuth, async (req, res) => {
 
 //Verify Password is correct
 router.post('/passConfirm', async (req, res) => {
-    console.log(req.body);
     const user = await User.findOne({ username: req.body.username });
     const isMatch = await bcrypt.compare(req.body.password, user.password);
     if (!isMatch) {

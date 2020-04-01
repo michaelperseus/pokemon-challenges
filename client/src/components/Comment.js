@@ -40,7 +40,8 @@ export default class Comment extends Component {
             body: JSON.stringify(commentData),
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Username': `${localStorage.getItem('user')}`
             }
         })
             .then(res => {

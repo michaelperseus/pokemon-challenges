@@ -3,6 +3,7 @@ import { checkFilter, capitalizeString } from '../utils/common';
 
 import Pokemon from './Pokemon';
 import Comment from './Comment';
+import RunOwnerPanel from './RunOwnerPanel';
 
 export default class Run extends Component {
     constructor(props) {
@@ -48,6 +49,7 @@ export default class Run extends Component {
             document.getElementById('showMoreButton').classList.add('hideButton');
         }
     }
+
     handleComment = async (e) => {
         e.preventDefault();
 
@@ -87,7 +89,8 @@ export default class Run extends Component {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Username': `${localStorage.getItem('user')}`
             },
             body: JSON.stringify(data)
         })
@@ -147,6 +150,7 @@ export default class Run extends Component {
         return (
             <div>
                 <p className="goBack" onClick={this.goBack}>Go back</p>
+                {this.state.runUser === localStorage.getItem('user') ? <RunOwnerPanel user={this.state.runUser} runId={this.state.runId} /> : ''}
                 <table className="runTable">
                     <thead>
                         <tr>

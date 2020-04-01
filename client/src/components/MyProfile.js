@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
 
+import Loading from '../img/Loading.png';
+
 import TableGenerator from '../utils/TableGenerator';
+import { fetchUserFeatRun, fetchUserPic, fetchBadges, confirmPassword, logoutUser, logoutAll } from '../utils/userFunction';
+import { capitalizeString } from '../utils/common';
 
 export default class User extends Component {
     constructor(props) {
@@ -13,88 +17,34 @@ export default class User extends Component {
             runTable: <tr><td>loading...</td></tr>,
             newAvatar: null,
             userAvatar: '',
-            badges: ''
+            badges: '',
+            featuredRun: {
+                img: <img src={Loading} alt='Placeholder' />,
+                variation: 'Loading',
+                name: 'Loading',
+                id: '',
+                completed: 'Loading'
+            }
         }
+        this.fetchUserFeatRun = fetchUserFeatRun.bind(this);
+        this.fetchUserPic = fetchUserPic.bind(this);
+        this.fetchBadges = fetchBadges.bind(this);
+        this.logoutUser = logoutUser.bind(this);
+        this.logoutAll = logoutAll.bind(this);
     }
 
     componentDidMount = async () => {
-        await this.fetchUserPic();
+        await this.fetchUserPic(this.state.user);
         await this.fetchUserRuns();
-        await this.fetchBadges();
+        await this.fetchBadges(this.state.user);
         await this.createTable();
-    }
-
-    fetchUserPic = async () => {
-        await fetch(`/users/avatar/${this.state.user}`)
-            .then(res => res.json())
-            .then(data => {
-                this.setState({ userAvatar: data.avatar })
-            })
-    }
-
-    fetchBadges = async () => {
-        await fetch(`/users/badges/${this.state.user}`)
-            .then(res => res.json())
-            .then(data => {
-                const badgeBox = data.badges.map(badge => {
-                    return <span key={badge} className={`badge ${badge}`}>{badge}</span>
-                });
-                this.setState({ badges: badgeBox })
-            })
+        await this.fetchUserFeatRun(this.state.user);
     }
 
     fetchUserRuns = async () => {
         await fetch(`/runs/${this.state.user}`)
             .then(res => res.json())
             .then(data => this.setState({ runs: data }))
-    }
-
-    logoutUser = async () => {
-        const logoutData = {
-            username: localStorage.getItem('user'),
-            token: localStorage.getItem('token')
-        }
-        await fetch('/users/logout', {
-            method: 'POST',
-            body: JSON.stringify(logoutData),
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        }).then(res => {
-            if (res.status === 200) {
-                localStorage.removeItem('user');
-                localStorage.removeItem('token');
-                this.props.history.push('/');
-                window.location.reload(true);
-            } else {
-                console.log('error logging out');
-            }
-        })
-    }
-
-    logoutAll = async () => {
-        const logoutData = {
-            username: localStorage.getItem('user'),
-            token: localStorage.getItem('token')
-        }
-        await fetch('/users/logoutAll', {
-            method: 'POST',
-            body: JSON.stringify(logoutData),
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        }).then(res => {
-            if (res.status === 200) {
-                localStorage.removeItem('user');
-                localStorage.removeItem('token');
-                this.props.history.push('/');
-                window.location.reload(true);
-            } else {
-                console.log('error logging out');
-            }
-        })
     }
 
     createTable = async () => {
@@ -111,7 +61,7 @@ export default class User extends Component {
     }
 
     deleteProfile = async () => {
-        const confirm = await this.confirmPassword();
+        const confirm = await confirmPassword();
         if (confirm) {
             const deleteData = {
                 username: this.state.user
@@ -121,7 +71,8 @@ export default class User extends Component {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    'Username': `${localStorage.getItem('user')}`
                 },
                 body: JSON.stringify(deleteData)
             })
@@ -141,7 +92,7 @@ export default class User extends Component {
         }
     }
 
-    testUpload = async (e) => {
+    uploadNewAvatar = async (e) => {
         e.preventDefault();
 
         if (this.state.newAvatar === null) {
@@ -163,7 +114,8 @@ export default class User extends Component {
         await fetch('/users/newAvatar', {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Username': `${localStorage.getItem('user')}`
             },
             body: fd
         })
@@ -171,32 +123,6 @@ export default class User extends Component {
             .then(data => {
                 window.location.reload(true);
             });
-    }
-
-    confirmPassword = async () => {
-        const pass = prompt('Please enter your password');
-        if (pass === '') {
-            alert('Please enter your password');
-            return false;
-        }
-        const user = localStorage.getItem('user');
-        const correct = await fetch('/users/passConfirm', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                username: user,
-                password: pass
-            })
-        })
-            .then(res => {
-                if (res.status !== 200) {
-                    return false
-                }
-                return true
-            })
-        return correct
     }
 
     render() {
@@ -211,6 +137,11 @@ export default class User extends Component {
                         {this.state.badges}
                     </div>
                 </div>
+                <div id="featGame">
+                    <h2>Featured Run!</h2>
+                    {this.state.featuredRun.img}
+                    <h3>{capitalizeString(this.state.featuredRun.variation)}<span>{capitalizeString(this.state.featuredRun.completed)}</span></h3>
+                </div>
                 <table className="myRuns">
                     <thead>
                         <tr>
@@ -224,7 +155,7 @@ export default class User extends Component {
                         {this.state.runTable}
                     </tbody>
                 </table>
-                <form onSubmit={this.testUpload} id="newAvatar">
+                <form onSubmit={this.uploadNewAvatar} id="newAvatar">
                     <label>Upload New Avatar</label>
                     <input type="file" id="avatarUpload" name="upload" onChange={this.handleImage}></input>
                     <button>Upload</button>

@@ -34,7 +34,8 @@ export default class EditPokemon extends Component {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Username': `${localStorage.getItem('user')}`
             }
         })
             .then(res => {
@@ -117,7 +118,8 @@ export default class EditPokemon extends Component {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                        'Username': `${localStorage.getItem('user')}`
                     },
                     body: JSON.stringify(update)
 

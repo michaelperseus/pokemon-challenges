@@ -95,7 +95,8 @@ export default class AddPokemon extends Component {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                        'Username': `${localStorage.getItem('user')}`
                     },
                     body: JSON.stringify(update)
 

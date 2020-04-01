@@ -1,4 +1,4 @@
-# Pokemon Challenges Alpha Build 0.5.6.0
+# Pokemon Challenges Alpha Build 0.5.7.0
 
 Version numbers are created using the following system
 a.b.c.d
@@ -9,7 +9,16 @@ a.b.c.d
 - d = Revision Number (bug fixes or very minor changes)
 
 
-#### March 27, 2020 - 0.5.6.0
+#### April 1st, 2020 - 0.5.7.0
+- Fixed security issue where a user could access someone elses account and edit their details due to a flaw in the user validation on the server
+- Added an 'Owner Control Panel' to run pages that allows users to set run as their featrued run as well as a direct link to edit the run
+- Saving a run now returns you to the previous page instead of your profile
+
+#### March 31, 2020 - 0.5.6.5
+- Added 'Featured Game' to user profile, Currently displays users first run
+- Refactored code to be more re-usable by moving repeated functions to a new 'userFunctions.js' file
+
+### March 27, 2020 - 0.5.6.0
 - Added Average Rating to Game Page
 - Added Ability for users to Rate Games
 

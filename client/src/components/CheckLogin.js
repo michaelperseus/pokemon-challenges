@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class CheckLogin extends Component {
     async componentDidUpdate(prevProps) {
@@ -11,17 +11,18 @@ class CheckLogin extends Component {
                 withCredentials: true,
                 credentials: 'include',
                 headers: {
-                   'Authorization': `Bearer ${token}`,
-                   'Content-Type': 'application/json'
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                    'Username': `${localStorage.getItem('user')}`
                 }
             })
-            .then(res => {
-                if (res.status !== 200) {
-                    localStorage.removeItem('user');
-                    localStorage.removeItem('token');
-                    window.location.reload(true);
-                } 
-            })
+                .then(res => {
+                    if (res.status !== 200) {
+                        localStorage.removeItem('user');
+                        localStorage.removeItem('token');
+                        window.location.reload(true);
+                    }
+                })
         }
     }
 
