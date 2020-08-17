@@ -12,7 +12,7 @@ a.b.c.d
 #### April 1st, 2020 - 0.5.7.0
 - Fixed security issue where a user could access someone elses account and edit their details due to a flaw in the user validation on the server
 - Added an 'Owner Control Panel' to run pages that allows users to set run as their featrued run as well as a direct link to edit the run
-- Saving a run now returns you to the previous page instead of your profile
+- Saving a run now returns you to public page for that run
 
 #### March 31, 2020 - 0.5.6.5
 - Added 'Featured Game' to user profile, Currently displays users first run
